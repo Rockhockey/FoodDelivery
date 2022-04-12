@@ -1,6 +1,6 @@
 --DOA CRUD
 
---filter
+--View filterd menue
 	--get a keyword to search for as Param
 SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
 FROM Menu
@@ -8,23 +8,29 @@ WHERE Name LIKE %(Param)% OR
 	Cuisine LIKE %(Param)% OR
 	Description LIKE %(Param)%;
 
---Current Cart
+--View Current Cart
 SELECT Menu.Name, Menu.Price*Menu.Offer as CurrentPrice, Cart.Quantity
 FROM Cart
 INNER JOIN Menu ON Cart.Item=Menu.MenuID;
 
---Total Cost of current Cart
+--View Total Cost of current Cart
 SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity)
 FROM Cart
 INNER JOIN Menu ON Cart.Item=Menu.MenuID;
 
 
--- order history
+-- View order history
 	--UserID of the logged in User as CurrentUserID
 Select O.OrderNumber, O.OrderTime, O.Cost, OH.Item, OH.Quantity
 FROM Orders AS O
 INNER JOIN OrderHistory AS OH
 WHERE UserID = (CurrentUsersID);
+
+--add item to menu
+	-- starts non visible with no special offer
+	-- takes in name as food, price as cost, cuisine as style, description as summary
+INSERT INTO Menu(MenuID, Name, Price, Cuisine, Description, Offer, Visible)
+VALUES(sequence_Menu.nextval, (food), (cost), (style), (summary), 1, false);
 
 -- add item to cart
 	-- get MenuID of item to be added as ItemID
@@ -32,7 +38,12 @@ WHERE UserID = (CurrentUsersID);
 INSERT INTO Cart( CartIndex, Item, Quantity)
 VALUES (sequence_Cart.nextval, (ItemID), (amount));
 
---Move Cart to Orders and OrderHistory
+--add User
+	-- Take in Username as Uname, Password as Pass, Email as mail, Address as Addrs
+INSERT INTO Users(UserID, UserName, Password, Email, Adress)
+VALUES(sequence_User.nextval, (Uname), (Pass), (mail), (Addrs));
+
+--Move Cart to Orders and OrderHistory, reset cart
 	--UserID of the logged in User as CurrentUserID
 INSERT INTO Orders( OrderNumber, UserID, OrderTime, Cost)
 Values(sequence_Orders.nextval, (CurrentUserID), SYSDATETIME(), 
@@ -46,4 +57,23 @@ VALUES (SELECT  sequence_OrderHistory.nextval, sequence_Orders.currval, Item, Qu
 	FROM Cart;)
 	
 DELETE FROM Cart;
+
 ALTER SEQUENCE sequence_Cart RESTART WITH 0;
+
+--Set menu item as avalible
+	-- take in menuID of item to change as ID
+UPDATE Menu
+SET Visible= TRUE
+WHERE MenuID=ID;
+
+--Set menu item as unavalible
+	-- take in menuID of item to change as ID
+UPDATE Menu
+SET Visible= FALSE
+WHERE MenuID=ID;
+
+--Set special offer on menu item
+	-- take in menuID of item to change as ID and new offer value as percent
+UPDATE Menu
+SET Offer= percent
+WHERE MenuID=ID;
