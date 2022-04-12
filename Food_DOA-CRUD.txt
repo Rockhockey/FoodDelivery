@@ -1,6 +1,7 @@
 --DOA CRUD
 
 --filter
+	--get a keyword to search for as Param
 SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
 FROM Menu
 WHERE Name LIKE %(Param)% OR
@@ -23,3 +24,12 @@ Select O.OrderNumber, O.OrderTime, O.Cost, OH.Item, OH.Quantity
 FROM Orders AS O
 INNER JOIN OrderHistory AS OH
 WHERE UserID = (CurrentUsersID);
+
+-- add item to cart
+	-- get MenuID of item to be added as ItemID
+	-- get quantity to be added as amount
+INSERT INTO Cart( CartIndex, Item, Quantity)
+VALUES (sequence_Cart.nextval, (ItemID), (amount));
+
+--Move Cart to OrderHistory
+	-- take OrderNumber from Oders
