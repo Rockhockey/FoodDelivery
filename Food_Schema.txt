@@ -1,6 +1,5 @@
 -- Schemes
 
---menu
 CREATE TABLE Menu (
 	MenuID INT NOT NULL PRIMARY KEY, 
 	Name VARCHAR(25) NOT NULL,
@@ -20,8 +19,8 @@ CREATE TABLE Users(
 	);
 
 CREATE TABLE Orders(
-	OderNumber INT PRIMARY KEY,
-	UserID INT FOREIGN KEY REFERENCES Users(UserID)
+	OrderNumber INT PRIMARY KEY,
+	UserID INT FOREIGN KEY REFERENCES Users(UserID),
 	OrderTime DATETIME,
 	Cost FLOAT(5,2) CHECK(Cost>=0)
 	);
@@ -38,4 +37,3 @@ CREATE TABLE Cart(
 	Item INT FOREIGN KEY REFERENCES Menu(MenuID),
 	Quantity INT CHECK(Quantity>0)
 	);
-	
