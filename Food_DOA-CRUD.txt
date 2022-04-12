@@ -1,0 +1,13 @@
+--DOA CRUD
+
+	--filter
+	SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
+	FROM Menu
+	WHERE Name LIKE %(Param)% OR
+		Cuisine LIKE %(Param)% OR
+		Description LIKE %(Param)%;
+	
+	
+
+-- order history
+	Select Users.UserName, OrderHistory.OrderNumber,  
