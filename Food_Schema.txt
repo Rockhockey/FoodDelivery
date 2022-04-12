@@ -33,7 +33,8 @@ CREATE TABLE OrderHistory(
 	);
 	
 CREATE TABLE Cart(
-	CartNumber INT PRIMARY KEY,
+	CartIndex INT PRIMARY KEY,
 	Item INT FOREIGN KEY REFERENCES Menu(MenuID),
 	Quantity INT CHECK(Quantity>0)
 	);
+	
