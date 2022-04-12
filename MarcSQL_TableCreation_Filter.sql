@@ -12,7 +12,7 @@ create table Menu (
 	
 	
 --Filter
-	SELECT Name, Price*Offer, Cuisine, Description as CurrentPrice,  FROM Menu
+	SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description,  FROM Menu
 	WHERE Cuisine LIKE %(Param)% OR
 		Name LIKE %(Param)% OR
 		Description LIKE %(Param)%;
