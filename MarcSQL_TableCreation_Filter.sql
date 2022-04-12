@@ -6,7 +6,7 @@ create table Menu (
 	Price FLOAT(5,2) NOT NULL CHECK(Price>=0),
 	Cuisine VARCHAR(25),
 	Description VARCHAR(500),
-	Offer FLOAT(5,2) NOT NULL CHECK(Offer<=1, Offer>=0),
+	Offer FLOAT(5,2) NOT NULL CHECK(Offer<=1 AND Offer>=0),
 	Visible boolean NOT NULL
 	);
 	
