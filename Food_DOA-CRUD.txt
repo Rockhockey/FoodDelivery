@@ -20,6 +20,7 @@ INNER JOIN Menu ON Cart.Item=Menu.MenuID;
 
 
 -- order history
+	--UserID of the logged in User as CurrentUserID
 Select O.OrderNumber, O.OrderTime, O.Cost, OH.Item, OH.Quantity
 FROM Orders AS O
 INNER JOIN OrderHistory AS OH
@@ -31,5 +32,15 @@ WHERE UserID = (CurrentUsersID);
 INSERT INTO Cart( CartIndex, Item, Quantity)
 VALUES (sequence_Cart.nextval, (ItemID), (amount));
 
---Move Cart to OrderHistory
-	-- take OrderNumber from Oders
+--Move Cart to Orders and OrderHistory
+	--UserID of the logged in User as CurrentUserID
+INSERT INTO Orders( OrderNumber, UserID, OrderTime, Cost)
+Values(sequence_Orders.nextval, (CurrentUserID), SYSDATETIME(), 
+	SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity)
+	FROM Cart
+	INNER JOIN Menu ON Cart.Item=Menu.MenuID;
+)
+
+INSERT INTO OrderHistory( OHKey, OrderNumber, Item, Quantity)
+VALUES (SELECT  sequence_OrderHistory.nextval, sequence_Orders.currval, Item, Quantity
+	FROM Cart;)
