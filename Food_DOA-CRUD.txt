@@ -1,13 +1,25 @@
 --DOA CRUD
 
-	--filter
-	SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
-	FROM Menu
-	WHERE Name LIKE %(Param)% OR
-		Cuisine LIKE %(Param)% OR
-		Description LIKE %(Param)%;
-	
-	
+--filter
+SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
+FROM Menu
+WHERE Name LIKE %(Param)% OR
+	Cuisine LIKE %(Param)% OR
+	Description LIKE %(Param)%;
+
+--Current Cart
+SELECT Menu.Name, Menu.Price*Menu.Offer as CurrentPrice, Cart.Quantity
+FROM Cart
+INNER JOIN Menu ON Cart.Item=Menu.MenuID;
+
+--Total Cost of current Cost
+SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity)
+FROM Cart
+INNER JOIN Menu ON Cart.Item=Menu.MenuID;
+
 
 -- order history
-	Select Users.UserName, OrderHistory.OrderNumber,  
+Select O.OrderNumber, O.OrderTime, O.Cost, OH.Item, OH.Quantity
+FROM Orders AS O
+INNER JOIN OrderHistory AS OH
+WHERE UserID = (CurrentUsersID);
