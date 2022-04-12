@@ -1,4 +1,6 @@
--- Schemes
+-- Schema
+
+--Tables
 
 CREATE TABLE Menu (
 	MenuID INT NOT NULL PRIMARY KEY, 
@@ -37,4 +39,24 @@ CREATE TABLE Cart(
 	Item INT FOREIGN KEY REFERENCES Menu(MenuID),
 	Quantity INT CHECK(Quantity>0)
 	);
-	
+
+--Sequences
+CREATE SEQUENCE sequence_Menu
+START WITH 0
+INCREMENT BY 1;
+
+CREATE SEQUENCE sequence_User
+START WITH 0
+INCREMENT BY 1;
+
+CREATE SEQUENCE sequence_Orders
+START WITH 0
+INCREMENT BY 1;
+
+CREATE SEQUENCE sequence_OrderHistory
+START WITH 0
+INCREMENT BY 1;
+
+CREATE SEQUENCE sequence_Cart
+START WITH 0
+INCREMENT BY 1;
