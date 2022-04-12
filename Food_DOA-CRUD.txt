@@ -12,7 +12,7 @@ SELECT Menu.Name, Menu.Price*Menu.Offer as CurrentPrice, Cart.Quantity
 FROM Cart
 INNER JOIN Menu ON Cart.Item=Menu.MenuID;
 
---Total Cost of current Cost
+--Total Cost of current Cart
 SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity)
 FROM Cart
 INNER JOIN Menu ON Cart.Item=Menu.MenuID;
