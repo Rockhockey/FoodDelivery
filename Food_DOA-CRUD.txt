@@ -14,7 +14,6 @@ SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description
 FROM Menu
 WHERE Cuisine=(Param);
 
-
 --View Current Cart
 SELECT Menu.Name, Menu.Price*Menu.Offer as CurrentPrice, Cart.Quantity
 FROM Cart
@@ -24,7 +23,6 @@ INNER JOIN Menu ON Cart.Item=Menu.MenuID;
 SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity)
 FROM Cart
 INNER JOIN Menu ON Cart.Item=Menu.MenuID;
-
 
 -- View order history
 	--UserID of the logged in User as CurrentUserID

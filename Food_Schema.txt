@@ -1,5 +1,4 @@
 -- Schema
-
 --Tables
 
 CREATE TABLE Menu (
