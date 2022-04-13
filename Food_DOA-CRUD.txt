@@ -127,3 +127,70 @@ WHERE UserISID=(CurrentUserID);
 UPDATE Users
 SET Adress= (adrs)
 WHERE UserISID=(CurrentUserID);
+
+--Set UserName of current user 
+	--UserID of the logged in User as CurrentUserID new UserName as name
+UPDATE Users
+SET UserName= (name)
+WHERE UserISID=(CurrentUserID);
+
+--Get Name of an item on menu 
+	-- take in menuID of item
+SELECT Name
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get Price of an item on menu 
+	-- take in menuID of item
+SELECT Price
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get Cuisine of an item on menu 
+	-- take in menuID of item
+SELECT Cuisine
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get Description of an item on menu 
+	-- take in menuID of item
+SELECT Description
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get Offer of an item on menu 
+	-- take in menuID of item
+SELECT Offer
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get if an itme on menu is Visible 
+	-- take in menuID of item
+SELECT Visible
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get UserName of current user 
+	--UserID of the logged in User as CurrentUserID
+SELECT UserName
+From Users
+WHERE UserID=(CurrentUserID);
+
+--Get password of current user 
+	--UserID of the logged in User as CurrentUserID
+SELECT Password
+From Users
+WHERE UserID=(CurrentUserID);
+
+--Get Email of current user 
+	--UserID of the logged in User as CurrentUserID
+SELECT Email
+From Users
+WHERE UserID=(CurrentUserID);
+
+--Get Adress of current user 
+	--UserID of the logged in User as CurrentUserID
+SELECT Adress
+From Users
+WHERE UserID=(CurrentUserID);
+
