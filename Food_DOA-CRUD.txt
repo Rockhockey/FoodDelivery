@@ -47,7 +47,7 @@ VALUES (sequence_Cart.nextval, (ItemID), (amount));
 
 --add User
 	-- Take in Username as Uname, Password as Pass, Email as mail, Address as Addrs
-INSERT INTO Users(UserID, UserName, Password, Email, Adress)
+INSERT INTO Users(UserID, UserName, Password, Email, Address)
 VALUES(sequence_User.nextval, (Uname), (Pass), (mail), (Addrs));
 
 --Move Cart to Orders and OrderHistory, reset cart
@@ -129,10 +129,10 @@ UPDATE Users
 SET Email= (mail)
 WHERE UserISID=(CurrentUserID);
 
---Set Adress of current user 
-	--UserID of the logged in User as CurrentUserID new Adress as adrs
+--Set Address of current user 
+	--UserID of the logged in User as CurrentUserID new Address as adrs
 UPDATE Users
-SET Adress= (adrs)
+SET Address= (adrs)
 WHERE UserISID=(CurrentUserID);
 
 --Set UserName of current user 
@@ -195,8 +195,8 @@ SELECT Email
 From Users
 WHERE UserID=(CurrentUserID);
 
---Get Adress of current user 
+--Get Address of current user 
 	--UserID of the logged in User as CurrentUserID
-SELECT Adress
+SELECT Address
 From Users
 WHERE UserID=(CurrentUserID);
