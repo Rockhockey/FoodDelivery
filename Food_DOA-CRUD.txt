@@ -60,20 +60,70 @@ DELETE FROM Cart;
 
 ALTER SEQUENCE sequence_Cart RESTART WITH 0;
 
+--delete entry from cart
+	-- cartIndex taken in as id
+DELETE FROM Cart WHILE CartIndex=(id);
+
+--delete item from menu
+	--menuID taken in as id
+	DELETE FROM Menu WHILE MenuID=(id);
+
 --Set menu item as avalible
 	-- take in menuID of item to change as ID
 UPDATE Menu
 SET Visible= TRUE
-WHERE MenuID=ID;
+WHERE MenuID=(ID);
 
 --Set menu item as unavalible
 	-- take in menuID of item to change as ID
 UPDATE Menu
 SET Visible= FALSE
-WHERE MenuID=ID;
+WHERE MenuID=(ID);
 
 --Set special offer on menu item
 	-- take in menuID of item to change as ID and new offer value as percent
 UPDATE Menu
-SET Offer= percent
-WHERE MenuID=ID;
+SET Offer= (percent)
+WHERE MenuID=(ID);
+
+--Set Name of an item on menu 
+	-- take in menuID of item to change as ID and new Name as item
+UPDATE Menu
+SET Name= (item)
+WHERE MenuID=(ID);
+
+--Set Price of an item on menu 
+	-- take in menuID of item to change as ID and new Price as cost
+UPDATE Menu
+SET Price= (cost)
+WHERE MenuID=(ID);
+
+--Set Cuisine of an item on menu 
+	-- take in menuID of item to change as ID and new Cuisine as foodType
+UPDATE Menu
+SET Cuisine= (foodType)
+WHERE MenuID=(ID);
+
+--Set Description of an item on menu 
+	-- take in menuID of item to change as ID and new Description as summary
+UPDATE Menu
+SET Description= (summary)
+WHERE MenuID=(ID);
+
+--Set password of current user 
+	--UserID of the logged in User as CurrentUserID new Password as pass
+UPDATE Users
+SET Password= (pass)
+WHERE UserISID=(CurrentUserID);
+
+--Set Email of current user 
+	--UserID of the logged in User as CurrentUserID new Email as mail
+UPDATE Users
+SET Email= (mail)
+WHERE UserISID=(CurrentUserID);
+
+--Set Adress of current user 
+	--UserID of the logged in User as CurrentUserID new Adress as adrs
+UPDATE Users
+SET Adress= (adrs)
+WHERE UserISID=(CurrentUserID);
