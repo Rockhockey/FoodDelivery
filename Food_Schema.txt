@@ -10,7 +10,7 @@ CREATE TABLE Menu (
 	Offer FLOAT(5,2) NOT NULL CHECK(Offer<=1 AND Offer>=0),
 	Visible boolean NOT NULL
 	);
-	
+
 CREATE TABLE Users(
 	UserID INT PRIMARY KEY,
 	UserName VARCHAR(25) UNIQUE NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE OrderHistory(
 	Item INT FOREIGN KEY REFERENCES Menu(MenuID),
 	Quantity INT CHECK(Quantity>0)
 	);
-	
+
 CREATE TABLE Cart(
 	CartIndex INT PRIMARY KEY,
 	Item INT FOREIGN KEY REFERENCES Menu(MenuID),
