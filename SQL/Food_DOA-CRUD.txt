@@ -1,0 +1,283 @@
+--DOA CRUD
+
+--View menu ordered by cuisine
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE Visible=TRUE
+ORDER BY Cuisine ASC;
+
+--View search menu ordered by cuisine
+	--get a keyword to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE(Name LIKE %(Param)% OR
+	Cuisine=(Param)% OR
+	Description LIKE %(Param)%)
+	AND Visible=TRUE
+ORDER BY Cuisine ASC;
+	
+--View search menue by Cuisine only ordered by cuisine
+	--get a Cuisine to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description  
+FROM Menu
+WHERE Cuisine=(Param) AND Visible=TRUE;
+
+--View menu ordered by Price ASC
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE Visible=TRUE
+ORDER BY CurrentPrice ASC;
+
+--View search menu ordered by Price ASC
+	--get a keyword to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE(Name LIKE %(Param)% OR
+	Cuisine=(Param)% OR
+	Description LIKE %(Param)%)
+	AND Visible=TRUE
+ORDER BY CurrentPrice ASC;
+	
+--View search menue by Cuisine only ordered by Price ASC
+	--get a Cuisine to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description  
+FROM Menu
+WHERE Cuisine=(Param) AND Visible=TRUE
+ORDER BY CurrentPrice ASC;
+
+--View menu ordered by Price DESC
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE Visible=TRUE
+ORDER BY CurrentPrice DESC;
+
+--View search menu ordered by Price DESC
+	--get a keyword to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE(Name LIKE %(Param)% OR
+	Cuisine=(Param)% OR
+	Description LIKE %(Param)%)
+	AND Visible=TRUE
+ORDER BY CurrentPrice DESC;
+	
+--View search menue by Cuisine only ordered by Price DESC
+	--get a Cuisine to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description  
+FROM Menu
+WHERE Cuisine=(Param) AND Visible=TRUE
+ORDER BY CurrentPrice DESC;
+
+--View menu ordered by Price DESC
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE Visible=TRUE
+ORDER BY PercentOff DESC;
+
+--View search menu ordered by PercentOff DESC
+	--get a keyword to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE(Name LIKE %(Param)% OR
+	Cuisine=(Param)% OR
+	Description LIKE %(Param)%)
+	AND Visible=TRUE
+ORDER BY PercentOff DESC;
+
+--View search menue by Cuisine only ordered by PercentOff DESC
+	--get a Cuisine to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description  
+FROM Menu
+WHERE Cuisine=(Param) AND Visible=TRUE
+ORDER BY PercentOff DESC;
+
+--View Current Cart
+SELECT Menu.Name, Menu.Price*Menu.Offer as CurrentPrice, Cart.Quantity
+FROM Cart
+INNER JOIN Menu ON Cart.Item=Menu.MenuID;
+
+--View Total Cost of current Cart
+SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity)
+FROM Cart
+INNER JOIN Menu ON Cart.Item=Menu.MenuID;
+
+-- View order history
+	--UserID of the logged in User as CurrentUserID
+Select O.OrderNumber, O.OrderTime, O.Cost, OH.Item, OH.Quantity
+FROM Orders AS O
+INNER JOIN OrderHistory AS OH
+WHERE UserID = (CurrentUsersID);
+
+--add item to menu
+	-- starts non visible with no special offer
+	-- takes in name as food, price as cost, cuisine as style, description as summary
+INSERT INTO Menu(MenuID, Name, Price, Cuisine, Description, Offer, Visible)
+VALUES(sequence_Menu.nextval, (food), (cost), (style), (summary), 1, false);
+
+-- add item to cart
+	-- get MenuID of item to be added as ItemID
+	-- get quantity to be added as amount
+INSERT INTO Cart( CartIndex, Item, Quantity)
+VALUES (sequence_Cart.nextval, (ItemID), (amount));
+
+--add User
+	-- Take in Username as Uname, Password as Pass, Email as mail
+INSERT INTO Users(UserID, UserName, Password, Email)
+VALUES(sequence_User.nextval, (Uname), (Pass), (mail));
+
+--Move Cart to Orders and OrderHistory, reset cart
+	--UserID of the logged in User as CurrentUserID
+INSERT INTO Orders( OrderNumber, UserID, OrderTime, Cost)
+Values(sequence_Orders.nextval, (CurrentUserID), SYSDATETIME(), 
+	SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity)
+	FROM Cart
+	INNER JOIN Menu ON Cart.Item=Menu.MenuID;
+)
+
+INSERT INTO OrderHistory( OHKey, OrderNumber, Item, Quantity)
+VALUES (SELECT  sequence_OrderHistory.nextval, sequence_Orders.currval, Item, Quantity
+	FROM Cart;)
+	
+DELETE FROM Cart;
+
+ALTER SEQUENCE sequence_Cart RESTART WITH 0;
+
+--delete entry from cart
+	-- cartIndex taken in as id
+DELETE FROM Cart WHILE CartIndex=(id);
+
+--delete item from menu
+	--menuID taken in as id
+	DELETE FROM Menu WHILE MenuID=(id);
+
+--Set menu item as avalible
+	-- take in menuID of item to change as ID
+UPDATE Menu
+SET Visible= TRUE
+WHERE MenuID=(ID);
+
+--Set menu item as unavalible
+	-- take in menuID of item to change as ID
+UPDATE Menu
+SET Visible= FALSE
+WHERE MenuID=(ID);
+
+--Set special offer on menu item
+	-- take in menuID of item to change as ID and new offer value as percent
+UPDATE Menu
+SET Offer= (percent)
+WHERE MenuID=(ID);
+
+--Set Name of an item on menu 
+	-- take in menuID of item to change as ID and new Name as item
+UPDATE Menu
+SET Name= (item)
+WHERE MenuID=(ID);
+
+--Set Price of an item on menu 
+	-- take in menuID of item to change as ID and new Price as cost
+UPDATE Menu
+SET Price= (cost)
+WHERE MenuID=(ID);
+
+--Set Cuisine of an item on menu 
+	-- take in menuID of item to change as ID and new Cuisine as foodType
+UPDATE Menu
+SET Cuisine= (foodType)
+WHERE MenuID=(ID);
+
+--Set Description of an item on menu 
+	-- take in menuID of item to change as ID and new Description as summary
+UPDATE Menu
+SET Description= (summary)
+WHERE MenuID=(ID);
+
+--Set password of current user 
+	--UserID of the logged in User as CurrentUserID new Password as pass
+UPDATE Users
+SET Password= (pass)
+WHERE UserISID=(CurrentUserID);
+
+--Set Email of current user 
+	--UserID of the logged in User as CurrentUserID new Email as mail
+UPDATE Users
+SET Email= (mail)
+WHERE UserISID=(CurrentUserID);
+
+--Set Address of current user 
+	--UserID of the logged in User as CurrentUserID new Address as adrs
+UPDATE Users
+SET Address= (adrs)
+WHERE UserISID=(CurrentUserID);
+
+--Set UserName of current user 
+	--UserID of the logged in User as CurrentUserID new UserName as name
+UPDATE Users
+SET UserName= (name)
+WHERE UserISID=(CurrentUserID);
+
+--Get Name of an item on menu 
+	-- take in menuID of item
+SELECT Name
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get Price of an item on menu 
+	-- take in menuID of item
+SELECT Price
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get Cuisine of an item on menu 
+	-- take in menuID of item
+SELECT Cuisine
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get Description of an item on menu 
+	-- take in menuID of item
+SELECT Description
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get Offer of an item on menu 
+	-- take in menuID of item
+SELECT Offer
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get if an itme on menu is Visible 
+	-- take in menuID of item
+SELECT Visible
+FROM Menu
+WHERE MenuID=(ID);
+
+--Get UserName of current user 
+	--UserID of the logged in User as CurrentUserID
+SELECT UserName
+From Users
+WHERE UserID=(CurrentUserID);
+
+--Get password of current user 
+	--UserID of the logged in User as CurrentUserID
+SELECT Password
+From Users
+WHERE UserID=(CurrentUserID);
+
+--Get Email of current user 
+	--UserID of the logged in User as CurrentUserID
+SELECT Email
+From Users
+WHERE UserID=(CurrentUserID);
+
+--Get Address of current user 
+	--UserID of the logged in User as CurrentUserID
+SELECT Address
+From Users
+WHERE UserID=(CurrentUserID);
+
+-- Get UserID from a UserName
+	--UserName taken in as Name
+SELECT UserID
+FROM Users
+WHERE UserName=(Name);
