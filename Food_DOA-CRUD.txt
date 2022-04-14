@@ -1,18 +1,24 @@
 --DOA CRUD
+--View menu
+SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
+FROM Menu
+ORDER BY Cuisine ASC;
 
---View search menue
+--View search menu
 	--get a keyword to search for as Param
 SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
 FROM Menu
 WHERE Name LIKE %(Param)% OR
 	Cuisine=(Param)% OR
-	Description LIKE %(Param)%;
+	Description LIKE %(Param)%
+ORDER BY Cuisine ASC;
 	
 --View search menue by Cuisine only
 	--get a Cuisine to search for as Param
 SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
 FROM Menu
 WHERE Cuisine=(Param);
+
 
 --View Current Cart
 SELECT Menu.Name, Menu.Price*Menu.Offer as CurrentPrice, Cart.Quantity
