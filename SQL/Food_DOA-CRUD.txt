@@ -15,7 +15,7 @@ WHERE(Name LIKE %(Param)% OR
 	Description LIKE %(Param)%)
 	AND Visible=TRUE
 ORDER BY Cuisine ASC;
-	
+
 --View search menue by Cuisine only ordered by cuisine
 	--get a Cuisine to search for as Param
 SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description  
@@ -122,8 +122,8 @@ VALUES (sequence_Cart.nextval, (ItemID), (amount));
 
 --add User
 	-- Take in Username as Uname, Password as Pass, Email as mail
-INSERT INTO Users(UserID, UserName, Password, Email)
-VALUES(sequence_User.nextval, (Uname), (Pass), (mail));
+INSERT INTO Users(UserID, UserName, Password, Email, IsAdmin)
+VALUES(sequence_User.nextval, (Uname), (Pass), (mail), FALSE);
 
 --Move Cart to Orders and OrderHistory, reset cart
 	--UserID of the logged in User as CurrentUserID
@@ -192,11 +192,23 @@ UPDATE Menu
 SET Description= (summary)
 WHERE MenuID=(ID);
 
+--Set User to be Admin
+	--take in UserID as ID
+UPDATE Users
+SET IsAdmin = TRUE
+WHERE UserID=(ID)
+
+--Set User to be not Admin
+	--take in UserID as ID
+UPDATE Users
+SET IsAdmin = FALSE
+WHERE UserID=(ID)
+
 --Set password of current user 
 	--UserID of the logged in User as CurrentUserID new Password as pass
 UPDATE Users
 SET Password= (pass)
-WHERE UserISID=(CurrentUserID);
+WHERE UserID=(CurrentUserID);
 
 --Set Email of current user 
 	--UserID of the logged in User as CurrentUserID new Email as mail

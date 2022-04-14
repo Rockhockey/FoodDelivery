@@ -8,7 +8,7 @@ CREATE TABLE Menu (
 	Cuisine VARCHAR(25),
 	Description VARCHAR(500),
 	Offer FLOAT(5,2) NOT NULL CHECK(Offer<=1 AND Offer>=0),
-	Visible boolean NOT NULL
+	Visible BOOLEAN NOT NULL
 	);
 
 CREATE TABLE Users(
@@ -17,6 +17,7 @@ CREATE TABLE Users(
 	Password VARCHAR(25) Not NULL,
 	Email VARCHAR(25),
 	Address VARCHAR (100)
+	IsAdmin BOOLEAN NOT NULL
 	);
 
 CREATE TABLE Orders(
