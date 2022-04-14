@@ -1,18 +1,95 @@
 --DOA CRUD
 
---View search menue
+--View menu ordered by cuisine
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE Visible=TRUE
+ORDER BY Cuisine ASC;
+
+--View search menu ordered by cuisine
 	--get a keyword to search for as Param
-SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description
 FROM Menu
-WHERE Name LIKE %(Param)% OR
+WHERE(Name LIKE %(Param)% OR
 	Cuisine=(Param)% OR
-	Description LIKE %(Param)%;
+	Description LIKE %(Param)%)
+	AND Visible=TRUE
+ORDER BY Cuisine ASC;
 	
---View search menue by Cuisine only
+--View search menue by Cuisine only ordered by cuisine
 	--get a Cuisine to search for as Param
-SELECT Name, Price*Offer as CurrentPrice, Cuisine, Description  
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description  
 FROM Menu
-WHERE Cuisine=(Param);
+WHERE Cuisine=(Param) AND Visible=TRUE;
+
+--View menu ordered by Price ASC
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE Visible=TRUE
+ORDER BY CurrentPrice ASC;
+
+--View search menu ordered by Price ASC
+	--get a keyword to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE(Name LIKE %(Param)% OR
+	Cuisine=(Param)% OR
+	Description LIKE %(Param)%)
+	AND Visible=TRUE
+ORDER BY CurrentPrice ASC;
+	
+--View search menue by Cuisine only ordered by Price ASC
+	--get a Cuisine to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description  
+FROM Menu
+WHERE Cuisine=(Param) AND Visible=TRUE
+ORDER BY CurrentPrice ASC;
+
+--View menu ordered by Price DESC
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE Visible=TRUE
+ORDER BY CurrentPrice DESC;
+
+--View search menu ordered by Price DESC
+	--get a keyword to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE(Name LIKE %(Param)% OR
+	Cuisine=(Param)% OR
+	Description LIKE %(Param)%)
+	AND Visible=TRUE
+ORDER BY CurrentPrice DESC;
+	
+--View search menue by Cuisine only ordered by Price DESC
+	--get a Cuisine to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description  
+FROM Menu
+WHERE Cuisine=(Param) AND Visible=TRUE
+ORDER BY CurrentPrice DESC;
+
+--View menu ordered by Price DESC
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE Visible=TRUE
+ORDER BY PercentOff DESC;
+
+--View search menu ordered by PercentOff DESC
+	--get a keyword to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description
+FROM Menu
+WHERE(Name LIKE %(Param)% OR
+	Cuisine=(Param)% OR
+	Description LIKE %(Param)%)
+	AND Visible=TRUE
+ORDER BY PercentOff DESC;
+
+--View search menue by Cuisine only ordered by PercentOff DESC
+	--get a Cuisine to search for as Param
+SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description  
+FROM Menu
+WHERE Cuisine=(Param) AND Visible=TRUE
+ORDER BY PercentOff DESC;
 
 --View Current Cart
 SELECT Menu.Name, Menu.Price*Menu.Offer as CurrentPrice, Cart.Quantity
