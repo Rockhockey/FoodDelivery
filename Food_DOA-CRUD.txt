@@ -44,9 +44,9 @@ INSERT INTO Cart( CartIndex, Item, Quantity)
 VALUES (sequence_Cart.nextval, (ItemID), (amount));
 
 --add User
-	-- Take in Username as Uname, Password as Pass, Email as mail, Address as Addrs
-INSERT INTO Users(UserID, UserName, Password, Email, Address)
-VALUES(sequence_User.nextval, (Uname), (Pass), (mail), (Addrs));
+	-- Take in Username as Uname, Password as Pass, Email as mail
+INSERT INTO Users(UserID, UserName, Password, Email)
+VALUES(sequence_User.nextval, (Uname), (Pass), (mail));
 
 --Move Cart to Orders and OrderHistory, reset cart
 	--UserID of the logged in User as CurrentUserID
@@ -198,3 +198,9 @@ WHERE UserID=(CurrentUserID);
 SELECT Address
 From Users
 WHERE UserID=(CurrentUserID);
+
+-- Get UserID from a UserName
+	--UserName taken in as Name
+SELECT UserID
+FROM Users
+WHERE UserName=(Name);
