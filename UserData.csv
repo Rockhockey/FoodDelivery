@@ -1,0 +1,12 @@
+UserID,UserName,Password,Email,Address,IsAdmin
+1,SuperUser,Password,Admin@site.com,702 White Lane Clarksville AR 72830,TRUE
+2,TestUser,Password,tester@site.com,2569 Wakefield Street Philadelphia PA 19111,FALSE
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
