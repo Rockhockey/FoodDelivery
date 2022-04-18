@@ -8,6 +8,7 @@ CREATE TABLE Menu (
 	Cuisine VARCHAR(25),
 	Description VARCHAR(500),
 	Offer DECIMAL(5,2) NOT NULL CHECK(Offer<=1 AND Offer>=0),
+	Picture VarChar(100),
 	Visible BOOLEAN NOT NULL
 	);
 
