@@ -51,5 +51,14 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//setting password for user in initial sign up and for log in
+	@Override
+	public void setPassword(Integer userId, String password) {
+		Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "password", password));
+		user.setPassword(user.getPassword());
+		userRepository.save(user);
+		
+	}
 
 }
