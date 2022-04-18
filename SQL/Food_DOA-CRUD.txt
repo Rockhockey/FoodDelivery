@@ -135,8 +135,8 @@ Values(sequence_Orders.nextval, (CurrentUserID), SYSDATETIME(),
 )
 
 INSERT INTO OrderHistory( OHKey, OrderNumber, Item, Quantity)
-VALUES (SELECT  sequence_OrderHistory.nextval, sequence_Orders.currval, Item, Quantity
-	FROM Cart;)
+VALUES (SELECT  sequence_OrderHistory.nextval, sequence_Orders.currval, Item, Quantity)
+	FROM Cart;
 	
 DELETE FROM Cart;
 
