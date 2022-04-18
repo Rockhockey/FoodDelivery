@@ -1,16 +1,16 @@
 MenuID,Name,Price,Cuisine,Description,Offer,Visible
-1,Spaghetti,15.60,Italian,Entree of Spaghetti pasta topped with pomodoro sauce.,0.42,TRUE
-2,Pork Fried Rice,14.95,Chinese,"Entrée of rice stirfried with pork, eggs, and other vegitables.",0.18,TRUE
-3,Nachos al Carbon,6.95,Mexican,"Appitizer with individual corn tortilla chips topped with grilled marinated beef steak. Served with pico de gallo, guacamole, and sour cream.",0.28,TRUE
-4,Chicken Chimichangas,13.95,Mexican,"Entree of crisp flour tortilla rolled with  chicken. Served with beans, rice, lettuce, pico de gallo, guacamole, and sour cream.",1.00,TRUE
-5,General Tso's Chicken,17.95,Chinese,Entree made with fried chicken pieces coated in a sweet and slightly spicy sauce.,1.00,TRUE
-6,Tiramisu,9.16,Italian,"Dessert made with Lady fingers dipped in liqueur laced espresso, layered with sweetened mascarpone, Myers's Rum and chocolate shavings.",0.52,TRUE
-7,Lasagne,19.14,Italian,"Entree oade of Pasta layered with pomodoro sauce, meat sauce, ricotta, romano and mozzarella cheese.",0.73,TRUE
-8,Hunan Shrimp,17.75,Chinese,"Entrée made with shrimp stirfried in chili paste, garlic, rice vinegar, and soy sauce. It is salty and spicy.",1.00,TRUE
-9,Pollo Asado,18.95,Mexican,"Entree made with half of a boneless chicken, oven roasted, marinated in a sherry wine sauce, and herbs. Topped with Spanish onions. Served with white Spanish rice and Cuban style black beans.",0.33,TRUE
-10,Chicken Tikka Masala,16.99,Indian,Entree consisting of roasted marinated chicken chunks (chicken tikka) in spiced curry sauce.,1.00,TRUE
-11,Samosa,5.99,Indian,"Appetizer of savoury pastry with fillings of Potatoes, onion, and peas. Comes with Tamarind Chutney sause",1.00,TRUE
-12,Tres Leches,5.50,Mexican,"A Dessert of sponge cake soaked in a mixture of condenced milk, evaporated milk, and cream",0.81,TRUE
-13,Goat Vindaloo,17.99,Indian,"A Heavily spiced Entree made with goat, chilis, tamarind, ginger, cumin, and mustard seeds. A Very spicy dish",1.00,TRUE
-14,Calamari,12.50,Italian,"Appetizer of Hand-breaded squid served with Ricardo and marinara sauces.",0.67,TRUE
-15,Ras Malai,5.99,Indian,"A dessert is made up of sweet paneer balls, cooked in sugar syrup until fluffy and served in a creamy milk sauce flavoured with cardamom and saffron and topped with nuts",1.00,TRUE
+(1,'Spaghetti',15.60,'Italian','Entree of Spaghetti pasta topped with pomodoro sauce.',0.42,TRUE),
+(2,'Pork Fried Rice',14.95,'Chinese','Entrée of rice stirfried with pork, eggs, and other vegitables.',0.18,TRUE),
+(3,'Nachos al Carbon',6.95,'Mexican','Appitizer with individual corn tortilla chips topped with grilled marinated beef steak. Served with pico de gallo, guacamole, and sour cream.',0.28,TRUE),
+(4,'Chicken Chimichangas',13.95,'Mexican','Entree of crisp flour tortilla rolled with  chicken. Served with beans, rice, lettuce, pico de gallo, guacamole, and sour cream.',1.00,TRUE),
+(5,'General Tsos Chicken',17.95,'Chinese','Entree made with fried chicken pieces coated in a sweet and slightly spicy sauce.',1.00,TRUE),
+(6,'Tiramisu',9.16,'Italian','Dessert made with Lady fingers dipped in liqueur laced espresso, layered with sweetened mascarpone, Myers Rum and chocolate shavings.',0.52,TRUE),
+(7,'Lasagne',19.14,'Italian','Entree oade of Pasta layered with pomodoro sauce, meat sauce, ricotta, romano and mozzarella cheese.',0.73,TRUE),
+(8,'Hunan Shrimp',17.75,'Chinese','Entrée made with shrimp stirfried in chili paste, garlic, rice vinegar, and soy sauce. It is salty and spicy.',1.00,TRUE),
+(9,'Pollo Asado',18.95,'Mexican','Entree made with half of a boneless chicken, oven roasted, marinated in a sherry wine sauce, and herbs. Topped with Spanish onions. Served with white Spanish rice and Cuban style black beans.',0.33,TRUE),
+(10,'Chicken Tikka Masala',16.99,'Indian','Entree consisting of roasted marinated chicken chunks (chicken tikka) in spiced curry sauce.',1.00,TRUE),
+(11,'Samosa',5.99,'Indian','Appetizer of savoury pastry with fillings of Potatoes, onion, and peas. Comes with Tamarind Chutney sause',1.00,TRUE),
+(12,'Tres Leches',5.50,'Mexican','A Dessert of sponge cake soaked in a mixture of condenced milk, evaporated milk, and cream',0.81,TRUE),
+(13,'Goat Vindaloo',17.99,'Indian','A Heavily spiced Entree made with goat, chilis, tamarind, ginger, cumin, and mustard seeds. A Very spicy dish',1.00,TRUE),
+(14,'Calamari',12.50,'Italian','Appetizer of Hand-breaded squid served with Ricardo and marinara sauces.',0.67,TRUE),
+(15,'Ras Malai',5.99,'Indian','A dessert is made up of sweet paneer balls, cooked in sugar syrup until fluffy and served in a creamy milk sauce flavoured with cardamom and saffron and topped with nuts',1.00,TRUE);
