@@ -68,7 +68,7 @@ FROM Menu
 WHERE Cuisine=(Param) AND Visible=TRUE
 ORDER BY CurrentPrice DESC;
 
---View menu ordered by Price DESC
+--View menu ordered by Discount DESC
 SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description
 FROM Menu
 WHERE Visible=TRUE
