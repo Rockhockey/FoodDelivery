@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.FoodBox.DAO.UserRepository;
+import com.FoodBox.exception.ResourceNotFoundException;
 import com.FoodBox.model.Users;
 
 @Service

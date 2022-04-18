@@ -17,7 +17,7 @@ public class Cuisines {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "menuId")
+	@Column(name = "menu_id")
 	private int menuId;
 	
 	@Column(name = "name")

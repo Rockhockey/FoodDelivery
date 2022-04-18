@@ -7,13 +7,14 @@ import com.FoodBox.model.Cuisines;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service // makes auto discoverable, spring configures bean by itself
 public class CuisinesServiceImpl implements CuisinesService {
 
+	@Autowired
 	private CuisineRepository cuisineRepository; // getting our database info here (injection)
 	
 	
@@ -28,7 +29,11 @@ public class CuisinesServiceImpl implements CuisinesService {
 	//get all cuisines
 	@Override
 	public List<Cuisines> getAllCuisines() {
-		return cuisineRepository.findAll();
+		List<Cuisines> cuisines = new ArrayList<>();
+		
+		cuisineRepository.findAll().forEach(cuisines::add);
+		
+		return cuisines;
 	}
 
 	
