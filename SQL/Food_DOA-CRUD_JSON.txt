@@ -1,0 +1,21 @@
+//DOA CRUD JSON Code
+
+// View menu ordered by Cuisine
+public static String ViewMenuCuisine(Connection con) throws SQLException {
+    String query = "SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description FROM Menu WHERE Visible=TRUE ORDER BY Cuisine ASC";
+    try (Statement stmt = con.createStatement()) {
+      ResultSet rs = stmt.executeQuery(query);
+      while (rs.next()) {
+		String name = rs.getString("Name");
+		float price = rs.getFloat("Price");
+		float discount = rs.getFloat("PercentOff");
+		float CurrentPrice= rs.getFloat("CurrentPrice");
+		String Cuisine = rs.getString("Cuisine");
+		String Descr = rs.getString("Description");
+        return (name + "," + price + "," + discount +
+                    "," + CurrentPrice + "," + Cuisine + "," + Descr);
+      }
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    }
+  }

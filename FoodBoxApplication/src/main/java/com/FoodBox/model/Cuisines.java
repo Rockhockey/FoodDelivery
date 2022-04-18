@@ -18,13 +18,13 @@ public class Cuisines {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "menuId")
-	private Integer menuId;
+	private int menuId;
 	
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "price")
-	private double price;
+	private float price;
 	
 	@Column(name = "cuisine_type")
 	private String cuisineType;
@@ -46,7 +46,7 @@ public class Cuisines {
 	
 
 	//constructor with fields
-	public Cuisines(Integer menuId, String name, double price, String cuisineType, String description, float offer, boolean visible) 
+	public Cuisines(int menuId, String name, float price, String cuisineType, String description, float offer, boolean visible) 
 	{
 		
 		super();
@@ -60,11 +60,11 @@ public class Cuisines {
 	}
 
 	
-	public Integer getId() {
+	public int getId() {
 		return menuId;
 	}
 
-	public void setId(Integer menuId) {
+	public void setId(int menuId) {
 		this.menuId = menuId;
 	}
 
@@ -76,11 +76,11 @@ public class Cuisines {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
