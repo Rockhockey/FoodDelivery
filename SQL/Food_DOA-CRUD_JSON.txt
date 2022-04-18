@@ -379,4 +379,50 @@ public static String ViewOrders(Connection con, int ID) throws SQLException {
       JDBCTutorialUtilities.printSQLException(e);
     }
 }
-	
+
+/**************  Convert Cart into Orders and OrderHistory then reset Cart
+		takes in Current User ID 
+		Methods used inside super method listed as well**********************/
+		
+public static Void FinishCart(Connection con, int ID) throws SQLException {
+    CartToOrders(con, ID);
+	CartToOrderhistory(con);
+	CartSequenceReset(con);
+	CartEmpty(con);
+}
+
+public static Void CartToOrders(Connection con, int ID) throws SQLException {
+    String Update = "INSERT INTO Orders( OrderNumber, UserID, OrderTime, Cost) Values(sequence_Orders.nextval, "+ID+", SYSDATETIME(), SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity)	FROM Cart INNER JOIN Menu ON Cart.Item=Menu.MenuID";
+    try (Statement stmt = con.createStatement()) {
+      stmt.executeUpdate(Update);
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    }
+}
+
+public static Void CartToOrderhistory(Connection con) throws SQLException {
+    String Update = "INSERT INTO OrderHistory( OHKey, OrderNumber, Item, Quantity) VALUES (SELECT  sequence_OrderHistory.nextval, sequence_Orders.currval, Item, Quantity) FROM Cart";
+    try (Statement stmt = con.createStatement()) {
+      stmt.executeUpdate(Update);
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    }
+}
+
+public static Void CartSequenceReset(Connection con) throws SQLException {
+    String Update = "ALTER SEQUENCE sequence_Cart RESTART WITH 0";
+    try (Statement stmt = con.createStatement()) {
+      stmt.executeUpdate(Update);
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    }
+}
+
+public static Void CartEmpty(Connection con) throws SQLException {
+    String Update = "DELETE FROM Cart;";
+    try (Statement stmt = con.createStatement()) {
+      stmt.executeUpdate(Update);
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    }
+}
