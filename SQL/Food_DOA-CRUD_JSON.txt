@@ -360,4 +360,23 @@ public static String ViewCart(Connection con) throws SQLException {
 }
 
 /* View order History of a specific user
-	user ID to look up as int ID
+	user ID to look up as int ID */
+public static String ViewOrders(Connection con, int ID) throws SQLException {
+    String query = "Select O.OrderNumber, O.OrderTime, O.Cost, OH.Item, OH.Quantity FROM Orders AS O INNER JOIN OrderHistory AS OH WHERE UserID = "+CurrentUsersID;
+    try (Statement stmt = con.createStatement()) {
+      ResultSet rs = stmt.executeQuery(query);
+	  String result = "";
+      while (rs.next()) {
+		int OrderNum = rs.getInt(O.OrderNumber);
+		String OrderTime= rs.getString(O.OrderTime);
+		float cost = rs.getFloat(O.cost);
+		int ItemID = rs.getInt(OH.Item);
+		int amount = rs.getInt(OH.Quantity);
+        result= result + OrderNum + "," + OrderTime + "," + cost + "," + ItemID+ "," + amount+"/n";
+      }
+	  return result;
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    }
+}
+	
