@@ -14,8 +14,7 @@ public static String ViewMenu(Connection con) throws SQLException {
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -36,8 +35,7 @@ public static String ViewMenuPriceAsc(Connection con) throws SQLException {
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -58,8 +56,7 @@ public static String ViewMenuPriceDes(Connection con) throws SQLException {
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -80,8 +77,7 @@ public static String ViewMenuDisctAsc(Connection con) throws SQLException {
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -102,8 +98,7 @@ public static String ViewMenuDisctDesc(Connection con) throws SQLException {
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -125,8 +120,7 @@ public static String ViewMenuKeywordCuisine(Connection con, String Param) throws
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -147,8 +141,7 @@ public static String ViewMenuKeywordPriceAsc(Connection con, String Param) throw
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -170,8 +163,7 @@ public static String ViewMenuKeywordPriceDesc(Connection con, String Param) thro
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -193,8 +185,7 @@ public static String ViewMenuKeywordDisctAsc(Connection con, String Param) throw
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -216,8 +207,7 @@ public static String ViewMenuKeywordDisctDesc(Connection con) throws SQLExceptio
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr + "\n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr + "\n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -239,8 +229,7 @@ public static String ViewMenuCuisine(Connection con) throws SQLException {
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -262,8 +251,7 @@ public static String ViewMenuCuisinePriceAsc(Connection con) throws SQLException
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -285,8 +273,7 @@ public static String ViewMenuCuisinePriceDesc(Connection con) throws SQLExceptio
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -308,8 +295,7 @@ public static String ViewMenuCuisineDisctAsc(Connection con) throws SQLException
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
@@ -331,8 +317,7 @@ public static String ViewMenuCuisineDisctDesc(Connection con) throws SQLExceptio
 		float CurrentPrice= rs.getFloat("CurrentPrice");
 		String Cuisine = rs.getString("Cuisine");
 		String Descr = rs.getString("Description");
-        result= result + name + "," + price + "," + discount +
-                    "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
+        result= result + name + "," + price + "," + discount + "," + CurrentPrice + "," + Cuisine + "," + Descr +"/n";
       }
 	  return result;
     } catch (SQLException e) {
