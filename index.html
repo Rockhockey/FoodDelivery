@@ -14,7 +14,6 @@
                 <li><a href="index.html">Foodbox</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="view.html">View Food Items</a></li>
             </ul>
             <div class="account">
                 <button onclick="document.getElementById('signup').style.display='block'">Sign Up</button>
@@ -24,50 +23,79 @@
         </nav><hr />
     </header>
     <main>
-        <h1>Categories</h1>
+        <h1>View Food Categories</h1>
         <nav>
             <ul>
-                <li><button type="button" onclick="indianView()">Indian</button></li>
-                <li><button type="button" onclick="chineseView()">Chinese</button></li>
-                <li><button type="button" onclick="italianView()">Italian</button></li>
-                <li><button type="button" onclick="mexicanView()">Mexican</button></li>
+                <li><button id="allBtn" type="button" onclick="switchCuisine('image-gallery-item')">All</button></li>
+                <li><button id="indianBtn" type="button" onclick="switchCuisine('indian-cuisine')">Indian</button></li>
+                <li><button id="chineseBtn" type="button" onclick="switchCuisine('chinese-cuisine')">Chinese</button></li>
+                <li><button id="italianBtn" type="button" onclick="switchCuisine('italian-cuisine')">Italian</button></li>
+                <li><button id="mexicanBtn" type="button" onclick="switchCuisine('mexican-cuisine')">Mexican</button></li>
             </ul>
         </nav>
-        <!-- Slideshow container -->
-        <div class="slideshow-container">
 
-            <!-- Images in slideshow -->
-            <div class="mySlides fade">
-                <img src="food-image1.jpg" style="width:60vw; height:auto">
+        <div id="homeView">
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+
+                <!-- Images in slideshow -->
+                <div class="mySlides fade">
+                    <img src="food-image1.jpg" style="width:60vw; height:auto">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="food-image2.jpg" style="width: 60vw; height:auto">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="food-image3.jpg" style="width: 60vw; height: auto">
+                </div>
+
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <!-- The dots at bottom of image -->
+                <div style="text-align:center">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
             </div>
 
-            <div class="mySlides fade">
-                <img src="food-image2.jpg" style="width: 60vw; height:auto">
-            </div>
-
-            <div class="mySlides fade">
-                <img src="food-image3.jpg" style="width: 60vw; height: auto">
-            </div>
-
-            <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-            <!-- The dots at bottom of image -->
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
+            <h2>Most Viewed Food Items</h2>
+            <div class="most-viewed-food-container">
+                <img class="most-viewed-items" src="italianfood.jpg" />
+                <img class="most-viewed-items" src="chinesefood.jpg" />
+                <img class="most-viewed-items" src="indianfood.jpg" />
             </div>
         </div>
 
-        <h2>Most Viewed Food Items</h2>
-        <div class="most-viewed-food-container">
-            <img class="most-viewed-items" src="italianfood.jpg" />
-            <img class="most-viewed-items" src="chinesefood.jpg" />
-            <img class="most-viewed-items" src="indianfood.jpg" />
+        <!--Image Gallery of food items -->
+        <div id="image-gallery">
+            <div class="image-gallery-item italian-cuisine">
+                <img class="image" src="italianfood.jpg" />
+                <div class="food-name">FoodName</div>
+                <div class="food-price">$$.$$</div>
+            </div>
+            <div class="image-gallery-item italian-cuisine">
+                <img class="image" src="italianfood.jpg" />
+                <div class="food-name">FoodName</div>
+                <div class="food-price">$$.$$</div>
+            </div>
+            <div class="image-gallery-item italian-cuisine">
+                <img class="image" src="italianfood.jpg" />
+                <div class="food-name">FoodName</div>
+                <div class="food-price">$$.$$</div>
+            </div>
+            <div class="image-gallery-item italian-cuisine">
+                <img class="image" src="italianfood.jpg" />
+                <div class="food-name">FoodName</div>
+                <div class="food-price">$$.$$</div>
+            </div>
         </div>
-    </main>
+</main>
+    
     <!-- The Modal (contains the Login form) -->
     <div id="login" class="modal">
         <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -76,11 +104,11 @@
                 <h1>Log in</h1>
                 <p>Please enter your account information to login.</p>
                 <hr>
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" required>
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
 
                 <div class="clearfix">
 
@@ -99,6 +127,9 @@
                 <hr>
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
+
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
 
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required>

@@ -4,11 +4,11 @@
 CREATE TABLE Menu (
 	MenuID INT NOT NULL PRIMARY KEY, 
 	Name VARCHAR(25) NOT NULL,
-	Price FLOAT(5,2) NOT NULL CHECK(Price>=0),
+	Price DECIMAL(5,2) NOT NULL CHECK(Price>=0),
 	Cuisine VARCHAR(25),
 	Description VARCHAR(500),
-	Offer FLOAT(5,2) NOT NULL CHECK(Offer<=1 AND Offer>=0),
-	Visible boolean NOT NULL
+	Offer DECIMAL(5,2) NOT NULL CHECK(Offer<=1 AND Offer>=0),
+	Visible BOOLEAN NOT NULL
 	);
 
 CREATE TABLE Users(
@@ -17,13 +17,14 @@ CREATE TABLE Users(
 	Password VARCHAR(25) Not NULL,
 	Email VARCHAR(25),
 	Address VARCHAR (100)
+	IsAdmin BOOLEAN NOT NULL
 	);
 
 CREATE TABLE Orders(
 	OrderNumber INT PRIMARY KEY,
 	UserID INT FOREIGN KEY REFERENCES Users(UserID),
 	OrderTime DATETIME,
-	Cost FLOAT(5,2) CHECK(Cost>=0)
+	Cost DECIMAL(5,2) CHECK(Cost>=0)
 	);
 
 CREATE TABLE OrderHistory(
