@@ -28,22 +28,16 @@ function showSlides(n) {
     dots[slideIndex - 1].className += " active";
 }
 
+function indianView() {
+    window.location.href = "view.html";
+}
 
-function switchCuisine(cuisineType) {
-
-    document.getElementById("homeView").style.display = "none";
-    document.getElementById("image-gallery").style.display = "flex";
-
-    let i;
-    let cuisine = document.getElementsByClassName(cuisineType);
-    let imageGallery = document.getElementsByClassName("image-gallery-item");
-
-    for (i = 0; i < imageGallery.length; i++) {
-        imageGallery[i].style.display = "none";
-    }
-
-    for (i = 0; i < cuisine.length; i++) {
-        cuisine[i].style.display = "flex";
-    }
-
+function chineseView() {
+    window.location.href = "view.html";
+}
+function italianView() {
+    window.location.href = "view.html";
+}
+function mexicanView() {
+    window.location.href = "view.html";
 }

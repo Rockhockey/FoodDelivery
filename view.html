@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title>Foodbox - View Food Items</title>
     <link rel="stylesheet" href="foodbox.css">
-    <script src="foodbox.js"></script>
+    <script src="foodbox.js" defer></script>
 </head>
 <body>
     <header>
@@ -19,36 +19,10 @@
             <div class="account">
                 <button onclick="document.getElementById('signup').style.display='block'">Sign Up</button>
 
-                <button onclick="document.getElementById('login').style.display='block'">Sign In</button>
+                <button onclick="document.getElementById('login').style.display='block'">Login</button>
             </div>
         </nav><hr />
     </header>
-    <main>
-        <h1>Categories</h1>
-        <nav>
-            <ul>
-                <li><button id="allBtn" type="button" onclick="switchView('image-gallery-item')">All</button></li>
-                <li><button id="indianBtn" type="button" onclick="switchView('indian-cuisine')">Indian</button></li>
-                <li><button id="chineseBtn" type="button" onclick="switchView('chinese-cuisine')">Chinese</button></li>
-                <li><button id="italianBtn" type="button" onclick="switchView('italian-cuisine')">Italian</button></li>
-                <li><button id="mexicanBtn" type="button" onclick="switchView('mexican-cuisine')">Mexican</button></li>
-            </ul>
-        </nav>
-
-        <!--Image Gallery of food items -->
-        <div class="image-gallery">
-            <img class="image-gallery-item italian-cuisine" src="italianfood.jpg" />
-            <img class="image-gallery-item chinese-cuisine" src="chinesefood.jpg" />
-            <img class="image-gallery-item indian-cuisine" src="indianfood.jpg" />
-            <img class="image-gallery-item italian-cuisine" src="italianfood.jpg" />
-            <img class="image-gallery-item chinese-cuisine" src="chinesefood.jpg" />
-            <img class="image-gallery-item indian-cuisine" src="indianfood.jpg" />
-            <img class="image-gallery-item italian-cuisine" src="italianfood.jpg" />
-            <img class="image-gallery-item chinese-cuisine" src="chinesefood.jpg" />
-  
-        </div> 
-    </main>
-
         <!-- The Modal (contains the Log in form) -->
     <div id="login" class="modal">
         <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>

@@ -53,7 +53,7 @@ hr {
 
 * {
     box-sizing: border-box; 
-
+    
 }
 
 main {
@@ -220,8 +220,14 @@ main nav ul li{
     opacity: 1;
 }
 
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
 /* Float cancel and signup buttons and add an equal width */
-.signupbtn {
+.cancelbtn, .signupbtn {
     float: left;
     width: 50%;
 }
@@ -280,33 +286,4 @@ main nav ul li{
     content: "";
     clear: both;
     display: table;
-}
-
-
-
-
-/* Image Gallery CSS*/
-
-#image-gallery {
-    display: none;
-    flex-wrap: wrap;
-}
-
-.image-gallery-item {
-    margin: 2vw;
-    width: 20vw;
-    height: 20vw;
-    flex-wrap: wrap;
-    background-color:salmon;
-}
-
-.image {
-    width: 20vw;
-    height: 15vw;
-}
-
-.food-name{
-    font-size: 1vw;
-    text-align: center;
-    padding: 1vw;
 }

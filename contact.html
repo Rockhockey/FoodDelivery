@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Foodbox - Contact</title>
+    <title>Foodbox - View Food Items</title>
     <link rel="stylesheet" href="foodbox.css">
     <script src="foodbox.js" defer></script>
 </head>
@@ -14,15 +14,16 @@
                 <li><a href="index.html">Foodbox</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="view.html">View Food Items</a></li>
             </ul>
             <div class="account">
                 <button onclick="document.getElementById('signup').style.display='block'">Sign Up</button>
 
-                <button onclick="document.getElementById('login').style.display='block'">Sign In</button>
+                <button onclick="document.getElementById('login').style.display='block'">Login</button>
             </div>
         </nav><hr />
     </header>
-    <!-- The Modal (contains the Login form) -->
+    <!-- The Modal (contains the Log in form) -->
     <div id="login" class="modal">
         <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
         <form class="modal-content" action="/action_page.php">
@@ -30,15 +31,15 @@
                 <h1>Log in</h1>
                 <p>Please enter your account information to login.</p>
                 <hr>
-                <label for="username"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
 
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
 
                 <div class="clearfix">
 
-                    <button type="submit" class="login">Sign In</button>
+                    <button type="submit" class="login">Login</button>
                 </div>
             </div>
         </form>
@@ -53,9 +54,6 @@
                 <hr>
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
-
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
 
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required>
