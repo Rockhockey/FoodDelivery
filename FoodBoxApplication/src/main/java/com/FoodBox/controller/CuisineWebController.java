@@ -48,7 +48,7 @@ public class CuisineWebController {
 	}
 	
 	@GetMapping("/update_item/{cId}")
-	public String editMenu(@PathVariable(name = "cId") Integer Id, Model model) {
+	public String editItem(@PathVariable(name = "cId") Integer Id, Model model) {
 		
 		model.addAttribute("cuisines", cuisineController.getCuisineById(Id));
 		
@@ -64,6 +64,22 @@ public class CuisineWebController {
 		return "redirect:/admin";
 	}
 	
+	@GetMapping("/delete_item/{cId}")
+	public String deleteItem(@PathVariable(name = "cId") Integer Id, Model model) {
+		
+		model.addAttribute("cuisines", cuisineController.getCuisineById(Id));
+		
+		return "delete_item";
+		
+	}
+	
+	@PostMapping(value = "/save_delete")
+	public String saveDeleteItem(@ModelAttribute("cuisines") Cuisines cuisine) {
+		
+		cuisineController.deleteCuisine(cuisine.getId());
+		
+		return "redirect:/admin";
+	}
 	
 	
 	

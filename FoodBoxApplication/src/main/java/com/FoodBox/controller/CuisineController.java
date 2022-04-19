@@ -86,6 +86,7 @@ public class CuisineController {
 		//---------------------------------- RESTful API for Delete operation --------------------------------- //
 		@DeleteMapping("{menuId}")
 		public ResponseEntity<Void> deleteCuisine(@PathVariable("menuId") Integer menuId){
+			cuisineService.deleteCuisine(menuId);
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 }

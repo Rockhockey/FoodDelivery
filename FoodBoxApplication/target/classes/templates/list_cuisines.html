@@ -54,7 +54,7 @@
                                                 <a th:href="@{/update_item/{Id}(Id=${cuisine.getId()})}"class="btn btn-primary"> Edit</a>
                                             </td>
                                             <td>
-                                                <a class="btn btn-primary"> Delete</a>
+                                                <a th:href="@{/delete_item/{Id}(Id=${cuisine.getId()})}" class="btn btn-primary"> Delete</a>
                                             </td>
                                         </tr>
                                     </tbody>
