@@ -10,26 +10,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.FoodBox.model.Cuisines;
+import com.FoodBox.model.Users;
 
 @Controller
-public class WebController {
+public class UserWebController {
 	
-	@RequestMapping("/")
-	public String homePage(Model model) {
-		return "index";
+	@Autowired
+	UserController userController;
+	
+	@GetMapping("/new_user")
+	public String addUser(Model model) {
+		
+		Users user = new Users();
+		
+		model.addAttribute("users", user);
+		
+		return "new_user";
 	}
 	
-	@RequestMapping("/about")
-	public String aboutPage(Model model) {
-		return "about";
-	}
-	
-	@RequestMapping("/contact")
-	public String contactPage(Model model) {
-		return "contact";
-	}
-	
+
 	
 	
 	
