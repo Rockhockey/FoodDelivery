@@ -32,14 +32,14 @@ public class CuisineWebController {
 		
 		Cuisines cuisine = new Cuisines();
 		
-		model.addAttribute("cuisineForm", cuisine);
+		model.addAttribute("cuisines", cuisine);
 		
 		return "new_item";
 		
 	}
 	
 	@PostMapping(value = "/save_new")
-	public String saveNewItem(@ModelAttribute("cuisineForm") Cuisines cuisine) {
+	public String saveNewItem(@ModelAttribute("cuisines") Cuisines cuisine) {
 		
 		cuisineController.saveCuisines(cuisine);
 		
