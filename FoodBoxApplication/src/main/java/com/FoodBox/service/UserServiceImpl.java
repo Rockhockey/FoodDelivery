@@ -27,8 +27,7 @@ public class UserServiceImpl implements UserService {
 	//get a user by their id
 	@Override
 	public Users getUserById(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Users", "userId", userId));
 	}
 
 	//save a user (as an object)
