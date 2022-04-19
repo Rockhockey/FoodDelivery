@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	//delete User by their userId
 	@Override
 	public void deleteUser(Integer userId) {
-		// TODO Auto-generated method stub
+		userRepository.deleteById(userId);
 
 	}
 	
