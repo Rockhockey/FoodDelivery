@@ -28,7 +28,7 @@ public class Users {
 	@Column(name = "Address")
 	private String address;
 
-	protected Users() {
+	public Users() {
 		super();
 	}
 	
