@@ -48,7 +48,7 @@ public class CuisineWebController {
 	}
 	
 	@GetMapping("/update_item/{cId}")
-	public String editMenu(@PathVariable(name = "cId") int Id, Model model) {
+	public String editMenu(@PathVariable(name = "cId") Integer Id, Model model) {
 		
 		model.addAttribute("cuisines", cuisineController.getCuisineById(Id));
 		

@@ -29,7 +29,6 @@ public class CuisinesServiceImpl implements CuisinesService {
 	//get all cuisines
 	@Override
 	public List<Cuisines> getAllCuisines() {
-		List<Cuisines> cuisines = new ArrayList<>();
 		
 		cuisineRepository.findAll().forEach(cuisines::add);
 		
