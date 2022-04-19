@@ -34,6 +34,7 @@
                                             <th>Cuisine</th>
                                             <th>Description</th>
                                             <th>Offer</th>
+                                            <th>Picture</th>
                                             <th>Visible</th>
                                             <th></th>
                                             <th></th>
@@ -47,9 +48,10 @@
                                             <td th:text="${cuisine.getCuisineType()}"></td>
                                             <td th:text="${cuisine.getDescription()}"></td>
                                             <td th:text="${cuisine.getOffer()}"></td>
+                                            <td th:text="${cuisine.getPicture()}"></td>
                                             <td th:text="${cuisine.isVisible()}"></td>
                                             <td>
-                                                <a class="btn btn-primary"> Edit</a>
+                                                <a th:href="@{/update_item/{Id}(Id=${cuisine.getId()})}"class="btn btn-primary"> Edit</a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-primary"> Delete</a>

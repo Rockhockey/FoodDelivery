@@ -35,6 +35,9 @@ public class Cuisines {
 	@Column(name = "offer")
 	private float offer;
 	
+	@Column(name = "picture")
+	private String picture;
+	
 	@Column(name = "visible")
 	private boolean visible;
 
@@ -46,7 +49,7 @@ public class Cuisines {
 	
 
 	//constructor with fields
-	public Cuisines(int menuId, String name, float price, String cuisineType, String description, float offer, boolean visible) 
+	public Cuisines(int menuId, String name, float price, String cuisineType, String description, float offer, String picture, boolean visible) 
 	{
 		
 		super();
@@ -56,6 +59,7 @@ public class Cuisines {
 		this.cuisineType = cuisineType;
 		this.description = description;
 		this.offer = offer;
+		this.picture = picture;
 		this.visible = visible;
 	}
 
@@ -106,6 +110,14 @@ public class Cuisines {
 
 	public void setOffer(float offer) {
 		this.offer = offer;
+	}
+	
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public boolean isVisible() {

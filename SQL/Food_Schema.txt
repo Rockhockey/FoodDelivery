@@ -1,43 +1,51 @@
 -- Schema
 --Tables
 
-CREATE TABLE Menu (
-	MenuID INT NOT NULL PRIMARY KEY, 
-	Name VARCHAR(25) NOT NULL,
-	Price DECIMAL(5,2) NOT NULL CHECK(Price>=0),
-	Cuisine VARCHAR(25),
-	Description VARCHAR(500),
-	Offer DECIMAL(5,2) NOT NULL CHECK(Offer<=1 AND Offer>=0),
-	Picture VarChar(100),
-	Visible BOOLEAN NOT NULL
+CREATE TABLE menu (
+	menu_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+	name VARCHAR(25) NOT NULL,
+	price DECIMAL(5,2) NOT NULL CHECK(Price>=0),
+	cuisine_type VARCHAR(25),
+	description VARCHAR(500),
+	offer DECIMAL(5,2) NOT NULL CHECK(Offer<=1 AND Offer>=0),
+	picture VarChar(100),
+	visible BOOLEAN NOT NULL
 	);
 
 CREATE TABLE Users(
-	UserID INT PRIMARY KEY,
+	userId INT PRIMARY KEY,
 	UserName VARCHAR(25) UNIQUE NOT NULL,
 	Password VARCHAR(25) Not NULL,
 	Email VARCHAR(25),
-	Address VARCHAR (100)
+	Address VARCHAR (100),
 	IsAdmin BOOLEAN NOT NULL
 	);
 
 CREATE TABLE Orders(
 	OrderNumber INT PRIMARY KEY,
-	UserID INT FOREIGN KEY REFERENCES Users(UserID),
+	UserId INT,
+	 	CONSTRAINT fk_order_user_id
+		FOREIGN KEY (UserId) REFERENCES Users(UserId),
 	OrderTime DATETIME,
 	Cost DECIMAL(5,2) CHECK(Cost>=0)
 	);
 
 CREATE TABLE OrderHistory(
 	OHKey INT PRIMARY KEY,
-	OrderNumber INT FOREIGN KEY REFERENCES Orders(OrderNumber),
-	Item INT FOREIGN KEY REFERENCES Menu(MenuID),
+	OrderNumber INT,
+		CONSTRAINT fk_oh_order_id
+		FOREIGN KEY (OrderNumber) REFERENCES Orders(OrderNumber),
+	Item INT,
+		CONSTRAINT fk_oh_item_id
+		FOREIGN KEY (Item) REFERENCES Menu(MenuID),
 	Quantity INT CHECK(Quantity>0)
 	);
 
 CREATE TABLE Cart(
 	CartIndex INT PRIMARY KEY,
-	Item INT FOREIGN KEY REFERENCES Menu(MenuID),
+	Item INT,
+		CONSTRAINT fk_cart_item_id
+		FOREIGN KEY (Item) REFERENCES Menu(MenuID),
 	Quantity INT CHECK(Quantity>0)
 	);
 

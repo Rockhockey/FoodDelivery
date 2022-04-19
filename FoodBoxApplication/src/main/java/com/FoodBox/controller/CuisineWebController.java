@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.FoodBox.model.Cuisines;
@@ -31,20 +32,56 @@ public class CuisineWebController {
 		
 		Cuisines cuisine = new Cuisines();
 		
-		model.addAttribute("cuisine", cuisine);
+		model.addAttribute("cuisineForm", cuisine);
 		
 		return "new_item";
 		
 	}
 	
 	@PostMapping(value = "/save_new")
-	public String saveNewItem(@ModelAttribute("cuisine") Cuisines cuisine) {
+	public String saveNewItem(@ModelAttribute("cuisineForm") Cuisines cuisine) {
 		
 		cuisineController.saveCuisines(cuisine);
 		
 		return "redirect:/admin";
 		
 	}
+	
+	@GetMapping("/update_item/{cId}")
+	public String editMenu(@PathVariable(name = "cId") int Id, Model model) {
+		
+		model.addAttribute("cuisines", cuisineController.getCuisineById(Id));
+		
+		return "update_item";
+		
+	}
+	
+	@PostMapping(value = "/save_update")
+	public String saveUpdateItem(@ModelAttribute("cuisines") Cuisines cuisine) {
+		
+		cuisineController.updateCuisine(cuisine.getId(), cuisine);
+		
+		return "redirect:/admin";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

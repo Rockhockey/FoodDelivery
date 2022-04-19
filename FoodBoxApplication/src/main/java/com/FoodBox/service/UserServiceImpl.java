@@ -21,7 +21,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<Users> getAllUsers() {
 		return userRepository.findAll(); //find all method has returning a list built in
-		return null;
 	}
 
 	//get a user by their id
