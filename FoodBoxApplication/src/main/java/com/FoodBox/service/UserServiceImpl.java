@@ -33,8 +33,7 @@ public class UserServiceImpl implements UserService {
 	//save a user (as an object)
 	@Override
 	public Users saveUser(Users user) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.save(user);
 	}
 
 	//delete User by their userId
