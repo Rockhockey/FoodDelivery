@@ -47,8 +47,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Users updateUser(Users user, Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		Users existingUser = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Users", "userId", userId));
+		
+		existingUser.setUserId(user.getUserId());
+		existingUser.setUserName(user.getUserName());
+		existingUser.setEmail(user.getEmail());
+		existingUser.setPassword(user.getPassword());
+		existingUser.setAddress(user.getAddress());
+		
+		userRepository.save(existingUser);
+		return existingUser;
 	}
 	
 	//setting password for user in initial sign up and for log in
