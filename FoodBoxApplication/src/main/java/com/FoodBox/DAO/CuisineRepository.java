@@ -219,7 +219,7 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	}
 
 	// search for keyword and View menu ordered by Discount Descending Take in String keyword as Param variable
-	public static String ViewMenuKeywordDisctDesc(Connection con) throws SQLException {
+	public static String ViewMenuKeywordDisctDesc(Connection con, String Param) throws SQLException {
 		String query = "SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu WHERE(Name LIKE %"+Param+"% OR Cuisine="+Param+"% OR Description LIKE %"+Param+"%) AND Visible=TRUE ORDER BY PercentOff DESC";
 		try (Statement stmt = con.createStatement()) {
 		  ResultSet rs = stmt.executeQuery(query);
@@ -241,7 +241,7 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	}
 
 	//View 1 cuisine on menu Take in String Cuisine as Param variable
-	public static String ViewMenuCuisine(Connection con) throws SQLException {
+	public static String ViewMenuCuisine(Connection con, String Param) throws SQLException {
 		String query = "SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu WHERE Cuisine="+Param+" AND Visible=TRUE";
 		try (Statement stmt = con.createStatement()) {
 		  ResultSet rs = stmt.executeQuery(query);
@@ -263,7 +263,7 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	}
 
 	//View 1 cuisine on menu ordered by price Ascending Take in String Cuisine as Param variable
-	public static String ViewMenuCuisinePriceAsc(Connection con) throws SQLException {
+	public static String ViewMenuCuisinePriceAsc(Connection con, String Param) throws SQLException {
 		String query = "SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu WHERE Cuisine="+Param+" AND Visible=TRUE ORDER BY Price ASC";
 		try (Statement stmt = con.createStatement()) {
 		  ResultSet rs = stmt.executeQuery(query);
@@ -285,7 +285,7 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	}
 
 	//View 1 cuisine on menu ordered by price Descending Take in String Cuisine as Param variable
-	public static String ViewMenuCuisinePriceDesc(Connection con) throws SQLException {
+	public static String ViewMenuCuisinePriceDesc(Connection con, String Param) throws SQLException {
 		String query = "SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu WHERE Cuisine="+Param+" AND Visible=TRUE ORDER BY Price DESC";
 		try (Statement stmt = con.createStatement()) {
 		  ResultSet rs = stmt.executeQuery(query);
@@ -307,7 +307,7 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	}
 
 	//View 1 cuisine on menu ordered by Discount Ascending Take in String Cuisine as Param variable
-	public static String ViewMenuCuisineDisctAsc(Connection con) throws SQLException {
+	public static String ViewMenuCuisineDisctAsc(Connection con, String Param) throws SQLException {
 		String query = "SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu WHERE Cuisine="+Param+" AND Visible=TRUE ORDER BY PercentOff ASC";
 		try (Statement stmt = con.createStatement()) {
 		  ResultSet rs = stmt.executeQuery(query);
@@ -329,7 +329,7 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	}
 
 	//View 1 cuisine on menu ordered by Discount Descending Take in String Cuisine as Param variable	
-	public static String ViewMenuCuisineDisctDesc(Connection con) throws SQLException {
+	public static String ViewMenuCuisineDisctDesc(Connection con, String Param) throws SQLException {
 		String query = "SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu WHERE Cuisine="+Param+" AND Visible=TRUE ORDER BY PercentOff DESC";
 		try (Statement stmt = con.createStatement()) {
 		  ResultSet rs = stmt.executeQuery(query);
