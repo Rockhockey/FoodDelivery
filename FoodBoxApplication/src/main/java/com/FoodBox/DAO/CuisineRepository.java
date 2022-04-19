@@ -20,7 +20,6 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	
 	-- OUR CUSTOM finder methods go here (filter)
 	*/
-	/*
 	// View menu ordered by Cuisine
 	public static String ViewMenu(Connection con) throws SQLException {
 		String query = "SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description, Picture FROM Menu WHERE Visible=TRUE ORDER BY Cuisine ASC";
@@ -348,5 +347,5 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 		} catch (SQLException e) {
 		  JDBCTutorialUtilities.printSQLException(e);
 		}
-	}	*/
+	}	
 }
