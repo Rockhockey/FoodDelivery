@@ -65,6 +65,11 @@ public class UserServiceImpl implements UserService {
 		Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "password", password));
 		user.setPassword(user.getPassword());
 		userRepository.save(user);
+	}
+	
+	@Override
+	public Users getUserByUsername(String username) {
+		return userRepository.findByUserName(username);
 		
 	}
 
