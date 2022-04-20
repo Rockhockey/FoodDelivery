@@ -37,6 +37,11 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 		@Query(value="SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice,"
 				+ " Cuisine, Description, Picture FROM Menu WHERE Visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
 		List<Cuisines> ReadMenuOrderPriceDesc();
+		
+	//View Menu Ordered by Discount Desc
+		@Query(value="SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice,"
+				+ " Cuisine, Description, Picture FROM Menu WHERE Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
+		List<Cuisines> ReadMenuOrderDiscountDesc();
 	
 	/*View search menu ordered by cuisine
 	 * 	input keyword to search for
@@ -59,6 +64,13 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 			+ "WHERE(Name LIKE %?1% OR Cuisine=%?1% OR Description LIKE %?1%) AND Visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
 	List<Cuisines> ReadMenuKeywordPriceDesc (String keyword);
 	
+	/*View search menu ordered by Discount Desc
+	 * 	input keyword to search for
+	 */	
+	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
+			+ "WHERE(Name LIKE %?1% OR Cuisine=%?1% OR Description LIKE %?1%) AND Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
+	List<Cuisines> ReadMenuKeywordDiscountDesc (String keyword);
+	
 	/*View search menu ordered by Price ASC
 	 * 	input cuisine to search for
 	 */
@@ -73,8 +85,10 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 			+ "WHERE Cuisine=%?1% AND Visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
 	List<Cuisines> ReadMenuCuisinePriceDesc (String keyword);
 	
-	/*
-	@Query(value=" ", nativeQuery= true)
-	List<Cuisines> ReadMenu ();
-*/
+	/*View search menu ordered by Discount Desc
+	 * 	input cuisine to search for
+	 */
+	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
+			+ "WHERE Cuisine=%?1% AND Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
+	List<Cuisines> ReadMenuCuisineDiscountDesc (String keyword);	
 }
