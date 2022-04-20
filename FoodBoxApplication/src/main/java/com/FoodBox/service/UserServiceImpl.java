@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 		existingUser.setUserId(user.getUserId());
 		existingUser.setUserName(user.getUserName());
 		existingUser.setEmail(user.getEmail());
-		existingUser.setPassword(user.getPassword());
+		//existingUser.setPassword(user.getPassword());
 		existingUser.setAddress(user.getAddress());
 		
 		userRepository.save(existingUser);
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void setPassword(Integer userId, String password) {
 		Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "password", password));
-		user.setPassword(user.getPassword());
+		//user.setPassword(user.getPassword());
 		userRepository.save(user);
 	}
 	
