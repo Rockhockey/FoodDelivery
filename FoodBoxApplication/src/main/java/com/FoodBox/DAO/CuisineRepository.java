@@ -3,11 +3,10 @@ package com.FoodBox.DAO;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
+import org.springframework.data.jpa.repository.Query;
 import com.FoodBox.model.Cuisines;
 
-@Repository
+
 public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 
 	
@@ -22,6 +21,8 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	
 	-- OUR CUSTOM finder methods go here (filter)
 	*/
+	
+	
 	//View menu ordered by cuisine
 	@Query(value="SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice,"
 			+ " Cuisine, Description, Picture FROM Menu WHERE Visible=TRUE ORDER BY Cuisine ASC;", nativeQuery= true)
