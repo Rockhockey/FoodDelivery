@@ -20,9 +20,12 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	-- OUR CUSTOM finder methods go here (filter)
 	*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	
 =======
+=======
+>>>>>>> parent of e04fe67 (Merge branch 'main' of https://github.com/Rockhockey/FoodDelivery)
 	// View menu ordered by Cuisine
 	public static String ViewMenu(Connection con) throws SQLException {
 		String query = "SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice, Cuisine, Description, Picture FROM Menu WHERE Visible=TRUE ORDER BY Cuisine ASC";
@@ -351,5 +354,8 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 		  JDBCTutorialUtilities.printSQLException(e);
 		}
 	}	
+<<<<<<< HEAD
+>>>>>>> parent of e04fe67 (Merge branch 'main' of https://github.com/Rockhockey/FoodDelivery)
+=======
 >>>>>>> parent of e04fe67 (Merge branch 'main' of https://github.com/Rockhockey/FoodDelivery)
 }
