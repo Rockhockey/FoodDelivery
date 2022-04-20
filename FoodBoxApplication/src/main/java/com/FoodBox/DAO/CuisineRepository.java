@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import com.FoodBox.model.Cuisines;
-
+import org.springframework.data.repository.query.*;
 
 public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 

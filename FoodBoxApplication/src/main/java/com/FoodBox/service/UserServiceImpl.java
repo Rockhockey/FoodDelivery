@@ -51,7 +51,8 @@ public class UserServiceImpl implements UserService {
 		existingUser.setUserId(user.getUserId());
 		existingUser.setUserName(user.getUserName());
 		existingUser.setEmail(user.getEmail());
-		existingUser.setPassword(user.getPassword());
+		existingUser.setSalt(user.getSalt());
+		existingUser.setHash(user.getHash());
 		existingUser.setAddress(user.getAddress());
 		
 		userRepository.save(existingUser);
@@ -60,9 +61,10 @@ public class UserServiceImpl implements UserService {
 	
 	//setting password for user in initial sign up and for log in
 	@Override
-	public void setPassword(Integer userId, String password) {
-		Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "password", password));
-		user.setPassword(user.getPassword());
+	public void setPassword(Integer userId, String salt, String hash) {
+		Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Users", "userId", userId));
+		user.setSalt(user.getSalt());
+		user.setHash(user.getHash());
 		userRepository.save(user);
 	}
 	
