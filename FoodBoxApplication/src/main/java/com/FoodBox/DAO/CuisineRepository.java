@@ -47,48 +47,55 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	 * 	input keyword to search for
 	 */
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE(Name LIKE %?1% OR Cuisine=%?1% OR Description LIKE %?1%) AND Visible=TRUE ORDER BY Cuisine ASC;", nativeQuery= true)
-	List<Cuisines> ReadMenuKeywordCuisine (String keyword);
+			+ "WHERE(Name LIKE %:keyword% OR Cuisine=%:keyword% OR Description LIKE %:keyword%) AND Visible=TRUE ORDER BY Cuisine ASC;", nativeQuery= true)
+	List<Cuisines> ReadMenuKeywordCuisine (
+			@Param("keyword") String keyword);
 	
 	/*View search menu ordered by Price ASC
 	 * 	input keyword to search for
 	 */
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE(Name LIKE %?1% OR Cuisine=%?1% OR Description LIKE %?1%) AND Visible=TRUE ORDER BY CurrentPrice ASC;", nativeQuery= true)
-	List<Cuisines> ReadMenuKeywordPriceAsc (String keyword);
+			+ "WHERE(Name LIKE %:keyword% OR Cuisine=%:keyword% OR Description LIKE %:keyword%) AND Visible=TRUE ORDER BY CurrentPrice ASC;", nativeQuery= true)
+	List<Cuisines> ReadMenuKeywordPriceAsc (
+			@Param("keyword") String keyword);
 	
 	/*View search menu ordered by Price Desc
 	 * 	input keyword to search for
 	 */
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE(Name LIKE %?1% OR Cuisine=%?1% OR Description LIKE %?1%) AND Visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
-	List<Cuisines> ReadMenuKeywordPriceDesc (String keyword);
+			+ "WHERE(Name LIKE %:keyword% OR Cuisine=%:keyword% OR Description LIKE %:keyword%) AND Visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
+	List<Cuisines> ReadMenuKeywordPriceDesc (
+			@Param("keyword") String keyword);
 	
 	/*View search menu ordered by Discount Desc
 	 * 	input keyword to search for
 	 */	
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE(Name LIKE %?1% OR Cuisine=%?1% OR Description LIKE %?1%) AND Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
-	List<Cuisines> ReadMenuKeywordDiscountDesc (String keyword);
+			+ "WHERE(Name LIKE %:keyword% OR Cuisine=%:keyword% OR Description LIKE %:keyword%) AND Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
+	List<Cuisines> ReadMenuKeywordDiscountDesc (
+			@Param("keyword") String keyword);
 	
 	/*View search menu ordered by Price ASC
 	 * 	input cuisine to search for
 	 */
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE Cuisine=%?1% AND Visible=TRUE ORDER BY CurrentPrice ASC;", nativeQuery= true)
-	List<Cuisines> ReadMenuCuisinePriceAsc (String keyword);
+			+ "WHERE Cuisine=%:foodType% AND Visible=TRUE ORDER BY CurrentPrice ASC;", nativeQuery= true)
+	List<Cuisines> ReadMenuCuisinePriceAsc (
+			@Param("foodType") String cuisine);
 	
 	/*View search menu ordered by Price Desc
 	 * 	input cuisine to search for
 	 */
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE Cuisine=%?1% AND Visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
-	List<Cuisines> ReadMenuCuisinePriceDesc (String keyword);
+			+ "WHERE Cuisine=%:foodType% AND Visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
+	List<Cuisines> ReadMenuCuisinePriceDesc (
+			@Param("foodType") String cuisine);
 	
 	/*View search menu ordered by Discount Desc
 	 * 	input cuisine to search for
 	 */
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE Cuisine=%?1% AND Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
-	List<Cuisines> ReadMenuCuisineDiscountDesc (String keyword);	
+			+ "WHERE Cuisine=%:foodType% AND Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
+	List<Cuisines> ReadMenuCuisineDiscountDesc (
+			@Param("foodType") String cuisine);
 }
