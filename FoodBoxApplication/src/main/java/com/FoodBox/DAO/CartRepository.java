@@ -17,4 +17,14 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 	//View Total Cost of current Cart
 	@Query(value="SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity) FROM Cart INNER JOIN Menu ON Cart.Item=Menu.MenuID;", nativeQuery= true)
 	List<Cuisines> CartCost();
+	
+	//Move info from Cart to Orders
+		@Query(value="INSERT INTO Orders( OrderNumber, UserID, OrderTime, Cost) Values(sequence_Orders.nextval, "
+				+ "?1, SYSDATETIME(), SELECT SUM(Menu.Price*Menu.Offer*Cart.Quantity) FROM Cart INNER JOIN Menu ON Cart.Item=Menu.MenuID;)", nativeQuery= true)
+		List<Cuisines> CartToOrders(Integer ID);
+		
+		//Move info from Cart to Order History
+		@Query(value="INSERT INTO OrderHistory( OHKey, OrderNumber, Item, Quantity) VALUES (SELECT  sequence_OrderHistory.nextval, "
+				+ "sequence_Orders.currval, Item, Quantity) FROM Cart;", nativeQuery= true)
+		List<Cuisines> CartToOH();
 }
