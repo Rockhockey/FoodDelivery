@@ -19,6 +19,6 @@ public interface OrdersRepository extends JpaRepository<Orders, Integer> {
 	//pull ord
 	//View Order History based on User ID
 	@Query(value="Select O.OrderNumber, O.OrderTime, O.Cost, OH.Item, OH.Quantity FROM Orders AS O INNER JOIN OrderHistory AS OH ON O.OrderNumber=OH.OrderNumber WHERE UserID = ?1;", nativeQuery= true)
-	List<Cuisines> ReadOrderHistory(Integer ID);
+	List<Orsers> ReadOrderHistory(Integer ID);
 
 }
