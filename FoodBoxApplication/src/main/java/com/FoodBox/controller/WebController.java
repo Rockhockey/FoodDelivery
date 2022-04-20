@@ -15,6 +15,9 @@ import com.FoodBox.model.Cuisines;
 @Controller
 public class WebController {
 	
+	@Autowired
+	CuisineController cuisineController;
+	
 	@RequestMapping("/")
 	public String homePage(Model model) {
 		return "index";
