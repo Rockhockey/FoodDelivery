@@ -49,10 +49,28 @@ public class UserController {
 	//------------------------------ RESTful API for CREATE user ---------------------------------------- //
 	
 	//build create API for USER
+<<<<<<< Updated upstream
 		@PostMapping("/createUser")
 		public ResponseEntity<Users> saveUser(@RequestBody Users user){
 			return new ResponseEntity<Users>(userService.saveUser(user), HttpStatus.CREATED);
 		}
+=======
+	@PostMapping("/createUser")
+	public ResponseEntity<Users> saveUser(@RequestBody Users user) throws NoSuchAlgorithmException{
+		
+		byte[] salt = MD5Salted.receiveSalt();
+		
+		user.setHash(MD5Salted.getSecurePswd(user.getPassword(), salt));
+		
+		user.setSalt(salt.toString());
+		
+		user.setIsAdmin(user.getIsAdmin());
+		
+		System.out.println(user.toString());
+		
+		return new ResponseEntity<Users>(userService.saveUser(user), HttpStatus.CREATED);
+	}
+>>>>>>> Stashed changes
 	
 	
 }
