@@ -23,9 +23,12 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	
 =======
+=======
+>>>>>>> parent of e04fe67 (Merge branch 'main' of https://github.com/Rockhockey/FoodDelivery)
 =======
 >>>>>>> parent of e04fe67 (Merge branch 'main' of https://github.com/Rockhockey/FoodDelivery)
 =======
@@ -363,6 +366,9 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of e04fe67 (Merge branch 'main' of https://github.com/Rockhockey/FoodDelivery)
+=======
 >>>>>>> parent of e04fe67 (Merge branch 'main' of https://github.com/Rockhockey/FoodDelivery)
 =======
 >>>>>>> parent of e04fe67 (Merge branch 'main' of https://github.com/Rockhockey/FoodDelivery)
