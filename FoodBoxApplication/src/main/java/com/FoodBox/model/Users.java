@@ -13,14 +13,18 @@ import javax.persistence.Table;
 @Table(name = "Users")
 public class Users {
 
+	@Id
 	@Column(name = "UserId")
 	private Integer userId;// PK
 	
 	@Column(name = "UserName")
 	private String userName;
 	
-	@Column(name = "Password")
-	private String password;
+	@Column(name = "Salt")
+	private String salt;
+	
+	@Column(name = "Hash")
+	private String hash;
 	
 	@Column(name = "Email")
 	private String email;
@@ -34,11 +38,11 @@ public class Users {
 	
 	
 
-	public Users(Integer userId, String userName, String password, String email, String address) {
+	public Users(Integer userId, String userName, String Hash, String email, String address) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
-		this.password = password;
+		this.Hash = Hash;
 		this.email = email;
 		this.address = address;
 	}
@@ -60,13 +64,21 @@ public class Users {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
-	public String getPassword() {
-		return password;
+	
+	public String getSalt() {
+		return salt;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+	
+	public String getHash() {
+		return hash;
+	}
+
+	public void setHash(String hash) {
+		this.hash = hash;
 	}
 
 	public String getEmail() {
