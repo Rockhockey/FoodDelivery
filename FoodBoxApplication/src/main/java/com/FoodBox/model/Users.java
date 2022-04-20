@@ -38,11 +38,12 @@ public class Users {
 	
 	
 
-	public Users(Integer userId, String userName, String Hash, String email, String address) {
+	public Users(Integer userId, String userName, String salt, String Hash, String email, String address) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
-		this.Hash = Hash;
+		this.salt = salt;
+		this.hash = Hash;
 		this.email = email;
 		this.address = address;
 	}
