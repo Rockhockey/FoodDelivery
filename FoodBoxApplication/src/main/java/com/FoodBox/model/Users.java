@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "Users")
 public class Users {
 
-	@Id
+
 	@Column(name = "UserId")
 	private Integer userId;// PK
 	
