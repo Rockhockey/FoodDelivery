@@ -19,7 +19,7 @@ import com.FoodBox.model.Cuisines;
 import com.FoodBox.service.CuisinesService;
 
 @Controller
-@RequestMapping("/foods")
+@RequestMapping("/menus")
 public class CuisineController {
 	
 	@Autowired
