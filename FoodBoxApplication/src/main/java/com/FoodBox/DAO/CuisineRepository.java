@@ -23,6 +23,8 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	*/
 	
 	
+	 
+	 
 	//View menu ordered by cuisine
 	@Query(value="SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer AS CurrentPrice,"
 			+ " Cuisine, Description, Picture FROM Menu WHERE Visible=TRUE ORDER BY Cuisine ASC;", nativeQuery= true)
@@ -106,4 +108,6 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 			+ "WHERE Cuisine=%:foodType% AND Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
 	List<Cuisines> ReadMenuCuisineDiscountDesc (
 			@Param("foodType") String cuisine);
+
+
 }
