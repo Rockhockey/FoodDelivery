@@ -105,7 +105,7 @@ INNER JOIN Menu ON Cart.Item=Menu.MenuID;
 	--UserID of the logged in User as CurrentUserID
 Select O.OrderNumber, O.OrderTime, O.Cost, OH.Item, OH.Quantity
 FROM Orders AS O
-INNER JOIN OrderHistory AS OH
+INNER JOIN OrderHistory AS OH ON O.OrderNumber=OH.OrderNumber
 WHERE UserID = (CurrentUsersID);
 
 --add item to menu
