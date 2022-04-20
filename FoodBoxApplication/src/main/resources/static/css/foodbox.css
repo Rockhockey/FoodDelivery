@@ -33,7 +33,7 @@ nav ul li {
     padding-right: 10vw;
 }
 
-.account button {
+.account a {
     font-size: 20px;
     padding: 5px;
     border: solid 1px black;
@@ -43,7 +43,7 @@ nav ul li {
     cursor:pointer;
 }
 
-.account button:hover {
+.account a:hover {
     background-color: rgba(10,10,10,.3);
 }
 

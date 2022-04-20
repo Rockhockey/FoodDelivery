@@ -1,5 +1,6 @@
 package com.FoodBox.controller;
 
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.FoodBox.Hash.MD5Salted;
 import com.FoodBox.model.Users;
 import com.FoodBox.service.UserService;
 //add to gh
@@ -43,6 +44,10 @@ public class UserController {
 		return new ResponseEntity<Users>(userService.getUserById(userId), HttpStatus.OK);
 	}
 	
+	public Users getUser(String username){
+		return userService.getUserByUsername(username);
+	}
+	
 	@GetMapping("{UserName}")
 	public ResponseEntity<Users> getUserByUsername(@PathVariable("UserName") String userName){
 		return new ResponseEntity<Users>(userService.getUserByUsername(userName), HttpStatus.OK);
@@ -54,15 +59,11 @@ public class UserController {
 	@PostMapping("/createUser")
 	public ResponseEntity<Users> saveUser(@RequestBody Users user) throws NoSuchAlgorithmException{
 		
-		byte[] salt = MD5Salted.receiveSalt();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-		user.setHash(MD5Salted.getSecurePswd(user.getPassword(), salt));
-		
-		user.setSalt(salt.toString());
+		user.setHash(passwordEncoder.encode(user.getPassword()));
 		
 		user.setIsAdmin(false);
-		
-		System.out.println(user.toString());
 		
 		return new ResponseEntity<Users>(userService.saveUser(user), HttpStatus.CREATED);
 	}
