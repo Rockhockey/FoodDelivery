@@ -55,25 +55,31 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	 * 	input keyword to search for
 	 */
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE(Name LIKE %:keyword% OR Cuisine=%:keyword% OR Description LIKE %:keyword%) AND Visible=TRUE ORDER BY CurrentPrice ASC;", nativeQuery= true)
+			+ "WHERE(Name LIKE %:keyword1% OR Cuisine=%:keyword2% OR Description LIKE %:keyword3%) AND Visible=TRUE ORDER BY CurrentPrice ASC;", nativeQuery= true)
 	List<Cuisines> ReadMenuKeywordPriceAsc (
-			@Param("keyword") String keyword);
+			@Param("keyword1") String keyword1,
+			@Param("keyword2") String keyword2,
+			@Param("keyword3") String keyword3);
 	
 	/*View search menu ordered by Price Desc
 	 * 	input keyword to search for
 	 */
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE(Name LIKE %:keyword% OR Cuisine=%:keyword% OR Description LIKE %:keyword%) AND Visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
+			+ "WHERE(Name LIKE %:keyword1% OR Cuisine=%:keyword2% OR Description LIKE %:keyword3%) AND Visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
 	List<Cuisines> ReadMenuKeywordPriceDesc (
-			@Param("keyword") String keyword);
+			@Param("keyword1") String keyword1,
+			@Param("keyword2") String keyword2,
+			@Param("keyword3") String keyword3);
 	
 	/*View search menu ordered by Discount Desc
 	 * 	input keyword to search for
 	 */	
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE(Name LIKE %:keyword% OR Cuisine=%:keyword% OR Description LIKE %:keyword%) AND Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
-	List<Cuisines> ReadMenuKeywordDiscountDesc (
-			@Param("keyword") String keyword);
+			+ "WHERE(Name LIKE %:keyword1% OR Cuisine=%:keyword2% OR Description LIKE %:keyword3%) AND Visible=TRUE ORDER BY PercentOff DESC;", nativeQuery= true)
+	List<Cuisines> ReadMenuKeywordDiscountDesc(
+	@Param("keyword1") String keyword1,
+	@Param("keyword2") String keyword2,
+	@Param("keyword3") String keyword3);
 	
 	/*View search menu ordered by Price ASC
 	 * 	input cuisine to search for
