@@ -47,9 +47,11 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	 * 	input keyword to search for
 	 */
 	@Query(value=" SELECT Name, Price, (1-Offer)*100 AS PercentOff, Price*Offer as CurrentPrice, Cuisine, Description, Picture FROM Menu "
-			+ "WHERE(Name LIKE %:keyword% OR Cuisine=%:keyword% OR Description LIKE %:keyword%) AND Visible=TRUE ORDER BY Cuisine ASC;", nativeQuery= true)
+			+ "WHERE(Name LIKE %:keyword1% OR Cuisine=%:keyword2% OR Description LIKE %:keyword3%) AND Visible=TRUE ORDER BY Cuisine ASC;", nativeQuery= true)
 	List<Cuisines> ReadMenuKeywordCuisine (
-			@Param("keyword") String keyword);
+			@Param("keyword1") String keyword1,
+			@Param("keyword2") String keyword2,
+			@Param("keyword3") String keyword3);
 	
 	/*View search menu ordered by Price ASC
 	 * 	input keyword to search for
