@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Foodbox - Home</title>
-    <link rel="stylesheet" th:href="@{/css/foodbox.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/foodbox.css}">
     <script th:src="@{/javaScript/foodbox.js}" defer></script>
 </head>
 <body>
@@ -25,13 +25,13 @@
     </header>
     <main>
         <h1>View Food Categories</h1>
-        <nav>
+        <nav id="view">
             <ul>
-                <li><button id="allBtn" type="button" onclick="switchCuisine('image-gallery-item')">All</button></li>
-                <li><button id="indianBtn" type="button" onclick="switchCuisine('indian-cuisine')">Indian</button></li>
-                <li><button id="chineseBtn" type="button" onclick="switchCuisine('chinese-cuisine')">Chinese</button></li>
-                <li><button id="italianBtn" type="button" onclick="switchCuisine('italian-cuisine')">Italian</button></li>
-                <li><button id="mexicanBtn" type="button" onclick="switchCuisine('mexican-cuisine')">Mexican</button></li>
+                <li><a th:href="@{/view}">All</a></li>
+                <li><a th:href="@{/view}">Indian</a></li>
+                <li><a th:href="@{/view}">Chinese</a></li>
+                <li><a th:href="@{/view}">Italian</a></li>
+                <li><a th:href="@{/view}">Mexican</a></li>
             </ul>
         </nav>
 

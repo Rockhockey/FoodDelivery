@@ -70,19 +70,19 @@ main h2 {
     left:30vw;
 }
 
-nav li button{
+#view li a {
     font-size: 20px;
     padding: 5px 5vw 5px 5px;
     border: solid 1px black;
     margin: 5px;
-    width:100%;
-    text-align:left;
-    cursor:pointer;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
 }
 
-nav li button:hover {
-    background-color: rgba(10,10,10,.3);
-}
+    #view li a:hover {
+        background-color: rgba(10,10,10,.3);
+    }
 
 
 main nav ul li{

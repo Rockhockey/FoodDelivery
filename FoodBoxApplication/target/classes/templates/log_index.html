@@ -23,16 +23,15 @@
     </header>
     <main>
         <h1>View Food Categories</h1>
-        <nav>
+	    <nav id="view">
             <ul>
-                <li><button id="allBtn" type="button" onclick="switchCuisine('image-gallery-item')">All</button></li>
-                <li><button id="indianBtn" type="button" onclick="switchCuisine('indian-cuisine')">Indian</button></li>
-                <li><button id="chineseBtn" type="button" onclick="switchCuisine('chinese-cuisine')">Chinese</button></li>
-                <li><button id="italianBtn" type="button" onclick="switchCuisine('italian-cuisine')">Italian</button></li>
-                <li><button id="mexicanBtn" type="button" onclick="switchCuisine('mexican-cuisine')">Mexican</button></li>
+              <li><a th:href="@{/view}">All</a></li>
+                <li><a th:href="@{/view/indian}">Indian</a></li>
+                <li><a th:href="@{/view/chinese}">Chinese</a></li>
+                <li><a th:href="@{/view/italian}">Italian</a></li>
+                <li><a th:href="@{/view/mexican}">Mexican</a></li>
             </ul>
-        </nav>
-
+	     </nav>
         <div id="homeView">
             <!-- Slideshow container -->
             <div class="slideshow-container">

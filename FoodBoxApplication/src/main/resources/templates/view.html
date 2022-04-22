@@ -5,8 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Foodbox - View Food Items</title>
-    <link rel="stylesheet" th:href="@{/css/view.css}">
-    <script th:src="@{/javaScript/foodbox.js}" defer></script>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/view.css}">
 </head>
 <body>
     <header>
@@ -25,23 +24,36 @@
     </header>
     <main>
         <h1>View Food Categories</h1>
-        <nav>
+        <nav id="view">
             <ul>
-                <li><button id="allBtn" type="button" onclick="switchCuisine('image-gallery-item')">All</button></li>
-                <li><button id="indianBtn" type="button" onclick="switchCuisine('indian-cuisine')">Indian</button></li>
-                <li><button id="chineseBtn" type="button" onclick="switchCuisine('chinese-cuisine')">Chinese</button></li>
-                <li><button id="italianBtn" type="button" onclick="switchCuisine('italian-cuisine')">Italian</button></li>
-                <li><button id="mexicanBtn" type="button" onclick="switchCuisine('mexican-cuisine')">Mexican</button></li>
+                <li><a th:href="@{/view}">All</a></li>
+                <li><a th:href="@{/view/indian}">Indian</a></li>
+                <li><a th:href="@{/view/chinese}">Chinese</a></li>
+                <li><a th:href="@{/view/italian}">Italian</a></li>
+                <li><a th:href="@{/view/mexican}">Mexican</a></li>
             </ul>
         </nav>
 
                <!--Image Gallery of food items -->
         <div th:switch="${cuisines}">
+        	<h2 th:case="null">No items found!</h2>
     		<div th:case="*" id="image-gallery">
 	            <div class="image-gallery-item" th:each="cuisine : ${cuisines}">
-	                <img class="image" th:src="@{/images/Spaghetti.jpg}" />
-	                <div class="food-name" th:text="${cuisine.getName()}"></div>
-	                <div class="food-price" th:text="${cuisine.getPrice()}"></div>
+	                <img class="image" th:src="@{${cuisine.getPicture()}}" />
+	                <div>
+		                <span class="food-label">Name:</span> 
+		                <span class="'food-info" th:text="${cuisine.getName()}"></span>
+	                </div>
+	                <div>
+		                <span class="food-label">Cuisine:</span> 
+		                <span class="food-info" th:text="${cuisine.getCuisineType()}"></span>
+	                </div>
+	                <div>
+		                <span class="food-label">Price:$</span> 
+		                <span class="food-info" th:text="${cuisine.getPrice()}"></span>
+	                </div>
+	                <p class="food-desc" th:text="${cuisine.getDescription()}"></p>
+	                <a th:href="@{/addToCart/{Id}(Id=${cuisine.getId()})}" > Add to Cart</a>
 	            </div>
     		</div>
     	</div>

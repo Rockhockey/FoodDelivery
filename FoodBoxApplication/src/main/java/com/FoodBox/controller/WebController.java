@@ -23,8 +23,8 @@ public class WebController {
 	
 	@RequestMapping("/")
 	public String homePage(Model model) {
-		if(UserWebController.loggedIn!=null) {
-			Users user = userController.getUser(UserWebController.loggedIn.getUsername());
+		if(UserWebController.username!=null) {
+			Users user = userController.getUser(UserWebController.username);
 			if(user.getIsAdmin())
 				return "admin_log_index";
 			return "log_index";

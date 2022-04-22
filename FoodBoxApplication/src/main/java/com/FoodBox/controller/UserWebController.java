@@ -22,7 +22,7 @@ public class UserWebController {
 	@Autowired
 	UserController userController;
 	
-	public static Login loggedIn;
+	public static String username;
 	
 	@GetMapping("/new_user")
 	public String addUser(Model model) {
@@ -61,7 +61,7 @@ public class UserWebController {
 		Users user = userController.getUser(login.getUsername());
 		
 		if(passwordEncoder.matches(login.getPassword(), user.getHash())) {
-			loggedIn = login;
+			username = login.getUsername();
 			return "redirect:/";
 		}
 		return "redirect:/login";
@@ -69,7 +69,7 @@ public class UserWebController {
 	
 	@RequestMapping("/logout")
 	public String aboutPage(Model model) {
-		loggedIn = null;
+		username = null;
 		return "redirect:/";
 	}
 	

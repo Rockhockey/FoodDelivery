@@ -1,5 +1,6 @@
 package com.FoodBox.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,12 +11,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.FoodBox.model.Cuisines;
+import com.FoodBox.model.Users;
 
 @Controller
 public class CuisineWebController {
 	
 	@Autowired
 	CuisineController cuisineController;
+	
+	@Autowired
+	UserController userController;
 	
 	@GetMapping("/admin")
 	public String getAllCuisines(Model model) {
@@ -24,7 +29,13 @@ public class CuisineWebController {
 		
 		model.addAttribute("cuisines", cuisinesList);
 		
-		return "list_cuisines";
+		if(UserWebController.username!=null) {
+			Users user = userController.getUser(UserWebController.username);
+			if(user.getIsAdmin())
+				return "list_cuisines";
+		}
+		
+		return "redirect:/";
 	}
 	
 	@GetMapping("/view")
@@ -33,6 +44,113 @@ public class CuisineWebController {
 		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
 		
 		model.addAttribute("cuisines", cuisinesList);
+		
+		if(UserWebController.username!=null) {
+			Users user = userController.getUser(UserWebController.username);
+			if(user.getIsAdmin())
+				return "admin_log_view";
+			return "log_view";
+		}
+		
+		return "view";
+	}
+	
+	@GetMapping("/view/indian")
+	public String userIndianView(Model model) {
+		
+		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		
+		List<Cuisines> indianCuisinesList = new ArrayList<Cuisines>();
+		
+		for(int i=0;i<cuisinesList.size();i++) {
+			if(cuisinesList.get(i).getCuisineType().equals("Indian")) {
+				indianCuisinesList.add(cuisinesList.get(i));
+			}
+		}
+		
+		model.addAttribute("cuisines", indianCuisinesList);
+		
+		if(UserWebController.username!=null) {
+			Users user = userController.getUser(UserWebController.username);
+			if(user.getIsAdmin())
+				return "admin_log_view";
+			return "log_view";
+		}
+		
+		return "view";
+	}
+	
+	@GetMapping("/view/chinese")
+	public String userChineseView(Model model) {
+		
+		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		
+		List<Cuisines> chineseCuisinesList = new ArrayList<Cuisines>();
+		
+		for(int i=0;i<cuisinesList.size();i++) {
+			if(cuisinesList.get(i).getCuisineType().equals("Chinese")) {
+				chineseCuisinesList.add(cuisinesList.get(i));
+			}
+		}
+		
+		model.addAttribute("cuisines", chineseCuisinesList);
+		
+		if(UserWebController.username!=null) {
+			Users user = userController.getUser(UserWebController.username);
+			if(user.getIsAdmin())
+				return "admin_log_view";
+			return "log_view";
+		}
+		
+		return "view";
+	}
+	
+	@GetMapping("/view/italian")
+	public String userItalianView(Model model) {
+		
+		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		
+		List<Cuisines> italianCuisinesList = new ArrayList<Cuisines>();
+		
+		for(int i=0;i<cuisinesList.size();i++) {
+			if(cuisinesList.get(i).getCuisineType().equals("Italian")) {
+				italianCuisinesList.add(cuisinesList.get(i));
+			}
+		}
+		
+		model.addAttribute("cuisines", italianCuisinesList);
+		
+		if(UserWebController.username!=null) {
+			Users user = userController.getUser(UserWebController.username);
+			if(user.getIsAdmin())
+				return "admin_log_view";
+			return "log_view";
+		}
+		
+		return "view";
+	}
+	
+	@GetMapping("/view/mexican")
+	public String userMexicanView(Model model) {
+		
+		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		
+		List<Cuisines> mexicanCuisinesList = new ArrayList<Cuisines>();
+		
+		for(int i=0;i<cuisinesList.size();i++) {
+			if(cuisinesList.get(i).getCuisineType().equals("Mexican")) {
+				mexicanCuisinesList.add(cuisinesList.get(i));
+			}
+		}
+		
+		model.addAttribute("cuisines", mexicanCuisinesList);
+		
+		if(UserWebController.username!=null) {
+			Users user = userController.getUser(UserWebController.username);
+			if(user.getIsAdmin())
+				return "admin_log_view";
+			return "log_view";
+		}
 		
 		return "view";
 	}

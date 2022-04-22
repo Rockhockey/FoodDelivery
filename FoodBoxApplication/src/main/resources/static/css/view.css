@@ -8,7 +8,7 @@
 .image-gallery-item {
     margin: 2vw;
     width: 20vw;
-    height: 20vw;
+    height: 25vw;
     background-color: salmon;
 }
 
@@ -17,18 +17,31 @@
     height: 15vw;
 }
 
-.food-name {
-    display: block;
-    font-size: 1vw;
-    text-align: center;
-    padding: 5px;
+.food-label {
+	font-size:16px;
+	padding: 5px 0px 5px 5px;
 }
 
-.food-price {
-    display: block;
-    font-size: 1vw;
+.food-info {
+    font-size: 16px;
     text-align: center;
+    padding: 5px 0px 5px 0px;
+}
+
+.food-desc {
+	margin:5px;
+}
+
+.image-gallery-item a {
+	display:block;
+    font-size: 20px;
     padding: 5px;
+    border: solid 1px black;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    cursor:pointer;
+    text-decoration: none;
 }
 
 header {
@@ -102,7 +115,7 @@ main {
         left: 30vw;
     }
 
-nav li button {
+#view li a {
     font-size: 20px;
     padding: 5px 5vw 5px 5px;
     border: solid 1px black;
@@ -112,7 +125,7 @@ nav li button {
     cursor: pointer;
 }
 
-    nav li button:hover {
+    #view li a:hover {
         background-color: rgba(10,10,10,.3);
     }
 
