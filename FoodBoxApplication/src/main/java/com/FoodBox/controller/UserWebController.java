@@ -14,12 +14,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.FoodBox.model.Users;
 import com.FoodBox.model.Login;
+import com.FoodBox.FoodBoxApplication;
 
 @Controller
 public class UserWebController {
 	
 	@Autowired
 	UserController userController;
+	
+	public static Login loggedIn;
 	
 	@GetMapping("/new_user")
 	public String addUser(Model model) {
@@ -58,14 +61,17 @@ public class UserWebController {
 		Users user = userController.getUser(login.getUsername());
 		
 		if(passwordEncoder.matches(login.getPassword(), user.getHash())) {
-			return "redirect:/admin";
+			loggedIn = login;
+			return "redirect:/";
 		}
-
-		
 		return "redirect:/login";
 	}
 	
-	
+	@RequestMapping("/logout")
+	public String aboutPage(Model model) {
+		loggedIn = null;
+		return "redirect:/";
+	}
 	
 	
 	

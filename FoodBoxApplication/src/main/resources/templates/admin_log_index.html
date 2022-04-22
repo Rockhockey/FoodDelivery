@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <html xmlns:th="http://www.thymeleaf.org">
@@ -17,9 +17,8 @@
                 <li><a th:href="@{/contact}">Contact</a></li>
             </ul>
             <div class="account">
-                <a th:href="@{/login}">Sign In</a>
-
-                <a th:href="@{/new_user}">Sign Up</a>
+                <a th:href="@{/logout}">Log out</a>
+                <a th:href="@{/admin}">Admin Page</a>
             </div>
         </nav><hr />
     </header>
@@ -69,6 +68,30 @@
                 <img class="most-viewed-items" th:src="@{/images/Spaghetti.jpg}" />
                 <img class="most-viewed-items" th:src="@{/images/chinesefood.jpg}" />
                 <img class="most-viewed-items" th:src="@{/images/ChickenTikkaMasala.jpg}" />
+            </div>
+        </div>
+
+        <!--Image Gallery of food items -->
+        <div id="image-gallery">
+            <div class="image-gallery-item italian-cuisine">
+                <img class="image" th:src="@{/images/Spaghetti.jpg}" />
+                <div class="food-name">FoodName</div>
+                <div class="food-price">$$.$$</div>
+            </div>
+            <div class="image-gallery-item italian-cuisine">
+                <img class="image" th:src="@{/images/Spaghetti.jpg}" />
+                <div class="food-name">FoodName</div>
+                <div class="food-price">$$.$$</div>
+            </div>
+            <div class="image-gallery-item italian-cuisine">
+                <img class="image" th:src="@{/images/Spaghetti.jpg}" />
+                <div class="food-name">FoodName</div>
+                <div class="food-price">$$.$$</div>
+            </div>
+            <div class="image-gallery-item italian-cuisine">
+                <img class="image" th:src="@{/images/Spaghetti.jpg}" />
+                <div class="food-name">FoodName</div>
+                <div class="food-price">$$.$$</div>
             </div>
         </div>
 	</main>

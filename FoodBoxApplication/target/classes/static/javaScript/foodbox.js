@@ -27,23 +27,3 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "inherit";
     dots[slideIndex - 1].className += " active";
 }
-
-
-function switchCuisine(cuisineType) {
-
-    document.getElementById("homeView").style.display = "none";
-    document.getElementById("image-gallery").style.display = "flex";
-
-    let i;
-    let cuisine = document.getElementsByClassName(cuisineType);
-    let imageGallery = document.getElementsByClassName("image-gallery-item");
-
-    for (i = 0; i < imageGallery.length; i++) {
-        imageGallery[i].style.display = "none";
-    }
-
-    for (i = 0; i < cuisine.length; i++) {
-        cuisine[i].style.display = "flex";
-    }
-
-}

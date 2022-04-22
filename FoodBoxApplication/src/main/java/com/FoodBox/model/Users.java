@@ -26,9 +26,6 @@ public class Users {
 	@Column(name = "username")
 	private String userName;
 	
-	@Column(name = "salt")
-	private String salt;
-	
 	@Column(name = "hash")
 	private String hash;
 	
@@ -51,11 +48,10 @@ public class Users {
 	
 	
 
-	public Users(Integer userId, String userName, String salt, String Hash, String email, String address, boolean isAdmin) {
+	public Users(Integer userId, String userName, String Hash, String email, String address, boolean isAdmin) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
-		this.salt = salt;
 		this.hash = Hash;
 		this.email = email;
 		this.address = address;
@@ -76,14 +72,6 @@ public class Users {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-	
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 	
 	public String getHash() {
@@ -120,7 +108,7 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "users [userid=" + userId + ", username=" + userName + ", salt=" + salt + ", hash=" + hash + ", email=" + email + ", address=" + address + ", isadmin=" + isAdmin + "]";
+		return "users [userid=" + userId + ", username=" + userName + ", hash=" + hash + ", email=" + email + ", address=" + address + ", isadmin=" + isAdmin + "]";
 	}
 
 

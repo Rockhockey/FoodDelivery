@@ -27,6 +27,16 @@ public class CuisineWebController {
 		return "list_cuisines";
 	}
 	
+	@GetMapping("/view")
+	public String userView(Model model) {
+		
+		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		
+		model.addAttribute("cuisines", cuisinesList);
+		
+		return "view";
+	}
+	
 	@GetMapping("/new_item")
 	public String addItem(Model model) {
 		

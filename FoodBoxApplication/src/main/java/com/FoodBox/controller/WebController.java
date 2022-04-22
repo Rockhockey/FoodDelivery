@@ -11,12 +11,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.FoodBox.model.Cuisines;
+import com.FoodBox.model.Users;
+import com.FoodBox.controller.UserWebController;
+import com.FoodBox.controller.UserController;
 
 @Controller
 public class WebController {
 	
+	@Autowired
+	UserController userController;
+	
 	@RequestMapping("/")
 	public String homePage(Model model) {
+		if(UserWebController.loggedIn!=null) {
+			Users user = userController.getUser(UserWebController.loggedIn.getUsername());
+			if(user.getIsAdmin())
+				return "admin_log_index";
+			return "log_index";
+		}
 		return "index";
 	}
 	

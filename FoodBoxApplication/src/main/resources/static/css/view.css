@@ -1,0 +1,122 @@
+/* Image Gallery CSS*/
+
+#image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-gallery-item {
+    margin: 2vw;
+    width: 20vw;
+    height: 20vw;
+    background-color: salmon;
+}
+
+.image {
+    width: 20vw;
+    height: 15vw;
+}
+
+.food-name {
+    display: block;
+    font-size: 1vw;
+    text-align: center;
+    padding: 5px;
+}
+
+.food-price {
+    display: block;
+    font-size: 1vw;
+    text-align: center;
+    padding: 5px;
+}
+
+header {
+    padding-top: 5px;
+}
+
+body {
+    background-color: darkgrey;
+}
+
+nav a {
+    text-decoration: none;
+    display: block;
+    padding: .75em;
+    font-size: 20px;
+    color: black;
+}
+
+nav a:hover {
+    outline: solid 1px black;
+}
+
+nav ul {
+    float: left;
+    list-style-type: none;
+    padding-left: 10vw;
+}
+
+nav ul li {
+    float: left;
+}
+
+.account {
+    float: right;
+    padding-right: 10vw;
+}
+
+.account a {
+font-size: 20px;
+padding: 5px;
+border: solid 1px black;
+margin: 5px;
+width: 100%;
+text-align: center;
+cursor: pointer;
+}
+
+.account a:hover {
+    background-color: rgba(10,10,10,.3);
+}
+
+hr {
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+main {
+    display: block;
+}
+
+    main h1 {
+        padding-left: 10vw;
+    }
+
+    main h2 {
+        position: relative;
+        text-align: left;
+        left: 30vw;
+    }
+
+nav li button {
+    font-size: 20px;
+    padding: 5px 5vw 5px 5px;
+    border: solid 1px black;
+    margin: 5px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+    nav li button:hover {
+        background-color: rgba(10,10,10,.3);
+    }
+
+
+main nav ul li {
+    float: none;
+}
