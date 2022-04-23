@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.FoodBox.DAO.UserRepository;
 import com.FoodBox.exception.ResourceNotFoundException;
 import com.FoodBox.model.Users;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -61,7 +62,7 @@ public class UserServiceImpl implements UserService {
 	//setting password for user in initial sign up and for log in
 	@Override
 	public void setPassword(Integer userId, String password) {
-		Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "password", password));
+		Users user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Users", "password", password));
 		//user.setPassword(user.getPassword());
 		userRepository.save(user);
 	}

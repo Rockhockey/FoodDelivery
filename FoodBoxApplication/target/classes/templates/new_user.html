@@ -24,6 +24,8 @@
 
 <style>
 	table, th, td {padding:10px;}
+	span {color: red;
+    font-style: italic;}
 </style>
 
 <body>
@@ -37,22 +39,26 @@
 						
 				<tr>
 					<td>Email:</td>
-					<td><input type="text" th:field="*{email}" /></td>
+					<td><input type="email" th:field="*{email}" /></td>
+					<td><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></td>
 				</tr>
 				
 				<tr>
 					<td>Address:</td>
 					<td><input type="text" th:field="*{address}" /></td>
+					<td><span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span></td>
 				</tr>
 				
 				<tr>
 					<td>Username:</td>
 					<td><input type="text" th:field="*{userName}" /></td>
+					<td><span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span></td>
 				</tr>
 				
 				<tr>
 					<td>Password:</td>
-					<td><input type="text" th:field="*{password}" /></td>
+					<td><input type="password" th:field="*{password}" /></td>
+					<td><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span></td>
 				</tr>
 				
 	

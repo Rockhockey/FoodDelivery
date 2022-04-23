@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.*;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.FoodBox.CustomAnnotations.UniqueUsername;
 
 
 
@@ -23,21 +26,26 @@ public class Users {
 	@Column(name = "userid")
 	private Integer userId;// PK
 	
+	@UniqueUsername
+	@Size(min=3, max=50)
 	@Column(name = "username")
 	private String userName;
 	
 	@Column(name = "hash")
 	private String hash;
 	
+	@Email(message="Please enter a valid e-mail address")
 	@Column(name = "email")
 	private String email;
 	
+	@NotBlank
 	@Column(name = "address")
 	private String address;
 
 	@Column(name = "isadmin")
 	private boolean isAdmin;
 	
+	@Size(min=8, max=15)
 	@Transient
 	private String password;
 	

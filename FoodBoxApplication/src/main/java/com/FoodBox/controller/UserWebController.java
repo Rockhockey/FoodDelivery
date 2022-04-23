@@ -1,10 +1,15 @@
 package com.FoodBox.controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +40,12 @@ public class UserWebController {
 	}
 	
 	@PostMapping(value = "/save_user")
-	public String saveNewUser(@ModelAttribute("users") Users user) throws NoSuchAlgorithmException {
+	public String saveNewUser(@Valid @ModelAttribute("users") Users user, BindingResult bindingResult) throws NoSuchAlgorithmException {
 		
+		if(bindingResult.hasErrors()) {
+			return "new_user";
+		}
+	
 		userController.saveUser(user);
 		
 		return "redirect:/";
@@ -72,7 +81,6 @@ public class UserWebController {
 		username = null;
 		return "redirect:/";
 	}
-	
 	
 	
 	
