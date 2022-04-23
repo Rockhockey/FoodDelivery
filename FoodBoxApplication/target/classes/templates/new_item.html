@@ -31,7 +31,7 @@
 		<h2>Add new item</h2>
 		<br />
 		
-		<form action="#" th:action="@{/save_new}" th:object="${cuisines}" method="post">
+		<form action="#" th:action="@{/save_new}" th:object="${cuisines}" method="post" enctype="multipart/form-data" >
 			
 			<table>
 				<tr>
@@ -61,7 +61,7 @@
 				
 				<tr>
 					<td>Picture:</td>
-					<td><input type="text" th:field="*{picture}" /></td>
+					<td><input type="file" accept="image/png, image/jpeg" name="image" /></td>
 				</tr>
 				
 				<tr>

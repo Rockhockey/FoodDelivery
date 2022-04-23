@@ -15,10 +15,23 @@
                 <li><a th:href="@{/about}">About</a></li>
                 <li><a th:href="@{/contact}">Contact</a></li>
             </ul>
-            <div class="account">
-                <a th:href="@{/login}">Sign In</a>
+             <div class="account" th:switch="${admin}">
+            	<div th:case="null">
+	                <a th:href="@{/login}">Sign In</a>
+	
+	                <a th:href="@{/new_user}">Sign Up</a>
+            	</div>
 
-                <a th:href="@{/new_user}">Sign Up</a>
+				<div th:case="true">
+	                <a th:href="@{/admin}">Admin Page</a>
+	
+	                <a th:href="@{/logout}">Log out</a>
+            	</div>
+            	
+            	<div th:case="false">
+	                <a th:href="@{/logout}">Log out</a>
+            	</div>
+
             </div>
         </nav><hr />
     </header>

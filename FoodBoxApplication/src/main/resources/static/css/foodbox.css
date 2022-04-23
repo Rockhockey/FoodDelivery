@@ -70,6 +70,10 @@ main h2 {
     left:30vw;
 }
 
+main p{
+	text-align: center;
+}
+
 #view li a {
     font-size: 20px;
     padding: 5px 5vw 5px 5px;

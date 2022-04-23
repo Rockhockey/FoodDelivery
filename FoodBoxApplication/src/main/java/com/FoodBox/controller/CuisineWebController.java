@@ -1,15 +1,22 @@
 package com.FoodBox.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.FoodBox.FileUpload.FileUploadUtil;
 import com.FoodBox.model.Cuisines;
 import com.FoodBox.model.Users;
 
@@ -45,12 +52,13 @@ public class CuisineWebController {
 		
 		model.addAttribute("cuisines", cuisinesList);
 		
+		Boolean admin = null;
+		
 		if(UserWebController.username!=null) {
 			Users user = userController.getUser(UserWebController.username);
-			if(user.getIsAdmin())
-				return "admin_log_view";
-			return "log_view";
+			admin = user.getIsAdmin();
 		}
+		model.addAttribute("admin", admin);
 		
 		return "view";
 	}
@@ -70,12 +78,13 @@ public class CuisineWebController {
 		
 		model.addAttribute("cuisines", indianCuisinesList);
 		
+		Boolean admin = null;
+		
 		if(UserWebController.username!=null) {
 			Users user = userController.getUser(UserWebController.username);
-			if(user.getIsAdmin())
-				return "admin_log_view";
-			return "log_view";
+			admin = user.getIsAdmin();
 		}
+		model.addAttribute("admin", admin);
 		
 		return "view";
 	}
@@ -95,12 +104,13 @@ public class CuisineWebController {
 		
 		model.addAttribute("cuisines", chineseCuisinesList);
 		
+		Boolean admin = null;
+		
 		if(UserWebController.username!=null) {
 			Users user = userController.getUser(UserWebController.username);
-			if(user.getIsAdmin())
-				return "admin_log_view";
-			return "log_view";
+			admin = user.getIsAdmin();
 		}
+		model.addAttribute("admin", admin);
 		
 		return "view";
 	}
@@ -120,13 +130,13 @@ public class CuisineWebController {
 		
 		model.addAttribute("cuisines", italianCuisinesList);
 		
+		Boolean admin = null;
+		
 		if(UserWebController.username!=null) {
 			Users user = userController.getUser(UserWebController.username);
-			if(user.getIsAdmin())
-				return "admin_log_view";
-			return "log_view";
+			admin = user.getIsAdmin();
 		}
-		
+		model.addAttribute("admin", admin);
 		return "view";
 	}
 	
@@ -145,13 +155,13 @@ public class CuisineWebController {
 		
 		model.addAttribute("cuisines", mexicanCuisinesList);
 		
+		Boolean admin = null;
+		
 		if(UserWebController.username!=null) {
 			Users user = userController.getUser(UserWebController.username);
-			if(user.getIsAdmin())
-				return "admin_log_view";
-			return "log_view";
+			admin = user.getIsAdmin();
 		}
-		
+		model.addAttribute("admin", admin);
 		return "view";
 	}
 	
@@ -167,9 +177,19 @@ public class CuisineWebController {
 	}
 	
 	@PostMapping(value = "/save_new")
-	public String saveNewItem(@ModelAttribute("cuisines") Cuisines cuisine) {
+	public String saveNewItem(@ModelAttribute("cuisines") Cuisines cuisine, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+		
+		String uploadDir = "src/main/resources/static/images/";
+		
+		String savedFileName = ("/images/" + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
+		
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		
+		cuisine.setPicture(savedFileName);
 		
 		cuisineController.saveCuisines(cuisine);
+		
+		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		
 		return "redirect:/admin";
 		
