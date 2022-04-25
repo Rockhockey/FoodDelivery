@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.FoodBox.model.Cuisines;
 import com.FoodBox.model.Users;
+import com.FoodBox.service.UserService;
 import com.FoodBox.controller.UserWebController;
 import com.FoodBox.controller.UserController;
 
@@ -19,7 +20,7 @@ import com.FoodBox.controller.UserController;
 public class WebController {
 	
 	@Autowired
-	UserController userController;
+	UserService userService;
 	
 	@RequestMapping("/")
 	public String homePage(Model model) {
@@ -27,7 +28,7 @@ public class WebController {
 		Boolean admin = null;
 		
 		if(UserWebController.username!=null) {
-			Users user = userController.getUser(UserWebController.username);
+			Users user = userService.getUserByUsername(UserWebController.username);
 			admin = user.getIsAdmin();
 		}
 		model.addAttribute("admin", admin);

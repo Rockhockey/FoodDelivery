@@ -41,8 +41,8 @@ public class CuisineController {
 	
 	//build GET all CUISINES REST API
 	@GetMapping("/allMenus") 
-	List<Cuisines> getAllCuisines() {
-		return cuisineService.getAllCuisines();
+	ResponseEntity<List<Cuisines>> getAllCuisines() {
+		return new ResponseEntity<List<Cuisines>>(cuisineService.getAllCuisines(), HttpStatus.OK);
 	}
 	
 	
@@ -52,8 +52,8 @@ public class CuisineController {
 	// ------ example ------- //
 	//http://localhost:8080/menus/1 -- any id can replace 1
 	@GetMapping("{menuId}")
-	public Cuisines getCuisineById(@PathVariable("menuId") Integer menuId) {
-		return cuisineService.getCuisineById(menuId);
+	public ResponseEntity<Cuisines> getCuisineById(@PathVariable("menuId") Integer menuId) {
+		return new ResponseEntity<Cuisines>(cuisineService.getCuisineById(menuId), HttpStatus.OK);
 	}
 	
 	

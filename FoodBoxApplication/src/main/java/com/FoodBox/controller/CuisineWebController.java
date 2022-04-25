@@ -19,25 +19,28 @@ import org.springframework.web.multipart.MultipartFile;
 import com.FoodBox.FileUpload.FileUploadUtil;
 import com.FoodBox.model.Cuisines;
 import com.FoodBox.model.Users;
+import com.FoodBox.service.CuisinesService;
+import com.FoodBox.service.UserService;
 
 @Controller
 public class CuisineWebController {
 	
+
 	@Autowired
-	CuisineController cuisineController;
+	private CuisinesService cuisineService;
 	
 	@Autowired
-	UserController userController;
+	private UserService userService;
 	
 	@GetMapping("/admin")
 	public String getAllCuisines(Model model) {
 		
-		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
 		
 		model.addAttribute("cuisines", cuisinesList);
 		
 		if(UserWebController.username!=null) {
-			Users user = userController.getUser(UserWebController.username);
+			Users user = userService.getUserByUsername(UserWebController.username);
 			if(user.getIsAdmin())
 				return "list_cuisines";
 		}
@@ -48,14 +51,14 @@ public class CuisineWebController {
 	@GetMapping("/view")
 	public String userView(Model model) {
 		
-		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
 		
 		model.addAttribute("cuisines", cuisinesList);
 		
 		Boolean admin = null;
 		
 		if(UserWebController.username!=null) {
-			Users user = userController.getUser(UserWebController.username);
+			Users user = userService.getUserByUsername(UserWebController.username);
 			admin = user.getIsAdmin();
 		}
 		model.addAttribute("admin", admin);
@@ -66,7 +69,7 @@ public class CuisineWebController {
 	@GetMapping("/view/indian")
 	public String userIndianView(Model model) {
 		
-		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
 		
 		List<Cuisines> indianCuisinesList = new ArrayList<Cuisines>();
 		
@@ -81,7 +84,7 @@ public class CuisineWebController {
 		Boolean admin = null;
 		
 		if(UserWebController.username!=null) {
-			Users user = userController.getUser(UserWebController.username);
+			Users user = userService.getUserByUsername(UserWebController.username);
 			admin = user.getIsAdmin();
 		}
 		model.addAttribute("admin", admin);
@@ -92,7 +95,7 @@ public class CuisineWebController {
 	@GetMapping("/view/chinese")
 	public String userChineseView(Model model) {
 		
-		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
 		
 		List<Cuisines> chineseCuisinesList = new ArrayList<Cuisines>();
 		
@@ -107,7 +110,7 @@ public class CuisineWebController {
 		Boolean admin = null;
 		
 		if(UserWebController.username!=null) {
-			Users user = userController.getUser(UserWebController.username);
+			Users user = userService.getUserByUsername(UserWebController.username);
 			admin = user.getIsAdmin();
 		}
 		model.addAttribute("admin", admin);
@@ -118,7 +121,7 @@ public class CuisineWebController {
 	@GetMapping("/view/italian")
 	public String userItalianView(Model model) {
 		
-		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
 		
 		List<Cuisines> italianCuisinesList = new ArrayList<Cuisines>();
 		
@@ -133,7 +136,7 @@ public class CuisineWebController {
 		Boolean admin = null;
 		
 		if(UserWebController.username!=null) {
-			Users user = userController.getUser(UserWebController.username);
+			Users user = userService.getUserByUsername(UserWebController.username);
 			admin = user.getIsAdmin();
 		}
 		model.addAttribute("admin", admin);
@@ -143,7 +146,7 @@ public class CuisineWebController {
 	@GetMapping("/view/mexican")
 	public String userMexicanView(Model model) {
 		
-		List<Cuisines> cuisinesList = cuisineController.getAllCuisines();
+		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
 		
 		List<Cuisines> mexicanCuisinesList = new ArrayList<Cuisines>();
 		
@@ -158,7 +161,7 @@ public class CuisineWebController {
 		Boolean admin = null;
 		
 		if(UserWebController.username!=null) {
-			Users user = userController.getUser(UserWebController.username);
+			Users user = userService.getUserByUsername(UserWebController.username);
 			admin = user.getIsAdmin();
 		}
 		model.addAttribute("admin", admin);
@@ -187,7 +190,7 @@ public class CuisineWebController {
 		
 		cuisine.setPicture(savedFileName);
 		
-		cuisineController.saveCuisines(cuisine);
+		cuisineService.saveCuisine(cuisine);
 		
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		
@@ -198,7 +201,7 @@ public class CuisineWebController {
 	@GetMapping("/update_item/{cId}")
 	public String editItem(@PathVariable(name = "cId") Integer Id, Model model) {
 		
-		model.addAttribute("cuisines", cuisineController.getCuisineById(Id));
+		model.addAttribute("cuisines", cuisineService.getCuisineById(Id));
 		
 		return "update_item";
 		
@@ -207,7 +210,7 @@ public class CuisineWebController {
 	@PostMapping(value = "/save_update")
 	public String saveUpdateItem(@ModelAttribute("cuisines") Cuisines cuisine) {
 		
-		cuisineController.updateCuisine(cuisine.getId(), cuisine);
+		cuisineService.updateCuisine(cuisine, cuisine.getId());
 		
 		return "redirect:/admin";
 	}
@@ -215,7 +218,7 @@ public class CuisineWebController {
 	@GetMapping("/delete_item/{cId}")
 	public String deleteItem(@PathVariable(name = "cId") Integer Id, Model model) {
 		
-		model.addAttribute("cuisines", cuisineController.getCuisineById(Id));
+		model.addAttribute("cuisines", cuisineService.getCuisineById(Id));
 		
 		return "delete_item";
 		
@@ -224,7 +227,7 @@ public class CuisineWebController {
 	@PostMapping(value = "/save_delete")
 	public String saveDeleteItem(@ModelAttribute("cuisines") Cuisines cuisine) {
 		
-		cuisineController.deleteCuisine(cuisine.getId());
+		cuisineService.deleteCuisine(cuisine.getId());
 		
 		return "redirect:/admin";
 	}

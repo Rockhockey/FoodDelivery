@@ -35,17 +35,13 @@ public class UserController {
 	
 	//--------------------------- RESTful API for Retrieval operations ---------------------------------- //
 	@GetMapping("allUsers")
-	List<Users> getAllUsers() {
-		return userService.getAllUsers();
+	ResponseEntity<List<Users>> getAllUsers() {
+		return new ResponseEntity<List<Users>>(userService.getAllUsers(), HttpStatus.OK);
 	}
 	
 	@GetMapping("{userId}")
 	public ResponseEntity<Users> getUserById(@PathVariable("userId") Integer userId){
 		return new ResponseEntity<Users>(userService.getUserById(userId), HttpStatus.OK);
-	}
-	
-	public Users getUser(String username){
-		return userService.getUserByUsername(username);
 	}
 	
 	@GetMapping("{UserName}")

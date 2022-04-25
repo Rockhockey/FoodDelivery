@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.FoodBox.model.Users;
+import com.FoodBox.service.UserService;
 import com.FoodBox.model.Login;
 import com.FoodBox.FoodBoxApplication;
 
@@ -25,7 +27,7 @@ import com.FoodBox.FoodBoxApplication;
 public class UserWebController {
 	
 	@Autowired
-	UserController userController;
+	UserService userService;
 	
 	public static String username;
 	
@@ -46,7 +48,7 @@ public class UserWebController {
 			return "new_user";
 		}
 	
-		userController.saveUser(user);
+		userService.saveUser(user);
 		
 		return "redirect:/";
 		
@@ -67,11 +69,12 @@ public class UserWebController {
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-		Users user = userController.getUser(login.getUsername());
-		
-		if(passwordEncoder.matches(login.getPassword(), user.getHash())) {
-			username = login.getUsername();
-			return "redirect:/";
+		Users user = userService.getUserByUsername(login.getUsername());
+		if(user!=null) {
+			if(passwordEncoder.matches(login.getPassword(), user.getHash())) {
+				username = login.getUsername();
+				return "redirect:/";
+			}
 		}
 		return "redirect:/login";
 	}
@@ -81,7 +84,6 @@ public class UserWebController {
 		username = null;
 		return "redirect:/";
 	}
-	
 	
 	
 	

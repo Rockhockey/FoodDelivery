@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>List Menu</title>
+
+    <meta name="viewport" content="width=device_width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<h2 align="center">Your Cart</h2>
+
+<body>
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${carts}" class="container my-4">
+                    <p class="my-5">
+                        <a href="/view" class="btn btn-primary"> Add more items </a>
+                        <a href="/checkout" class="btn btn-primary"> Checkout </a>
+                    </p>
+
+                    <div class="col-md-10">
+                        <h2 th:case="null">Cart is empty!</h2>
+                        <div th:case="*">
+                                <table class="table table-striped table-responsive-md">
+                                    <thead>
+                                        <tr>  
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Cuisine</th>
+                                            <th>Description</th>
+                                            <th>Offer</th>
+                                            <th>Quantity</th>
+                                            <th>Final Price</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="cart : ${carts}">
+                                        	<div th:each="cuisine : ${cuisines}" th:if="${cart.getItem()==cuisine.getId()}" >
+	                                            <td th:text="${cuisine.getName()}"></td>
+	                                            <td th:text="${#numbers.formatCurrency(cuisine.getPrice())}"></td>
+	                                            <td th:text="${cuisine.getCuisineType()}"></td>
+	                                            <td th:text="${cuisine.getDescription()}"></td>
+	                                            <td th:text="${cuisine.getOffer()}"></td>
+	                                            <td th:text="${cart.getQuantity()}"></td>
+	                                            <td th:text="${#numbers.formatCurrency(cart.getQuantity()*cuisine.getPrice()*cuisine.getOffer())}"></td>
+	                                            
+	                                            
+	                                            <td>
+	                                                <a th:href="@{/update_quantity/{Id}(Id=${cart.getCartIndex()})}"class="btn btn-primary"> Edit</a>
+	                                            </td>
+	                                            <td>
+	                                                <a th:href="@{/delete_from_cart/{Id}(Id=${cart.getCartIndex()})}" class="btn btn-primary"> Delete</a>
+	                                            </td>
+                                        	</div>  
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    	<tr>
+                                    		<td></td>
+                                    	</tr>
+                                    
+                                    </tfoot>
+                                </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

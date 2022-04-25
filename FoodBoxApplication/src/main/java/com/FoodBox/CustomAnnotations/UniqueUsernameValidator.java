@@ -9,6 +9,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.FoodBox.controller.UserController;
+import com.FoodBox.service.UserService;
 
 import lombok.AllArgsConstructor;
 
@@ -16,12 +17,12 @@ import lombok.AllArgsConstructor;
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
   
 	@Autowired
-	private UserController userController;
+	private UserService userService;
 
   @Override
   public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
     if (Objects.nonNull(username) && !username.isEmpty()) {
-      if (userController.getUser(username)!=null) {
+      if (userService.getUserByUsername(username)!=null) {
         constraintValidatorContext.disableDefaultConstraintViolation();
         constraintValidatorContext.buildConstraintViolationWithTemplate(
           "Username should be unique. '"  + username + "' is already taken").addConstraintViolation();

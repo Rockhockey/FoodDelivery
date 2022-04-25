@@ -14,6 +14,7 @@
                 <li><a th:href="@{/}">Foodbox</a></li>
                 <li><a th:href="@{/about}">About</a></li>
                 <li><a th:href="@{/contact}">Contact</a></li>
+                <li><a th:href="@{/view_cart}">View Cart</a></li>
             </ul>
              <div class="account" th:switch="${admin}">
             	<div th:case="null">
@@ -66,7 +67,7 @@
 		                <span class="food-info" th:text="${cuisine.getPrice()}"></span>
 	                </div>
 	                <p class="food-desc" th:text="${cuisine.getDescription()}"></p>
-	                <a th:href="@{/addToCart/{Id}(Id=${cuisine.getId()})}" > Add to Cart</a>
+	                <a th:href="@{/add_to_cart/{Id}(Id=${cuisine.getId()})}" > Add to Cart</a>
 	            </div>
     		</div>
     	</div>

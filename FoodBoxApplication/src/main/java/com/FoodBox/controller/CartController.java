@@ -1,11 +1,13 @@
 package com.FoodBox.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.FoodBox.DAO.CartRepository;
 import com.FoodBox.DAO.CuisineRepository;
+import com.FoodBox.service.CartService;
 
 
 @RestController
@@ -14,6 +16,9 @@ public class CartController {
 
 	CartRepository cartRepo;
 	CuisineRepository cuisineRepo;
+	
+	@Autowired
+	private CartService cartService;
 	
 		//RESTful API for Retrieval operations
 	
