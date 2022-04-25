@@ -1,8 +1,8 @@
 package com.FoodBox.Hash;
-
-import java.security.NoSuchAlgorithmException;  
+import java.security.NoSuchAlgorithmException;
 import java.security.MessageDigest;  
 import java.security.SecureRandom;  
+  
   
 public class MD5Salted{  
 	public static byte[] receiveSalt() throws NoSuchAlgorithmException  {  
@@ -46,4 +46,4 @@ public class MD5Salted{
 		  
 		return generatedPswd;  
 	}  
-}  
+}

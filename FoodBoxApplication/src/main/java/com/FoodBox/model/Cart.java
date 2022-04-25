@@ -5,9 +5,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,9 +23,11 @@ public class Cart {
 	@Column(name = "CartIndex")
 	private Integer cartIndex;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "menu_id")
+	private Cuisines cuisine;
 	
 	
-	//may not need this in the Cart table. 
 	@Column(name = "Item")
 	private Integer item; //references id in Cuisines class (menu table)
 	

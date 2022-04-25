@@ -41,7 +41,7 @@ public class CuisineController {
 	//--------------------------- RESTful API for Retrieval operations ---------------------------------- //
 	
 	//build GET all CUISINES REST API
-	@GetMapping("/allMenus") 
+	@GetMapping("/all") 
 	List<Cuisines> getAllCuisines() {
 		return cuisineService.getAllCuisines();
 	}
