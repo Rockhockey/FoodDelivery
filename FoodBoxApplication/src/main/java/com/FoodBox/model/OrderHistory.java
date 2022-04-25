@@ -6,21 +6,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "OrderHistory")
 public class OrderHistory {
 
-	@Column(name = "OHKey")
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
+	@GenericGenerator(name="native",strategy="native")
+	@Column(name = "order_history_id")
 	private Integer ohKey;
 	
-	@Column(name = "OrderNumber")
+	@NotNull
+	@NotBlank
+	@Column(name = "order_number")
 	private Integer orderNumber;
 	
-	@Column(name = "Item")
-	private Integer menuId; // menu id references "id" in cuisine class (menu table). 
+	@NotNull
+	@NotBlank
+	@Column(name = "item")
+	private Integer item; // menu id references "id" in cuisine class (menu table). 
 	
-	@Column(name = "Quantity")
+	@NotNull
+	@NotBlank
+	@Column(name = "quantity")
 	private Integer quantity;
 	
 	
@@ -31,24 +45,24 @@ public class OrderHistory {
 
 
 
-	public OrderHistory(Integer ohKey, Integer orderNumber, Integer menuId, Integer quantity) {
+	public OrderHistory(Integer ohKey, Integer orderNumber, Integer item, Integer quantity) {
 		super();
 		this.ohKey = ohKey;
 		this.orderNumber = orderNumber;
-		this.menuId = menuId;
+		this.item = item;
 		this.quantity = quantity;
 	}
 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //PK
-	public Integer getOhKey() {
+	public Integer getOrderHistoryId() {
 		return ohKey;
 	}
 
 
 
-	public void setOhKey(Integer ohKey) {
+	public void setOrderHistoryId(Integer ohKey) {
 		this.ohKey = ohKey;
 	}
 
@@ -66,14 +80,14 @@ public class OrderHistory {
 
 
 
-	public Integer getMenuId() {
-		return menuId;
+	public Integer getItem() {
+		return item;
 	}
 
 
 
-	public void setMenuId(Integer menuId) {
-		this.menuId = menuId;
+	public void setItem(Integer item) {
+		this.item = item;
 	}
 
 

@@ -8,21 +8,35 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "orders")
 public class Orders {
 
-	@Column(name = "OrderNumber")
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
+	@GenericGenerator(name="native",strategy="native")
+	@Column(name = "order_number")
 	private Integer orderNumber; // PK
 	
-	@Column(name = "UserId")
+	@NotNull
+	@NotBlank
+	@Column(name = "user_id")
 	private Integer userId; // references userId in Users class (users table)
 	
-	@Column(name = "OrderTime")
+	@NotNull
+	@NotBlank
+	@Column(name = "order_time")
 	private Date date;
 	
-	@Column(name = "Cost")
+	@NotNull
+	@NotBlank
+	@Column(name = "cost")
 	private Float cost;
 
 	public Orders() {
@@ -37,8 +51,6 @@ public class Orders {
 		this.cost = cost;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO) //PK
 	public Integer getOrderNumber() {
 		return orderNumber;
 	}
@@ -55,11 +67,11 @@ public class Orders {
 		this.userId = userId;
 	}
 
-	public Date getDate() {
+	public Date getOrderTime() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setOrderTime(Date orderTime) {
 		this.date = date;
 	}
 

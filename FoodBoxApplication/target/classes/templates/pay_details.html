@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Add New Item</title>
+    
+    <style>
+    	.button{
+			border: none;
+			color: white;
+			padding: 10px 130px;
+			text-align: center;
+			font-size: 16px;
+		}
+		
+		.button1{background-color: #2790F3;}
+    </style>
+
+    <meta name="viewport" content="width=device_width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<style>
+	table, th, td {padding:10px;}
+	span {color: red;
+    font-style: italic;}
+</style>
+
+<body>
+	<div align="center">
+		<h2>Sign Up</h2>
+		<br />	
+	
+		<form method="post"  action="/pay">
+		    <div class="col-50">
+		        <h3>Payment</h3>
+		        <label>Accepted Cards</label>
+		        <div class="icon-container">
+		            <i class="fa fa-cc-visa" style="color:navy;"></i>
+		            <i class="fa fa-cc-amex" style="color:blue;"></i>
+		            <i class="fa fa-cc-mastercard" style="color:red;"></i>
+		            <i class="fa fa-cc-discover" style="color:orange;"></i>
+		        </div>
+		        <label for="price">Total</label>
+		        <input type="text" id="price" name="price" value="10">
+		        <label for="currency">Currency</label>
+		        <input type="text" id="currency" name="currency" placeholder="Enter Currency">
+		        <label for="method">Payment Method</label>
+		        <input type="text" id="method" name="method" placeholder="Payment Method">
+		        <label for="intent">Intent</label>
+		        <input type="text" id="intent" name="intent" value="sale">
+		        <label for="description">Payment Description</label>
+		        <input type="text" id="description" name="description" placeholder="Payment Description">
+		
+		    </div>
+		
+		    <input type="submit" value="Continue to checkout" class="btn">
+		</form>
+	</div>
+
+
+</body>
+
+</html>		
+		
+		
+		
+		
+		
