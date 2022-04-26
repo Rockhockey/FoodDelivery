@@ -1,5 +1,7 @@
 package com.FoodBox.controller;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,10 @@ public class PaypalController {
     		finalPrice += (cuisine.getPrice()*cuisine.getOffer()*(cart.get(i).getQuantity()));
     	}
     	
-    	model.addAttribute("total_price", finalPrice);
+    	BigDecimal bd = new BigDecimal(Double.toString(finalPrice));
+    	bd = bd.setScale(2, RoundingMode.HALF_UP);
+    	
+    	orderDetails.setPrice(bd.doubleValue());
     	
     	model.addAttribute("order", orderDetails);
     	
