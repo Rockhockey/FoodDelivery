@@ -13,6 +13,7 @@ import com.FoodBox.DAO.CartRepository;
 import com.FoodBox.DAO.OrdersRepository;
 import com.FoodBox.exception.ResourceNotFoundException;
 import com.FoodBox.model.Cart;
+import com.FoodBox.model.Cuisines;
 import com.FoodBox.model.Orders;
 
 
@@ -37,6 +38,11 @@ public class OrdersServiceImpl implements OrdersService {
 		return ordersRepository.findById(orderNumber).orElseThrow(() -> new ResourceNotFoundException("Orders", "order_number", orderNumber));
 	}
 
+	@Override
+	public Orders getOrderbyUserID(Integer UserID) {
+		return ordersRepository.findByUserID(UserID);
+	}
+	
 	@Override
 	public void deleteOrders(Integer orderNumber) {
 		ordersRepository.deleteById(orderNumber);

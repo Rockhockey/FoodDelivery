@@ -10,6 +10,8 @@ import com.FoodBox.model.Orders;
 public interface OrdersService {
 
 	List<Orders> getOrders();
+	
+	Orders getOrderbyUserID(Integer UserID);
 
 	Orders getOrderById(Integer orderNumber);
 
