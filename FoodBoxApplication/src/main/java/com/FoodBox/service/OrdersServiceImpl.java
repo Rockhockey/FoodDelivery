@@ -23,13 +23,12 @@ public class OrdersServiceImpl implements OrdersService {
 	@Autowired
 	private OrdersRepository ordersRepository;
 	
+	List<Orders> orders = new ArrayList<Orders>();
+	
 	@Override
 	public List<Orders> getOrders() {
 		
-		List<Orders> orders = new ArrayList<Orders>();
-		
 		ordersRepository.findAll().forEach(orders::add);
-		
 		return orders;
 	}
 
