@@ -9,6 +9,7 @@ import com.FoodBox.exception.ResourceNotFoundException;
 import com.FoodBox.model.Users;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,6 +37,13 @@ public class UserServiceImpl implements UserService {
 	//save a user (as an object)
 	@Override
 	public Users saveUser(Users user) {
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		user.setHash(passwordEncoder.encode(user.getPassword()));
+		
+		user.setIsAdmin(false);
+		
 		return userRepository.save(user);
 	}
 

@@ -64,5 +64,9 @@ public class UserController {
 		return new ResponseEntity<Users>(userService.saveUser(user), HttpStatus.CREATED);
 	}
 	
+	public Users getUser(String username) {
+		return userService.getUserByUsername(username);
+	}
+	
 	
 }

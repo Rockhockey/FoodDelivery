@@ -26,7 +26,7 @@ public class Users {
 	@Column(name = "user_id")
 	private Integer user_id;// PK
 	
-	@UniqueUsername
+	//@UniqueUsername
 	@Size(min=3, max=50)
 	@Column(name = "username")
 	private String username;

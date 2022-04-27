@@ -17,21 +17,16 @@ import lombok.AllArgsConstructor;
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
   
 	@Autowired
-	private UserService userService;
+	private UserController userController;
 	
 	
-
-  public UniqueUsernameValidator(UserService userService) {
-		super();
-		this.userService = userService;
-	}
 
 
 
 @Override
   public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
     if (Objects.nonNull(username) && !username.isEmpty()) {
-      if (userService.getUserByUsername(username)!=null) {
+      if (userController.getUser(username)!=null) {
         constraintValidatorContext.disableDefaultConstraintViolation();
         constraintValidatorContext.buildConstraintViolationWithTemplate(
           "Username should be unique. '"  + username + "' is already taken").addConstraintViolation();
