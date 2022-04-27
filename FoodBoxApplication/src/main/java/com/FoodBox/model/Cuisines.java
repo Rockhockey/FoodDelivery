@@ -25,7 +25,7 @@ public class Cuisines {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
 	@Column(name = "menu_id")
-	private Integer menuId;
+	private Integer menu_id;
 	
 	@Column(name = "name")
 	private String name;
@@ -34,7 +34,7 @@ public class Cuisines {
 	private float price;
 	
 	@Column(name = "cuisine_type")
-	private String cuisineType;
+	private String cuisine_type;
 	
 	@Column(name = "description")
 	private String description;
@@ -59,14 +59,14 @@ public class Cuisines {
 	
 
 	//constructor with fields
-	public Cuisines(Integer menuId, String name, float price, String cuisineType, String description, float offer, String picture, boolean visible) 
+	public Cuisines(Integer menu_id, String name, float price, String cuisine_type, String description, float offer, String picture, boolean visible) 
 	{
 		
 		super();
-		this.menuId = menuId;
+		this.menu_id = menu_id;
 		this.name = name;
 		this.price = price;
-		this.cuisineType = cuisineType;
+		this.cuisine_type = cuisine_type;
 		this.description = description;
 		this.offer = offer;
 		this.picture = picture;
@@ -75,11 +75,11 @@ public class Cuisines {
 
 	
 	public Integer getId() {
-		return menuId;
+		return menu_id;
 	}
 
-	public void setId(Integer menuId) {
-		this.menuId = menuId;
+	public void setId(Integer menu_id) {
+		this.menu_id = menu_id;
 	}
 
 	public String getName() {
@@ -107,11 +107,11 @@ public class Cuisines {
 	}
 
 	public String getCuisineType() {
-		return cuisineType;
+		return cuisine_type;
 	}
 
-	public void setCuisineType(String cuisineType) {
-		this.cuisineType = cuisineType;
+	public void setCuisineType(String cuisine_type) {
+		this.cuisine_type = cuisine_type;
 	}
 
 	public String getDescription() {
@@ -149,7 +149,7 @@ public class Cuisines {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(menuId);
+		return Objects.hash(menu_id);
 	}
 
 
@@ -162,7 +162,7 @@ public class Cuisines {
 		if (getClass() != obj.getClass())
 			return false;
 		Cuisines other = (Cuisines) obj;
-		return Objects.equals(menuId, other.menuId);
+		return Objects.equals(menu_id, other.menu_id);
 	}
 	
 	

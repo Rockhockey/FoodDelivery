@@ -17,19 +17,19 @@ import com.FoodBox.CustomAnnotations.UniqueUsername;
 
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class Users {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	@Column(name = "userid")
-	private Integer userId;// PK
+	@Column(name = "user_id")
+	private Integer user_id;// PK
 	
 	@UniqueUsername
 	@Size(min=3, max=50)
 	@Column(name = "username")
-	private String userName;
+	private String username;
 	
 	@Column(name = "hash")
 	private String hash;
@@ -42,8 +42,8 @@ public class Users {
 	@Column(name = "address")
 	private String address;
 
-	@Column(name = "isadmin")
-	private boolean isAdmin;
+	@Column(name = "is_admin")
+	private boolean is_admin;
 	
 	@Size(min=8, max=15)
 	@Transient
@@ -56,30 +56,30 @@ public class Users {
 	
 	
 
-	public Users(Integer userId, String userName, String Hash, String email, String address, boolean isAdmin) {
+	public Users(Integer user_id, String username, String Hash, String email, String address, boolean is_admin) {
 		super();
-		this.userId = userId;
-		this.userName = userName;
+		this.user_id = user_id;
+		this.username = username;
 		this.hash = Hash;
 		this.email = email;
 		this.address = address;
-		this.isAdmin = isAdmin;
+		this.is_admin = is_admin;
 	}
 
 	public Integer getUserId() {
-		return userId;
+		return user_id;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUserId(Integer user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 	
 	public String getHash() {
@@ -107,16 +107,16 @@ public class Users {
 	}
 	
 	public boolean getIsAdmin() {
-		return isAdmin;
+		return is_admin;
 	}
 
-	public void setIsAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setIsAdmin(boolean is_admin) {
+		this.is_admin = is_admin;
 	}
 
 	@Override
 	public String toString() {
-		return "users [userid=" + userId + ", username=" + userName + ", hash=" + hash + ", email=" + email + ", address=" + address + ", isadmin=" + isAdmin + "]";
+		return "users [userid=" + user_id + ", username=" + username + ", hash=" + hash + ", email=" + email + ", address=" + address + ", IsAdmin=" + is_admin + "]";
 	}
 
 

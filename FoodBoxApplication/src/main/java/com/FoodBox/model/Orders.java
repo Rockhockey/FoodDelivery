@@ -22,17 +22,17 @@ public class Orders {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
 	@Column(name = "order_number")
-	private Integer orderNumber; // PK
+	private Integer order_number; // PK
 	
 	@NotNull
 	@NotBlank
 	@Column(name = "user_id")
-	private Integer userId; // references userId in Users class (users table)
+	private Integer user_id; // references userId in Users class (users table)
 	
 	@NotNull
 	@NotBlank
 	@Column(name = "order_time")
-	private Date date;
+	private Date order_time;
 	
 	@NotNull
 	@NotBlank
@@ -43,36 +43,36 @@ public class Orders {
 		super();
 	}
 
-	public Orders(Integer orderNumber, Integer userId, Date date, Float cost) {
+	public Orders(Integer order_number, Integer user_id, Date order_time, Float cost) {
 		super();
-		this.orderNumber = orderNumber;
-		this.userId = userId;
-		this.date = date;
+		this.order_number = order_number;
+		this.user_id = user_id;
+		this.order_time = order_time;
 		this.cost = cost;
 	}
 
 	public Integer getOrderNumber() {
-		return orderNumber;
+		return order_number;
 	}
 
-	public void setOrderNumber(Integer orderNumber) {
-		this.orderNumber = orderNumber;
+	public void setOrderNumber(Integer order_number) {
+		this.order_number = order_number;
 	}
 
 	public Integer getUserId() {
-		return userId;
+		return user_id;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUserId(Integer user_id) {
+		this.user_id = user_id;
 	}
 
 	public Date getOrderTime() {
-		return date;
+		return order_time;
 	}
 
-	public void setOrderTime(Date orderTime) {
-		this.date = date;
+	public void setOrderTime(Date order_time) {
+		this.order_time = order_time;
 	}
 
 	public Float getCost() {

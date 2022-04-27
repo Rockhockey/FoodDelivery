@@ -15,14 +15,14 @@ import javax.validation.constraints.*;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "Cart")
+@Table(name = "cart")
 public class Cart {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
 	@Column(name = "cart_index")
-	private Integer cartIndex;
+	private Integer cart_index;
 	
 	
 	
@@ -38,21 +38,21 @@ public class Cart {
 		super();
 	}
 
-	public Cart(Integer cartIndex, Integer item, Integer quantity) {
+	public Cart(Integer cart_index, Integer item, Integer quantity) {
 		super();
-		this.cartIndex = cartIndex;
+		this.cart_index = cart_index;
 		this.item = item;
 		this.quantity = quantity;
 	}
 
 	
 	public Integer getCartIndex() {
-		return cartIndex;
+		return cart_index;
 	}
 
 	
-	public void setCartIndex(Integer cartIndex) {
-		this.cartIndex = cartIndex;
+	public void setCartIndex(Integer cart_index) {
+		this.cart_index = cart_index;
 	}
 
 	public Integer getItem() {
@@ -73,7 +73,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [cartIndex=" + cartIndex + ", item=" + item + ", quantity=" + quantity + "]";
+		return "Cart [cart_index=" + cart_index + ", item=" + item + ", quantity=" + quantity + "]";
 	}
 	
 	

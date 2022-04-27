@@ -20,12 +20,12 @@ public class OrderHistory {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
 	@Column(name = "order_history_id")
-	private Integer ohKey;
+	private Integer order_history_id;
 	
 	@NotNull
 	@NotBlank
 	@Column(name = "order_number")
-	private Integer orderNumber;
+	private Integer order_number;
 	
 	@NotNull
 	@NotBlank
@@ -50,10 +50,10 @@ public class OrderHistory {
 
 
 
-	public OrderHistory(Integer ohKey, Integer orderNumber, Integer item, Integer quantity, Float cost) {
+	public OrderHistory(Integer order_history_id, Integer order_number, Integer item, Integer quantity, Float cost) {
 		super();
-		this.ohKey = ohKey;
-		this.orderNumber = orderNumber;
+		this.order_history_id = order_history_id;
+		this.order_number = order_number;
 		this.item = item;
 		this.quantity = quantity;
 		this.cost = cost;
@@ -63,25 +63,25 @@ public class OrderHistory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //PK
 	public Integer getOrderHistoryId() {
-		return ohKey;
+		return order_history_id;
 	}
 
 
 
-	public void setOrderHistoryId(Integer ohKey) {
-		this.ohKey = ohKey;
+	public void setOrderHistoryId(Integer order_history_id) {
+		this.order_history_id = order_history_id;
 	}
 
 
 
 	public Integer getOrderNumber() {
-		return orderNumber;
+		return order_number;
 	}
 
 
 
-	public void setOrderNumber(Integer orderNumber) {
-		this.orderNumber = orderNumber;
+	public void setOrderNumber(Integer order_number) {
+		this.order_number = order_number;
 	}
 
 
