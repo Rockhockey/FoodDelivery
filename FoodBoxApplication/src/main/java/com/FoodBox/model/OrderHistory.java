@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "OrderHistory")
+@Table(name = "order_history")
 public class OrderHistory {
 
 	
