@@ -2,16 +2,19 @@ package com.FoodBox.model;
 
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SqlResultSetMapping;
 
 
 @Entity
@@ -45,6 +48,9 @@ public class Cuisines {
 	@Column(name = "visible")
 	private boolean visible;
 
+	
+	@Transient
+	private float CurrentPrice;
 	
 	//default constructor
 	public Cuisines() {
@@ -90,6 +96,14 @@ public class Cuisines {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	
+	public float getCurrentPrice() {
+		return price;
+	}
+
+	public void setCurrentPrice(float currentPrice) {
+		this.CurrentPrice = currentPrice;
 	}
 
 	public String getCuisineType() {

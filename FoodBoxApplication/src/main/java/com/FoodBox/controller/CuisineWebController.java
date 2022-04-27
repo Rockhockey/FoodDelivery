@@ -48,38 +48,47 @@ public class CuisineWebController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/view")
-	public String userView(Model model) {
+	@PostMapping(value = "/search")
+	public String search(@RequestParam String search) {
 		
-		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
+		System.out.println(search);
+		
+		return ("redirect:/view/all/none/" + search);
+	}
+	
+	@GetMapping("/view/{cuisineType}/{orderBy}/{search}")
+	public String userSearchView(@PathVariable(name = "cuisineType") String cuisineType, @PathVariable(name = "orderBy") String orderBy, @PathVariable(name="search") String search, Model model) {
+
+		System.out.println(search);
+		
+		List<Cuisines> cuisinesList = cuisineService.GetAllCuisinesVisible();
+		if(search.equals("default")) {
+			if(!cuisineType.equals("all")){
+				if(orderBy.equals("descend")) {
+					cuisinesList = cuisineService.CuisinePriceDesc(cuisineType);
+				}else if(orderBy.equals("ascend") || orderBy.equals("none")) {
+					cuisinesList = cuisineService.CuisinePriceAsc(cuisineType);
+				}
+			}else if(orderBy.equals("ascend")) {
+				cuisinesList = cuisineService.GetAllCuisinesVisibleAsc();
+			}else if(orderBy.equals("descend")) {
+				cuisinesList = cuisineService.GetAllCuisinesVisibleDesc();
+			}
+		}else {
+			if(orderBy.equals("ascend")) {
+				cuisinesList = cuisineService.SearchCuisineAsc(search);
+			}else if(orderBy.equals("descend")) {
+				cuisinesList = cuisineService.SearchCuisineDesc(search);
+			}else {
+				cuisinesList = cuisineService.SearchCuisine(search);
+			}
+		}
+		
+		model.addAttribute("search", search);
 		
 		model.addAttribute("cuisines", cuisinesList);
 		
-		Boolean admin = null;
-		
-		if(UserWebController.username!=null) {
-			Users user = userService.getUserByUsername(UserWebController.username);
-			admin = user.getIsAdmin();
-		}
-		model.addAttribute("admin", admin);
-		
-		return "view";
-	}
-	
-	@GetMapping("/view/indian")
-	public String userIndianView(Model model) {
-		
-		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
-		
-		List<Cuisines> indianCuisinesList = new ArrayList<Cuisines>();
-		
-		for(int i=0;i<cuisinesList.size();i++) {
-			if(cuisinesList.get(i).getCuisineType().equals("Indian")) {
-				indianCuisinesList.add(cuisinesList.get(i));
-			}
-		}
-		
-		model.addAttribute("cuisines", indianCuisinesList);
+		model.addAttribute("cuisineType", cuisineType);
 		
 		Boolean admin = null;
 		
@@ -89,82 +98,6 @@ public class CuisineWebController {
 		}
 		model.addAttribute("admin", admin);
 		
-		return "view";
-	}
-	
-	@GetMapping("/view/chinese")
-	public String userChineseView(Model model) {
-		
-		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
-		
-		List<Cuisines> chineseCuisinesList = new ArrayList<Cuisines>();
-		
-		for(int i=0;i<cuisinesList.size();i++) {
-			if(cuisinesList.get(i).getCuisineType().equals("Chinese")) {
-				chineseCuisinesList.add(cuisinesList.get(i));
-			}
-		}
-		
-		model.addAttribute("cuisines", chineseCuisinesList);
-		
-		Boolean admin = null;
-		
-		if(UserWebController.username!=null) {
-			Users user = userService.getUserByUsername(UserWebController.username);
-			admin = user.getIsAdmin();
-		}
-		model.addAttribute("admin", admin);
-		
-		return "view";
-	}
-	
-	@GetMapping("/view/italian")
-	public String userItalianView(Model model) {
-		
-		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
-		
-		List<Cuisines> italianCuisinesList = new ArrayList<Cuisines>();
-		
-		for(int i=0;i<cuisinesList.size();i++) {
-			if(cuisinesList.get(i).getCuisineType().equals("Italian")) {
-				italianCuisinesList.add(cuisinesList.get(i));
-			}
-		}
-		
-		model.addAttribute("cuisines", italianCuisinesList);
-		
-		Boolean admin = null;
-		
-		if(UserWebController.username!=null) {
-			Users user = userService.getUserByUsername(UserWebController.username);
-			admin = user.getIsAdmin();
-		}
-		model.addAttribute("admin", admin);
-		return "view";
-	}
-	
-	@GetMapping("/view/mexican")
-	public String userMexicanView(Model model) {
-		
-		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
-		
-		List<Cuisines> mexicanCuisinesList = new ArrayList<Cuisines>();
-		
-		for(int i=0;i<cuisinesList.size();i++) {
-			if(cuisinesList.get(i).getCuisineType().equals("Mexican")) {
-				mexicanCuisinesList.add(cuisinesList.get(i));
-			}
-		}
-		
-		model.addAttribute("cuisines", mexicanCuisinesList);
-		
-		Boolean admin = null;
-		
-		if(UserWebController.username!=null) {
-			Users user = userService.getUserByUsername(UserWebController.username);
-			admin = user.getIsAdmin();
-		}
-		model.addAttribute("admin", admin);
 		return "view";
 	}
 	

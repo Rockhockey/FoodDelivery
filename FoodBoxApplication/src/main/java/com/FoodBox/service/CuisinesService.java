@@ -13,6 +13,14 @@ public interface CuisinesService {
 	void deleteCuisine(Integer menuId); //delete cuisine by menuID
 	
 	Cuisines updateCuisine(Cuisines cuisine, Integer menuId);
+	List<Cuisines> CuisinePriceDesc(String cuisineType);
+	List<Cuisines> GetAllCuisinesVisible();
+	List<Cuisines> CuisinePriceAsc(String cuisineType);
+	List<Cuisines> GetAllCuisinesVisibleDesc();
+	List<Cuisines> GetAllCuisinesVisibleAsc();
+	List<Cuisines> SearchCuisine(String search);
+	List<Cuisines> SearchCuisineDesc(String search);
+	List<Cuisines> SearchCuisineAsc(String search);
 	
 	
 

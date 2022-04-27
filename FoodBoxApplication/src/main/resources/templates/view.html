@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Foodbox - View Food Items</title>
     <link type="text/css" rel="stylesheet" th:href="@{/css/view.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
@@ -15,6 +16,13 @@
                 <li><a th:href="@{/about}">About</a></li>
                 <li><a th:href="@{/contact}">Contact</a></li>
                 <li><a th:href="@{/view_cart}">View Cart</a></li>
+                <li><div class="search-container">
+	                	<form action="#" th:action="@{/search}" method="post">
+							<input type="text" placeholder="Search.." name="search">
+					      	<button type="submit"><i class="fa fa-search"></i></button>
+	                	</form>
+			    	</div>
+		    	</li>
             </ul>
              <div class="account" th:switch="${admin}">
             	<div th:case="null">
@@ -40,13 +48,18 @@
         <h1>View Food Categories</h1>
         <nav id="view">
             <ul>
-                <li><a th:href="@{/view}">All</a></li>
-                <li><a th:href="@{/view/indian}">Indian</a></li>
-                <li><a th:href="@{/view/chinese}">Chinese</a></li>
-                <li><a th:href="@{/view/italian}">Italian</a></li>
-                <li><a th:href="@{/view/mexican}">Mexican</a></li>
+                <li><a th:href="@{/view/all/none/default}">All</a></li>
+                <li><a th:href="@{/view/indian/{order}/default(order=${orderBy})}">Indian</a></li>
+                <li><a th:href="@{/view/chinese/{order}/default(order=${orderBy})}">Chinese</a></li>
+                <li><a th:href="@{/view/italian/{order}/default(order=${orderBy})}">Italian</a></li>
+                <li><a th:href="@{/view/mexican/{order}/default(order=${orderBy})}">Mexican</a></li>
+                <li><h2>Sort By:</h2></li>
+                <li><a th:href="@{/view/{cType}/none/{searchParam}(cType=${cuisineType}, searchParam=${search})}">None</a></li>
+                <li><a th:href="@{/view/{cType}/descend/{searchParam}(cType=${cuisineType}, searchParam=${search})}">Price(High->Low)</a></li>
+                <li><a th:href="@{/view/{cType}/ascend/{searchParam}(cType=${cuisineType}, searchParam=${search})}">Price(Low->High)</a></li>
             </ul>
         </nav>
+        
 
                <!--Image Gallery of food items -->
         <div th:switch="${cuisines}">
@@ -63,8 +76,8 @@
 		                <span class="food-info" th:text="${cuisine.getCuisineType()}"></span>
 	                </div>
 	                <div>
-		                <span class="food-label">Price:$</span> 
-		                <span class="food-info" th:text="${cuisine.getPrice()}"></span>
+		                <span class="food-label">Price:</span> 
+		                <span class="food-info" th:text="${#numbers.formatCurrency(cuisine.getPrice()*cuisine.getOffer())}"></span>
 	                </div>
 	                <p class="food-desc" th:text="${cuisine.getDescription()}"></p>
 	                <a th:href="@{/add_to_cart/{Id}(Id=${cuisine.getId()})}" > Add to Cart</a>
