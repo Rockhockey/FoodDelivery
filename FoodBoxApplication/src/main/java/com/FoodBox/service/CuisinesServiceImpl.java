@@ -33,15 +33,6 @@ public class CuisinesServiceImpl implements CuisinesService {
 		// List<Cuisines> cuisines = new ArrayList<Cuisines>(); //didn't need this code. 
 		// cuisineRepository.findAll().forEach(cuisines::add); //didn't need this code. 
 		
-		//i do need this code, it also needs to be in the method otherwise the list does not get remade. what happens 
-		//if it does not get remade is that everytime this method is called it just adds more to the list and keeps all the old information
-		
-		//not having this code will break the application, please stop deleting it
-		
-		List<Cuisines> cuisines = new ArrayList<Cuisines>();
-		
-		cuisineRepository.findAll().forEach(cuisines::add);
-		
 		return cuisines; //returned from global level
 	}
 

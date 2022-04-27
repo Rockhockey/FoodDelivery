@@ -41,7 +41,7 @@ public class OrdersServiceImpl implements OrdersService {
 	@Override
 	public List<Orders> getOrdersbyUserID(Integer UserID) {
 		List<Orders> orders = new ArrayList<Orders>();
-		orders = ordersRepository.findByUserId(UserID);
+		orders = ordersRepository.findByUserID(UserID);
 		return orders;
 	}
 	

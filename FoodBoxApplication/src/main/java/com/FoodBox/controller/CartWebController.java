@@ -56,7 +56,7 @@ public class CartWebController {
 			if(iterator.getItem()==cuisine.getId()) {
 				iterator.setQuantity(quantity + iterator.getQuantity());
 				cartService.saveCart(iterator);
-				return "redirect:/view/all/none/default";
+				return "redirect:/view";
 			}
 		}
 		
@@ -66,7 +66,7 @@ public class CartWebController {
 		
 		cartService.saveCart(cart);
 		
-		return "redirect:/view/all/none/default";
+		return "redirect:/view";
 	}
 	
 	@GetMapping("/view_cart")
