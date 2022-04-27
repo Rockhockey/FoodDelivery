@@ -24,11 +24,11 @@ public class OrdersServiceImpl implements OrdersService {
 	@Autowired
 	private OrdersRepository ordersRepository;
 	
-	List<Orders> orders = new ArrayList<Orders>();
+	
 	
 	@Override
 	public List<Orders> getOrders() {
-		
+		List<Orders> orders = new ArrayList<Orders>();
 		ordersRepository.findAll().forEach(orders::add);
 		return orders;
 	}
@@ -39,8 +39,10 @@ public class OrdersServiceImpl implements OrdersService {
 	}
 
 	@Override
-	public Orders getOrderbyUserID(Integer UserID) {
-		return ordersRepository.findByUserID(UserID);
+	public List<Orders> getOrdersbyUserID(Integer UserID) {
+		List<Orders> orders = new ArrayList<Orders>();
+		orders = ordersRepository.findByUserID(UserID);
+		return orders;
 	}
 	
 	@Override
