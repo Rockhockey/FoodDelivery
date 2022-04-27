@@ -8,15 +8,17 @@ import com.FoodBox.DAO.UserRepository;
 import com.FoodBox.exception.ResourceNotFoundException;
 import com.FoodBox.model.Users;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class UserServiceImpl implements UserService {
 	
+	@Autowired
 	UserRepository userRepository;
-	public UserServiceImpl(UserRepository userRepository) {
+	/*public UserServiceImpl(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
-	}
+	}*/
 
 	//get all users
 	@Override
