@@ -80,6 +80,95 @@ public class CuisinesServiceImpl implements CuisinesService {
 		return existingCuisine;
 		
 	}
+	
+	@Override
+	public List<Cuisines> GetAllCuisinesVisible() {
+		
+		List<Cuisines> cuisines = new ArrayList<Cuisines>();
+		
+		cuisines = cuisineRepository.ReadMenuOrderCuisine();
+		
+		return cuisines;
+		
+	}
+	
+	@Override
+	public List<Cuisines> GetAllCuisinesVisibleDesc() {
+		
+		List<Cuisines> cuisines = new ArrayList<Cuisines>();
+		
+		cuisines = cuisineRepository.ReadMenuOrderPriceDesc();
+		
+		return cuisines;
+		
+	}
+	
+	@Override
+	public List<Cuisines> GetAllCuisinesVisibleAsc() {
+		
+		List<Cuisines> cuisines = new ArrayList<Cuisines>();
+		
+		cuisines = cuisineRepository.ReadMenuOrderPriceAsc();
+		
+		return cuisines;
+		
+	}
+	
+	
+	@Override
+	public List<Cuisines> CuisinePriceDesc(String cuisineType) {
+		
+		List<Cuisines> cuisines = new ArrayList<Cuisines>();
+		
+		cuisines = cuisineRepository.ReadMenuCuisinePriceDesc(cuisineType);
+		
+		return cuisines;
+		
+	}
+	
+	@Override
+	public List<Cuisines> CuisinePriceAsc(String cuisineType) {
+		
+		List<Cuisines> cuisines = new ArrayList<Cuisines>();
+		
+		cuisines = cuisineRepository.ReadMenuCuisinePriceAsc(cuisineType);
+		
+		return cuisines;
+		
+	}
+	
+	@Override
+	public List<Cuisines> SearchCuisine(String search) {
+		
+		List<Cuisines> cuisines = new ArrayList<Cuisines>();
+		
+		cuisines = cuisineRepository.ReadMenuKeywordCuisine(search, search, search);
+		
+		return cuisines;
+		
+	}
+	
+	@Override
+	public List<Cuisines> SearchCuisineAsc(String search) {
+		
+		List<Cuisines> cuisines = new ArrayList<Cuisines>();
+		
+		cuisines = cuisineRepository.ReadMenuKeywordPriceAsc(search, search, search);
+		
+		return cuisines;
+		
+	}
+	
+	@Override
+	public List<Cuisines> SearchCuisineDesc(String search) {
+		
+		List<Cuisines> cuisines = new ArrayList<Cuisines>();
+		
+		cuisines = cuisineRepository.ReadMenuKeywordPriceDesc(search, search, search);
+		
+		return cuisines;
+		
+	}
 
 
 }

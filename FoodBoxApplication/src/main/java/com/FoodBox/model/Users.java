@@ -6,50 +6,66 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.*;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.FoodBox.CustomAnnotations.UniqueUsername;
+
 
 
 
 @Entity
 @Table(name = "Users")
 public class Users {
-
-
-	@Column(name = "UserId")
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
+	@GenericGenerator(name="native",strategy="native")
+	@Column(name = "userid")
 	private Integer userId;// PK
 	
-	@Column(name = "UserName")
+	@UniqueUsername
+	@Size(min=3, max=50)
+	@Column(name = "username")
 	private String userName;
 	
-	@Column(name = "Salt")
-	private String salt;
-	
-	@Column(name = "Hash")
+	@Column(name = "hash")
 	private String hash;
 	
-	@Column(name = "Email")
+	@Email(message="Please enter a valid e-mail address")
+	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "Address")
+	@NotBlank
+	@Column(name = "address")
 	private String address;
 
-	protected Users() {
+	@Column(name = "isadmin")
+	private boolean isAdmin;
+	
+	@Size(min=8, max=15)
+	@Transient
+	private String password;
+	
+	
+	public Users() {
 		super();
 	}
 	
 	
 
-	public Users(Integer userId, String userName, String salt, String Hash, String email, String address) {
+	public Users(Integer userId, String userName, String Hash, String email, String address, boolean isAdmin) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
-		this.salt = salt;
 		this.hash = Hash;
 		this.email = email;
 		this.address = address;
+		this.isAdmin = isAdmin;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getUserId() {
 		return userId;
 	}
@@ -64,14 +80,6 @@ public class Users {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-	
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 	
 	public String getHash() {
@@ -97,11 +105,35 @@ public class Users {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	public boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", userName=" + userName + ", email=" + email + ", address=" + address + "]";
+		return "users [userid=" + userId + ", username=" + userName + ", hash=" + hash + ", email=" + email + ", address=" + address + ", isadmin=" + isAdmin + "]";
 	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+
 
 	
 	

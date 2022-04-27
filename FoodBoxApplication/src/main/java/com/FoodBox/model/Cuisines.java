@@ -1,19 +1,20 @@
 package com.FoodBox.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.SqlResultSetMapping;
 
 
 @Entity
@@ -21,10 +22,10 @@ import javax.persistence.OneToMany;
 public class Cuisines {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
+	@GenericGenerator(name="native",strategy="native")
 	@Column(name = "menu_id")
 	private Integer menuId;
-	
 	
 	@Column(name = "name")
 	private String name;
@@ -47,6 +48,9 @@ public class Cuisines {
 	@Column(name = "visible")
 	private boolean visible;
 
+	
+	@Transient
+	private float CurrentPrice;
 	
 	//default constructor
 	public Cuisines() {
@@ -92,6 +96,14 @@ public class Cuisines {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	
+	public float getCurrentPrice() {
+		return price;
+	}
+
+	public void setCurrentPrice(float currentPrice) {
+		this.CurrentPrice = currentPrice;
 	}
 
 	public String getCuisineType() {

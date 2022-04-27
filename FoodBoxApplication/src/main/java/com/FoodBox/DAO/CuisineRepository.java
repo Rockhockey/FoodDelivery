@@ -41,7 +41,7 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	/*View search menu ordered by cuisine
 	 * 	input keyword to search for
 	 */
-	@Query(value=" SELECT * FROM menu WHERE(name LIKE %:keyword1% OR cuisine_type=%:keyword2% OR description LIKE %:keyword3%) AND visible=TRUE ORDER BY cuisine_type ASC;", nativeQuery= true)
+	@Query(value=" SELECT * FROM menu WHERE(name LIKE %:keyword1% OR cuisine_type LIKE %:keyword2% OR description LIKE %:keyword3%) AND visible=TRUE ORDER BY cuisine_type ASC;", nativeQuery= true)
 	List<Cuisines> ReadMenuKeywordCuisine (
 			@Param("keyword1") String keyword1,
 			@Param("keyword2") String keyword2,
@@ -50,7 +50,7 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	/*View search menu ordered by Price ASC
 	 * 	input keyword to search for
 	 */
-	@Query(value=" SELECT *, price*offer as CurrentPrice FROM menu WHERE(mame LIKE %:keyword1% OR cuisine=%:keyword2% OR description LIKE %:keyword3%)"
+	@Query(value=" SELECT *, price*offer as CurrentPrice FROM menu WHERE(name LIKE %:keyword1% OR cuisine_type LIKE %:keyword2% OR description LIKE %:keyword3%)"
 		+ " AND visible=TRUE ORDER BY CurrentPrice ASC;", nativeQuery= true)
 	List<Cuisines> ReadMenuKeywordPriceAsc (
 			@Param("keyword1") String keyword1,
@@ -60,7 +60,7 @@ public interface CuisineRepository extends JpaRepository<Cuisines, Integer>{
 	/*View search menu ordered by Price Desc
 	 * 	input keyword to search for
 	 */
-	@Query(value=" SELECT *, price*offer as CurrentPrice FROM menu WHERE(mame LIKE %:keyword1% OR cuisine=%:keyword2% OR description LIKE %:keyword3%)"
+	@Query(value=" SELECT *, price*offer as CurrentPrice FROM menu WHERE(name LIKE %:keyword1% OR cuisine_type LIKE %:keyword2% OR description LIKE %:keyword3%)"
 		+ " AND visible=TRUE ORDER BY CurrentPrice DESC;", nativeQuery= true)
 	List<Cuisines> ReadMenuKeywordPriceDesc (
 			@Param("keyword1") String keyword1,

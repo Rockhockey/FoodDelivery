@@ -5,33 +5,33 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.*;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Cart")
 public class Cart {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CartIndex")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="native")
+	@GenericGenerator(name="native",strategy="native")
+	@Column(name = "cart_index")
 	private Integer cartIndex;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "menu_id")
-	private Cuisines cuisine;
 	
 	
-	@Column(name = "Item")
+	@NotNull
+	@Column(name = "item")
 	private Integer item; //references id in Cuisines class (menu table)
 	
-	@Column(name = "Quantity")
+	@NotNull
+	@Column(name = "quantity")
 	private Integer quantity;
 
 	public Cart() {

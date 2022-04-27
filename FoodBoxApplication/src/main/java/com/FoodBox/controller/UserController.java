@@ -1,5 +1,7 @@
 package com.FoodBox.controller;
 
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.FoodBox.model.Users;
 import com.FoodBox.service.UserService;
@@ -32,8 +35,8 @@ public class UserController {
 	
 	//--------------------------- RESTful API for Retrieval operations ---------------------------------- //
 	@GetMapping("allUsers")
-	List<Users> getAllUsers() {
-		return userService.getAllUsers();
+	ResponseEntity<List<Users>> getAllUsers() {
+		return new ResponseEntity<List<Users>>(userService.getAllUsers(), HttpStatus.OK);
 	}
 	
 	@GetMapping("{userId}")
@@ -49,28 +52,17 @@ public class UserController {
 	//------------------------------ RESTful API for CREATE user ---------------------------------------- //
 	
 	//build create API for USER
-<<<<<<< Updated upstream
-		@PostMapping("/createUser")
-		public ResponseEntity<Users> saveUser(@RequestBody Users user){
-			return new ResponseEntity<Users>(userService.saveUser(user), HttpStatus.CREATED);
-		}
-=======
 	@PostMapping("/createUser")
 	public ResponseEntity<Users> saveUser(@RequestBody Users user) throws NoSuchAlgorithmException{
 		
-		byte[] salt = MD5Salted.receiveSalt();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-		user.setHash(MD5Salted.getSecurePswd(user.getPassword(), salt));
+		user.setHash(passwordEncoder.encode(user.getPassword()));
 		
-		user.setSalt(salt.toString());
-		
-		user.setIsAdmin(user.getIsAdmin());
-		
-		System.out.println(user.toString());
+		user.setIsAdmin(false);
 		
 		return new ResponseEntity<Users>(userService.saveUser(user), HttpStatus.CREATED);
 	}
->>>>>>> Stashed changes
 	
 	
 }

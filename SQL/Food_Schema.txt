@@ -15,7 +15,6 @@ CREATE TABLE menu (
 CREATE TABLE Users(
 	userId INT PRIMARY KEY,
 	UserName VARCHAR(25) UNIQUE NOT NULL,
-	Salt binary(60) NOT NULL
 	Hash VARCHAR(100) NOT NULL,
 	Email VARCHAR(25),
 	Address VARCHAR (100),
@@ -39,8 +38,7 @@ CREATE TABLE OrderHistory(
 	Item INT,
 		CONSTRAINT fk_oh_item_id
 		FOREIGN KEY (Item) REFERENCES Menu(MenuID),
-	Quantity INT CHECK(Quantity>0),
-	price DECIMAL(5,2) NOT NULL CHECK(price>=0)
+	Quantity INT CHECK(Quantity>0)
 	);
 
 CREATE TABLE Cart(
