@@ -39,7 +39,8 @@ CREATE TABLE OrderHistory(
 	Item INT,
 		CONSTRAINT fk_oh_item_id
 		FOREIGN KEY (Item) REFERENCES Menu(MenuID),
-	Quantity INT CHECK(Quantity>0)
+	Quantity INT CHECK(Quantity>0),
+	price DECIMAL(5,2) NOT NULL CHECK(price>=0)
 	);
 
 CREATE TABLE Cart(

@@ -103,7 +103,7 @@ INNER JOIN Menu ON Cart.Item=Menu.MenuID;
 
 -- View order history
 	--UserID of the logged in User as CurrentUserID
-Select O.OrderNumber, O.OrderTime, O.Cost, OH.Item, OH.Quantity
+Select O.OrderNumber, O.OrderTime, OH.Item, OH.Quantity, OH.Cost
 FROM Orders AS O
 INNER JOIN OrderHistory AS OH ON O.OrderNumber=OH.OrderNumber
 WHERE UserID = (CurrentUsersID);
@@ -134,8 +134,10 @@ Values(sequence_Orders.nextval, (CurrentUserID), SYSDATETIME(),
 	INNER JOIN Menu ON Cart.Item=Menu.MenuID;
 )
 
-INSERT INTO OrderHistory( OHKey, OrderNumber, Item, Quantity)
-VALUES (SELECT  sequence_OrderHistory.nextval, sequence_Orders.currval, Item, Quantity)
+INSERT INTO OrderHistory( OHKey, OrderNumber, Item, Quantity, price)
+VALUES (SELECT  sequence_OrderHistory.nextval, sequence_Orders.currval, Menu.Name, Cart.Quantity, Menu.Price*Menu.Offer
+FROM Cart
+INNER JOIN Menu ON Cart.Item=Menu.MenuID;)
 	FROM Cart;
 	
 DELETE FROM Cart;
