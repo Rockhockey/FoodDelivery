@@ -2,6 +2,7 @@ package com.FoodBox.controller;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +41,19 @@ public class PaypalController {
     @GetMapping("/pay_details")
     public String getPaymentDetails(Model model) {
     	
+    	List<Cart> carts = cartService.getCarts();
+    	
+    	List<Cuisines> foodInfo = cuisineService.getAllCuisines();
+    	
     	OrderDetail orderDetails = new OrderDetail();
     	
     	orderDetails.setPrice(cartService.totalCartPrice());
+    	
+    	model.addAttribute("foodInfo", foodInfo);
+    	
+    	model.addAttribute("carts", carts);
+    	
+    	model.addAttribute("cartService", cartService);
     	
     	model.addAttribute("order", orderDetails);
     	

@@ -91,6 +91,19 @@ public class CartServiceImpl implements CartService {
     	return bd.doubleValue();
 	}
 	
+	@Override 
+	public int totalQuantity() {
+		int finalQuantity = 0;
+		
+		List<Cart> cart = getCarts();
+		
+		for(int i = 0; i < cart.size(); i++) {
+    		finalQuantity += (cart.get(i).getQuantity());
+    	}
+    	
+    	return finalQuantity;
+	}
+	
 	public void cartToPast(List<Cart> cart, Integer UserId) {
 		Orders order = new Orders();
 		order.setUserId(UserId);

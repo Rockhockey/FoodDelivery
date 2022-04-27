@@ -21,6 +21,8 @@ public interface CartService {
 	double totalCartPrice();
 	
 	void cartToPast(List<Cart> cart, Integer UserId); //moves information from current cart to orders and order_history
+
+	int totalQuantity();
 	
 	//delete cart
 	//delete item from cart ?? not sure if this should be implemented here or not
