@@ -37,13 +37,13 @@ public class Orders {
 	@NotNull
 	@NotBlank
 	@Column(name = "cost")
-	private Float cost;
+	private double cost;
 
 	public Orders() {
 		super();
 	}
 
-	public Orders(Integer order_number, Integer user_id, Date order_time, Float cost) {
+	public Orders(Integer order_number, Integer user_id, Date order_time, double cost) {
 		super();
 		this.order_number = order_number;
 		this.user_id = user_id;
@@ -75,11 +75,11 @@ public class Orders {
 		this.order_time = order_time;
 	}
 
-	public Float getCost() {
+	public double getCost() {
 		return cost;
 	}
 
-	public void setCost(Float cost) {
+	public void setCost(double cost) {
 		this.cost = cost;
 	}
 	

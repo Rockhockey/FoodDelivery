@@ -31,7 +31,7 @@ public class Cuisines {
 	private String name;
 	
 	@Column(name = "price")
-	private float price;
+	private double price;
 	
 	@Column(name = "cuisine_type")
 	private String cuisine_type;
@@ -40,7 +40,7 @@ public class Cuisines {
 	private String description;
 	
 	@Column(name = "offer")
-	private float offer;
+	private double offer;
 	
 	@Column(name = "picture")
 	private String picture;
@@ -50,7 +50,7 @@ public class Cuisines {
 
 	
 	@Transient
-	private float CurrentPrice;
+	private double CurrentPrice;
 	
 	//default constructor
 	public Cuisines() {
@@ -59,7 +59,7 @@ public class Cuisines {
 	
 
 	//constructor with fields
-	public Cuisines(Integer menu_id, String name, float price, String cuisine_type, String description, float offer, String picture, boolean visible) 
+	public Cuisines(Integer menu_id, String name, double price, String cuisine_type, String description, double offer, String picture, boolean visible) 
 	{
 		
 		super();
@@ -90,20 +90,16 @@ public class Cuisines {
 		this.name = name;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
-	public float getCurrentPrice() {
-		return price;
-	}
-
-	public void setCurrentPrice(float currentPrice) {
-		this.CurrentPrice = currentPrice;
+	public double getCurrentPrice() {
+		return price*offer;
 	}
 
 	public String getCuisineType() {
@@ -122,11 +118,11 @@ public class Cuisines {
 		this.description = description;
 	}
 
-	public float getOffer() {
+	public double getOffer() {
 		return offer;
 	}
 
-	public void setOffer(float offer) {
+	public void setOffer(double offer) {
 		this.offer = offer;
 	}
 	

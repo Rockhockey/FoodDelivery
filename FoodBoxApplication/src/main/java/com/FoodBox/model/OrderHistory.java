@@ -40,7 +40,7 @@ public class OrderHistory {
 	@NotNull
 	@NotBlank
 	@Column(name= "cost")
-	private Float cost;
+	private double cost;
 	
 	
 	
@@ -50,7 +50,7 @@ public class OrderHistory {
 
 
 
-	public OrderHistory(Integer order_history_id, Integer order_number, Integer item, Integer quantity, Float cost) {
+	public OrderHistory(Integer order_history_id, Integer order_number, Integer item, Integer quantity, double cost) {
 		super();
 		this.order_history_id = order_history_id;
 		this.order_number = order_number;
@@ -108,11 +108,11 @@ public class OrderHistory {
 		this.quantity = quantity;
 	}
 	
-	public Float getCost() {
+	public double getCost() {
 		return cost;
 	}
 
-	public void setCost(Float cost) {
+	public void setCost(double cost) {
 		this.cost = cost;
 	}
 	

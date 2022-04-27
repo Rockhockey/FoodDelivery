@@ -12,6 +12,8 @@ import com.FoodBox.DAO.CartRepository;
 import com.FoodBox.exception.ResourceNotFoundException;
 import com.FoodBox.model.Cart;
 import com.FoodBox.model.Cuisines;
+import com.FoodBox.model.OrderHistory;
+import com.FoodBox.model.Orders;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -21,6 +23,12 @@ public class CartServiceImpl implements CartService {
 	
 	@Autowired    
 	CuisinesService cuisineService;
+	
+	@Autowired
+	OrdersService ordersService;
+	
+	@Autowired
+	OrderHistoryService orderhistoryService;
 	
 	@Override
 	public List<Cart> getCarts() {
@@ -81,6 +89,22 @@ public class CartServiceImpl implements CartService {
     	bd = bd.setScale(2, RoundingMode.HALF_UP);
     	
     	return bd.doubleValue();
+	}
+	
+	public void cartToPast(List<Cart> cart, Integer UserId) {
+		Orders order = new Orders();
+		order.setUserId(UserId);
+		order.setOrderTime(null);
+		order.setCost(this.totalCartPrice());
+		for (int i=0; i<cart.size();i++) {
+			OrderHistory oh = new OrderHistory();
+			oh.setOrderNumber(order.getOrderNumber());
+			oh.setCost(cuisineService.getCuisineById(cart.get(i).getItem()).getCurrentPrice());
+			oh.setItem(cart.get(i).getItem());
+			oh.setQuantity(cart.get(i).getQuantity());
+			orderhistoryService.saveOrderHistory(oh);
+		}
+		ordersService.saveOrders(order);
 	}
 
 }
