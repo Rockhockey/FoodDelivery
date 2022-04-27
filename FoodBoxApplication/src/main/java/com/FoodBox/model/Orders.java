@@ -72,7 +72,7 @@ public class Orders {
 	}
 
 	public void setOrderTime(Date orderTime) {
-		this.date = date;
+		this.date = orderTime;
 	}
 
 	public Float getCost() {

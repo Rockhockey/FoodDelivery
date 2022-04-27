@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import com.FoodBox.model.Cuisines;
 import com.FoodBox.model.OrderHistory;
 
-public interface OrdersHistoryRepository extends JpaRepository<Orders, Integer> {
+public interface OrderHistoryRepository extends JpaRepository<OrderHistory, Integer> {
 
 }

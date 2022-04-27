@@ -47,6 +47,8 @@ public class PaypalController {
     	
     	List<Cart> cart = cartService.getCarts();
     	
+    	List<Cuisines> cuisines = cuisineService.getAllCuisines();
+    	
     	for(int i = 0; i < cart.size(); i++) {
     		cuisine = cuisineService.getCuisineById(cart.get(i).getItem());
     		finalPrice += (cuisine.getPrice()*cuisine.getOffer()*(cart.get(i).getQuantity()));
@@ -58,6 +60,10 @@ public class PaypalController {
     	orderDetails.setPrice(bd.doubleValue());
     	
     	model.addAttribute("order", orderDetails);
+    	
+    	model.addAttribute("cart", cart);
+    	
+    	model.addAttribute("cuisines", cuisines);
     	
     	return "pay_details";
     }
