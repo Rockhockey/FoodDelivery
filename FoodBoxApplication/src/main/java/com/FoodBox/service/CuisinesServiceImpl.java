@@ -18,10 +18,10 @@ public class CuisinesServiceImpl implements CuisinesService {
 	private CuisineRepository cuisineRepository; // getting our database info here (injection)
 	
 	
-	/*public CuisinesServiceImpl(CuisineRepository cuisineRepository) {
+	public CuisinesServiceImpl(CuisineRepository cuisineRepository) {
 		super();
 		this.cuisineRepository = cuisineRepository;
-	}*/
+	}
 
 	List<Cuisines> cuisines = new ArrayList<Cuisines>(); // new list of cuisines created at the class level
 															// instead of method level here

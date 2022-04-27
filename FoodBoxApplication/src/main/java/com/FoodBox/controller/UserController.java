@@ -18,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.FoodBox.model.Users;
 import com.FoodBox.service.UserService;
-//add to gh
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -44,9 +44,9 @@ public class UserController {
 		return new ResponseEntity<Users>(userService.getUserById(userId), HttpStatus.OK);
 	}
 	
-	@GetMapping("{UserName}")
-	public ResponseEntity<Users> getUserByUsername(@PathVariable("UserName") String userName){
-		return new ResponseEntity<Users>(userService.getUserByUsername(userName), HttpStatus.OK);
+	@GetMapping("{username}")
+	public ResponseEntity<Users> getUserByUsername(@PathVariable("username") String username){
+		return new ResponseEntity<Users>(userService.getUserByUsername(username), HttpStatus.OK);
 	}
 	
 	//------------------------------ RESTful API for CREATE user ---------------------------------------- //

@@ -15,10 +15,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserRepository userRepository;
-	/*public UserServiceImpl(UserRepository userRepository) {
+	
+	public UserServiceImpl(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
-	}*/
+	}
 
 	//get all users
 	@Override

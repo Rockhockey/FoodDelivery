@@ -18,8 +18,17 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
   
 	@Autowired
 	private UserService userService;
+	
+	
 
-  @Override
+  public UniqueUsernameValidator(UserService userService) {
+		super();
+		this.userService = userService;
+	}
+
+
+
+@Override
   public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
     if (Objects.nonNull(username) && !username.isEmpty()) {
       if (userService.getUserByUsername(username)!=null) {
