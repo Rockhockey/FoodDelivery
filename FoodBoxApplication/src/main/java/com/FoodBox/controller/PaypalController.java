@@ -40,22 +40,9 @@ public class PaypalController {
     @GetMapping("/pay_details")
     public String getPaymentDetails(Model model) {
     	
-    	double finalPrice = 0;
-    	Cuisines cuisine;
-    	
     	OrderDetail orderDetails = new OrderDetail();
     	
-    	List<Cart> cart = cartService.getCarts();
-    	
-    	for(int i = 0; i < cart.size(); i++) {
-    		cuisine = cuisineService.getCuisineById(cart.get(i).getItem());
-    		finalPrice += (cuisine.getPrice()*cuisine.getOffer()*(cart.get(i).getQuantity()));
-    	}
-    	
-    	BigDecimal bd = new BigDecimal(Double.toString(finalPrice));
-    	bd = bd.setScale(2, RoundingMode.HALF_UP);
-    	
-    	orderDetails.setPrice(bd.doubleValue());
+    	orderDetails.setPrice(cartService.totalCartPrice());
     	
     	model.addAttribute("order", orderDetails);
     	

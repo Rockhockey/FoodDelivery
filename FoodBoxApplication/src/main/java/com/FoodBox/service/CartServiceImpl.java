@@ -1,5 +1,7 @@
 package com.FoodBox.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +11,16 @@ import org.springframework.stereotype.Service;
 import com.FoodBox.DAO.CartRepository;
 import com.FoodBox.exception.ResourceNotFoundException;
 import com.FoodBox.model.Cart;
+import com.FoodBox.model.Cuisines;
 
 @Service
 public class CartServiceImpl implements CartService {
 
 	@Autowired
 	private CartRepository cartRepository;
+	
+	@Autowired    
+	CuisinesService cuisineService;
 	
 	@Override
 	public List<Cart> getCarts() {
@@ -57,6 +63,24 @@ public class CartServiceImpl implements CartService {
 		cartRepository.save(existingCart);
 		return existingCart;
 		
+	}
+	
+	@Override 
+	public double totalCartPrice() {
+		double finalPrice = 0;
+		Cuisines cuisine;
+		
+		List<Cart> cart = getCarts();
+		
+		for(int i = 0; i < cart.size(); i++) {
+    		cuisine = cuisineService.getCuisineById(cart.get(i).getItem());
+    		finalPrice += (cuisine.getPrice()*cuisine.getOffer()*(cart.get(i).getQuantity()));
+    	}
+		
+		BigDecimal bd = new BigDecimal(Double.toString(finalPrice));
+    	bd = bd.setScale(2, RoundingMode.HALF_UP);
+    	
+    	return bd.doubleValue();
 	}
 
 }

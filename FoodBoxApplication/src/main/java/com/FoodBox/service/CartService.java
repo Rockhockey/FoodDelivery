@@ -17,6 +17,8 @@ public interface CartService {
 	void emptyCart(); // empty the entire cart
 	
 	Cart updateCart(Cart cart, Integer cartId); //update quantity of an item
+
+	double totalCartPrice();
 	
 	//delete cart
 	//delete item from cart ?? not sure if this should be implemented here or not
