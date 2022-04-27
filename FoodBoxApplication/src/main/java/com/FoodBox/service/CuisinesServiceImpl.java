@@ -18,10 +18,10 @@ public class CuisinesServiceImpl implements CuisinesService {
 	private CuisineRepository cuisineRepository; // getting our database info here (injection)
 	
 	
-	public CuisinesServiceImpl(CuisineRepository cuisineRepository) {
+	/*public CuisinesServiceImpl(CuisineRepository cuisineRepository) {
 		super();
 		this.cuisineRepository = cuisineRepository;
-	}
+	}*/
 
 	List<Cuisines> cuisines = new ArrayList<Cuisines>(); // new list of cuisines created at the class level
 															// instead of method level here
@@ -30,8 +30,8 @@ public class CuisinesServiceImpl implements CuisinesService {
 	@Override
 	public List<Cuisines> getAllCuisines() {
 		
-		// List<Cuisines> cuisines = new ArrayList<Cuisines>(); //didn't need this code. 
-		// cuisineRepository.findAll().forEach(cuisines::add); //didn't need this code. 
+		List<Cuisines> cuisines = new ArrayList<Cuisines>(); //didn't need this code. 
+		cuisineRepository.findAll().forEach(cuisines::add); //didn't need this code. 
 		
 		return cuisines; //returned from global level
 	}

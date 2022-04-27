@@ -13,10 +13,10 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 	
 	UserRepository userRepository;
-	public UserServiceImpl(UserRepository userRepository) {
+	/*public UserServiceImpl(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
-	}
+	}*/
 
 	//get all users
 	@Override
