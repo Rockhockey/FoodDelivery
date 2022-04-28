@@ -1,0 +1,42 @@
+Before presentation starts
+
+Run database and Spring
+Put web page full screen
+Have login info to the side: site and paypal
+
+Items to Present
+
+Introduce project and members: Marc, Steven, Joe
+Show front page, demonstrate slide show
+Show that we have a working about and contact page
+Show view of all meals
+Sort view by price up then down
+show each cuisine sort
+Show example of key word sort: dessert then chicken
+add food to cart
+show cart
+leave to add more food
+sign up as new user
+log in as user
+add 1 more dish
+show cart checkout and show paypal : User: user@foodbox.com Pass: foodbox1
+make 1 more short order quickly
+show order history containing both orders
+show order sumaries
+log out
+log in as admin   User: admin  Pass: admin123
+go to admin page
+edit 1 dish
+add 1 dish
+remove 1 dish
+set 1 dish to not visable
+show the changes made in views
+
+
+Dish to be added:
+
+Name:  Sweet And Sour Pork Ribs
+Cost: 15.95
+offer: 0.95
+Description: An entree of pork spare ribs treated with a marinade that is both sweet and sour
+cuisine: Chinese
