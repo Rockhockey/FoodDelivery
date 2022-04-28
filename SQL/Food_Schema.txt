@@ -20,22 +20,23 @@ CREATE TABLE menu (
     
     CREATE TABLE orders(
 	order_number INT PRIMARY KEY AUTO_INCREMENT,
-	user_id INT,
+	userId INT,
 	 	CONSTRAINT fk_order_user_id
-		FOREIGN KEY (user_id) REFERENCES users(user_id),
+		FOREIGN KEY (userId) REFERENCES users(user_id),
 	order_time DATETIME,
 	cost DECIMAL(5,2) CHECK(cost>=0)
 );
     
     CREATE TABLE order_history(
-	order_history_id INT PRIMARY KEY AUTO_INCREMENT,
-	order_number INT,
+	orderHistoryId INT PRIMARY KEY AUTO_INCREMENT,
+	orderNumber INT,
 		CONSTRAINT fk_oh_order_id
-		FOREIGN KEY (order_number) REFERENCES orders(order_number),
+		FOREIGN KEY (orderNumber) REFERENCES orders(order_number),
 	item INT,
 		CONSTRAINT fk_oh_item_id
 		FOREIGN KEY (item) REFERENCES menu(menu_id),
-	quantity INT CHECK(quantity>0)
+	quantity INT CHECK(quantity>0),
+	cost DECIMAL(5,2) CHECK(cost>=0)
 );
 
 CREATE TABLE cart(
