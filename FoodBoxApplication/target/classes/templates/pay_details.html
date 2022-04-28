@@ -146,11 +146,11 @@ span.price {
             <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"> </i><b th:text="${cartService.totalQuantity()}" ></b></span></h4>
             <div th:each="cart : ${carts}">
             	<div th:each="food : ${foodInfo}" th:if="${cart.getItem()==food.getId()}">
-            		<p><span th:text="${food.getName()}"></span> <span class="price" th:text="${food.getCurrentPrice()*cart.getQuantity()}"></span></p>
+            		<p><span th:text="${food.getName()}"></span> <span class="price" th:text="${#numbers.formatCurrency(food.getCurrentPrice()*cart.getQuantity())}"></span></p>
             	</div>
             </div>
             <hr>
-            <p>Total <span class="price" style="color:black" th:text="${cartService.totalCartPrice()}"></span></p>
+            <p>Total <span class="price" style="color:black" th:text="${#numbers.formatCurrency(cartService.totalCartPrice())}"></span></p>
         </div>
     </div>
 </div>

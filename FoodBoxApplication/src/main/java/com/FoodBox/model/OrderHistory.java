@@ -22,23 +22,15 @@ public class OrderHistory {
 	@Column(name = "order_history_id")
 	private Integer order_history_id;
 	
-	@NotNull
-	@NotBlank
 	@Column(name = "order_number")
 	private Integer order_number;
 	
-	@NotNull
-	@NotBlank
 	@Column(name = "item")
 	private Integer item; // menu id references "id" in cuisine class (menu table). 
 	
-	@NotNull
-	@NotBlank
 	@Column(name = "quantity")
 	private Integer quantity;
 	
-	@NotNull
-	@NotBlank
 	@Column(name= "cost")
 	private double cost;
 	

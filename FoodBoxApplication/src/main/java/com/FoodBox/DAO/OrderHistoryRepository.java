@@ -12,7 +12,7 @@ import com.FoodBox.model.Orders;
 
 public interface OrderHistoryRepository extends JpaRepository<OrderHistory, Integer> {
 
-	@Query(value="SELECT * FROM order_history WHERE order_number=:order_number;", nativeQuery= true)
+	@Query(value="SELECT * FROM order_history WHERE orderNumber=:order_number ;", nativeQuery= true)
 	List<OrderHistory> findByOrderNumber(
 		@Param("order_number") Integer order_number);
 }

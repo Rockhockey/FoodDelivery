@@ -14,7 +14,7 @@ public interface OrderHistoryService {
 
 	OrderHistory getOrderHistoryById(Integer OHkey);
 	
-	List<OrderHistory> getOrderHistorybyOrderNumber(Integer OrderNumber);
+	List<OrderHistory> getOrderHistoryByOrderNumber(Integer OrderNumber);
 
 	void deleteOrderHistory(Integer OHkey);
 

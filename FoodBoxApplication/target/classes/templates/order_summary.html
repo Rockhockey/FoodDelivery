@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Order Summary</title>
+
+    <meta name="viewport" content="width=device_width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    
+   	<style>
+		p{
+			text-align:left;
+			font-weight:bold;
+			font-size:20px;
+		}
+   	</style>
+</head>
+
+<h2 align="center">Order Summary</h2>
+
+<body>
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${orderHistory}" class="container my-4">
+                    <p class="my-5">
+                        <a th:href="@{/order_history}" class="btn btn-primary"> Order History </a>
+                        <a th:href="@{/}" class="btn btn-primary"> Home </a>
+                    </p>
+                    
+                    <p><span>Order number: </span> <span th:text="${order.getOrderNumber()}"></span></p>
+
+                    <div class="col-md-10">
+                        <h2 th:case="null">No items found!</h2>
+                        <div th:case="*">
+                                <table class="table table-striped table-responsive-md">
+                                    <thead>
+                                        <tr>  
+											<th>Menu Item Name</th>
+                                            <th>Quantity</th>
+                                            <th>Price of Item</th>
+                                            <th>Total Cost of Item(s)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="oh : ${orderHistory}">
+                                        	<div th:each="cuisine : ${cuisines}" th:if="${oh.getItem()==cuisine.getId()}" >
+	                                        	<td th:text="${cuisine.getName()}"></td>
+	                                            <td th:text="${oh.getQuantity()}"></td>
+	                                            <td th:text="${#numbers.formatCurrency(oh.getCost())}"></td>
+	                                            <td th:text="${#numbers.formatCurrency(oh.getCost()*oh.getQuantity())}"></td>
+                                        	</div>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    	<tr>
+                                    		<td></td>
+                                    		<td></td>
+                                    		<td>Total Cost:</td>
+                                    		<td th:text="${#numbers.formatCurrency(order.getCost())}" ></td>
+                                    	</tr>
+                                    </tfoot>
+                                </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

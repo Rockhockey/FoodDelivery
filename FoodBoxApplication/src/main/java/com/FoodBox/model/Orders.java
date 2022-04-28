@@ -1,6 +1,6 @@
 package com.FoodBox.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,18 +24,12 @@ public class Orders {
 	@Column(name = "order_number")
 	private Integer order_number; // PK
 	
-	@NotNull
-	@NotBlank
-	@Column(name = "user_id")
+	@Column(name = "userId")
 	private Integer user_id; // references userId in Users class (users table)
 	
-	@NotNull
-	@NotBlank
 	@Column(name = "order_time")
 	private Date order_time;
 	
-	@NotNull
-	@NotBlank
 	@Column(name = "cost")
 	private double cost;
 

@@ -51,15 +51,11 @@ public class CuisineWebController {
 	@PostMapping(value = "/search")
 	public String search(@RequestParam String search) {
 		
-		System.out.println(search);
-		
 		return ("redirect:/view/all/none/" + search);
 	}
 	
 	@GetMapping("/view/{cuisineType}/{orderBy}/{search}")
 	public String userSearchView(@PathVariable(name = "cuisineType") String cuisineType, @PathVariable(name = "orderBy") String orderBy, @PathVariable(name="search") String search, Model model) {
-
-		System.out.println(search);
 		
 		List<Cuisines> cuisinesList = cuisineService.GetAllCuisinesVisible();
 		if(search.equals("default")) {

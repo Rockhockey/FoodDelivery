@@ -12,7 +12,7 @@ import com.FoodBox.model.Users;
 
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
 
-	@Query(value="SELECT * FROM orders WHERE user_id=:userID;", nativeQuery= true)
+	@Query(value="SELECT * FROM orders WHERE userId=:userID ;", nativeQuery= true)
 	List<Orders> findByUserId(
 		@Param("userID") Integer userID);
 }

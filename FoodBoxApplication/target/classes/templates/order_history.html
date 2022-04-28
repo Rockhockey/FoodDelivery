@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Order Summary</title>
+
+    <meta name="viewport" content="width=device_width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    
+   	<style>
+		p{
+			text-align:left;
+			font-weight:bold;
+			font-size:20px;
+		}
+   	</style>
+</head>
+
+<h2 align="center">Order Summary</h2>
+
+<body>
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${orders}" class="container my-4">
+                    <p class="my-5">
+                        <a th:href="@{/}" class="btn btn-primary"> Home </a>
+                    </p>
+                    
+                    <p><span>Username: </span> <span th:text="${user}"></span></p>
+
+                    <div class="col-md-10">
+                        <h2 th:case="null">No items found!</h2>
+                        <div th:case="*">
+                                <table class="table table-striped table-responsive-md">
+                                    <thead>
+                                        <tr>  
+											<th>Order Number</th>
+                                            <th>Time of Order</th>
+                                            <th>Total Cost of Order</th>
+                                            <th>Order Summary Page</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="order : ${orders}">
+                                        	<td th:text="${order.getOrderNumber()}"></td>
+                                            <td th:text="${#dates.format(order.getOrderTime(),'dd-MMM-yyyy HH:mm')}"></td>
+                                            <td th:text="${#numbers.formatCurrency(order.getCost())}"></td>
+                                            <td>
+                                                <a th:href="@{/order_summary/{orderNum} (orderNum=${order.getOrderNumber()})}"class="btn btn-primary"> View Order Summary </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

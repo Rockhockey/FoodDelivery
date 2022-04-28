@@ -2,7 +2,11 @@ package com.FoodBox.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,11 +108,15 @@ public class CartServiceImpl implements CartService {
     	return finalQuantity;
 	}
 	
-	public void cartToPast(List<Cart> cart, Integer UserId) {
+	public int cartToPast(List<Cart> cart, Integer UserId) {
+		
+		Date date = new Date();
+		
 		Orders order = new Orders();
 		order.setUserId(UserId);
-		order.setOrderTime(null);
+		order.setOrderTime(date);
 		order.setCost(this.totalCartPrice());
+		ordersService.saveOrders(order);
 		for (int i=0; i<cart.size();i++) {
 			OrderHistory oh = new OrderHistory();
 			oh.setOrderNumber(order.getOrderNumber());
@@ -117,7 +125,7 @@ public class CartServiceImpl implements CartService {
 			oh.setQuantity(cart.get(i).getQuantity());
 			orderhistoryService.saveOrderHistory(oh);
 		}
-		ordersService.saveOrders(order);
+		return order.getOrderNumber();
 	}
 
 }

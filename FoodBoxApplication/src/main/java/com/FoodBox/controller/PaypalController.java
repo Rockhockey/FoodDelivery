@@ -19,6 +19,8 @@ import com.FoodBox.model.Cuisines;
 import com.FoodBox.service.CartService;
 import com.FoodBox.service.CuisinesService;
 import com.FoodBox.service.PaypalService;
+import com.FoodBox.service.UserService;
+import com.FoodBox.controller.UserWebController;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
@@ -33,6 +35,9 @@ public class PaypalController {
     CartService cartService;
 
     @Autowired
+    UserService userService;
+    
+    @Autowired
     CuisinesService cuisineService;
     
     public static final String SUCCESS_URL = "pay/success";
@@ -40,6 +45,10 @@ public class PaypalController {
 
     @GetMapping("/pay_details")
     public String getPaymentDetails(Model model) {
+    	
+    	if(UserWebController.username==null) {
+    		return "redirect:/login";
+    	}
     	
     	List<Cart> carts = cartService.getCarts();
     	
@@ -85,11 +94,16 @@ public class PaypalController {
         }
 
         @GetMapping(value = SUCCESS_URL)
-        public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+        public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId, Model model) {
             try {
                 Payment payment = service.executePayment(paymentId, payerId);
                 System.out.println(payment.toJSON());
                 if (payment.getState().equals("approved")) {
+                	model.addAttribute("orderNum");
+                	String username = UserWebController.username;
+                	int orderNum = cartService.cartToPast(cartService.getCarts(), userService.getUserByUsername(username).getUserId());
+                	model.addAttribute("orderNum", orderNum);
+                	cartService.emptyCart();
                     return "success";
                 }
             } catch (PayPalRESTException e) {

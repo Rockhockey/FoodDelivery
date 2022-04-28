@@ -20,7 +20,7 @@ public interface CartService {
 
 	double totalCartPrice();
 	
-	void cartToPast(List<Cart> cart, Integer UserId); //moves information from current cart to orders and order_history
+	int cartToPast(List<Cart> cart, Integer UserId); //moves information from current cart to orders and order_history
 
 	int totalQuantity();
 	

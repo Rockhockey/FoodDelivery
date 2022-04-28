@@ -40,7 +40,7 @@ public class OrderHistoryServiceImpl implements OrderHistoryService {
 	}
 	
 	@Override
-	public List<OrderHistory> getOrderHistorybyOrderNumber(Integer OrderNumber) {
+	public List<OrderHistory> getOrderHistoryByOrderNumber(Integer OrderNumber) {
 		List<OrderHistory> OrderHistory = new ArrayList<OrderHistory>();
 		OrderHistory = orderHistoryRepository.findByOrderNumber(OrderNumber);
 		return OrderHistory;
