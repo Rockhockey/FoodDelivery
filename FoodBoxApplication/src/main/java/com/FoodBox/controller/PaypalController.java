@@ -50,7 +50,12 @@ public class PaypalController {
     		return "redirect:/login";
     	}
     	
+    	
     	List<Cart> carts = cartService.getCarts();
+    	
+    	if(carts.size()==0) {
+    		return "redirect:/view_cart";
+    	}
     	
     	List<Cuisines> foodInfo = cuisineService.getAllCuisines();
     	

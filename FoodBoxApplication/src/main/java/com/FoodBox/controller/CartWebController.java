@@ -106,23 +106,12 @@ public class CartWebController {
 		return "redirect:/view_cart";
 	}
 	
-	@GetMapping("/delete_from_cart/{cartId}")
-	public String deleteFromCart(@PathVariable(name = "cartId") Integer cartId, Model model) {
-		
-		Cart cart = cartService.getCart(cartId);
-		
-		model.addAttribute("cuisines", cuisineService.getCuisineById(cart.getItem()));
-		
-		model.addAttribute("cart", cart);
-		
-		
-		return "cart_delete";
-	}
+
 	
-	@PostMapping(value = "/save_delete_cart")
-	public String saveDeleteCart(@ModelAttribute("cart") Cart cart) throws IOException {
+	@PostMapping(value = "/save_delete_cart/{cartId}")
+	public String saveDeleteCart(@PathVariable(name = "cartId") Integer cartId) throws IOException {
 		
-		cartService.deleteCart(cart.getCartIndex());
+		cartService.deleteCart(cartId);
 		
 		return "redirect:/view_cart";
 	}

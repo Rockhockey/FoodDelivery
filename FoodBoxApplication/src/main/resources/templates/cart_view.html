@@ -56,7 +56,9 @@
 	                                                <a th:href="@{/update_quantity/{Id}(Id=${cart.getCartIndex()})}"class="btn btn-primary"> Edit</a>
 	                                            </td>
 	                                            <td>
-	                                                <a th:href="@{/delete_from_cart/{Id}(Id=${cart.getCartIndex()})}" class="btn btn-primary"> Delete</a>
+	                                               	<form th:action="@{/save_delete_cart/{Id}(Id=${cart.getCartIndex()})}" method="post">
+                                                		<button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-primary" method="post"> Delete</button>
+                                            		</form>
 	                                            </td>
                                         	</div>  
                                         </tr>

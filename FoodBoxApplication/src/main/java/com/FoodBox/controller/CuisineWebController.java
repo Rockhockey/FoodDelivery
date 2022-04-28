@@ -137,26 +137,28 @@ public class CuisineWebController {
 	}
 	
 	@PostMapping(value = "/save_update")
-	public String saveUpdateItem(@ModelAttribute("cuisines") Cuisines cuisine) {
+	public String saveUpdateItem(@ModelAttribute("cuisines") Cuisines cuisine, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 		
-		cuisineService.updateCuisine(cuisine, cuisine.getId());
+		String uploadDir = "src/main/resources/static/images/";
+		
+		String savedFileName = ("/images/" + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
+		
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		
+		cuisine.setPicture(savedFileName);
+		
+		cuisineService.saveCuisine(cuisine);
+		
+		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		
 		return "redirect:/admin";
 	}
 	
-	@GetMapping("/delete_item/{cId}")
-	public String deleteItem(@PathVariable(name = "cId") Integer Id, Model model) {
-		
-		model.addAttribute("cuisines", cuisineService.getCuisineById(Id));
-		
-		return "delete_item";
-		
-	}
 	
-	@PostMapping(value = "/save_delete")
-	public String saveDeleteItem(@ModelAttribute("cuisines") Cuisines cuisine) {
+	@PostMapping(value = "/save_delete/{cId}")
+	public String saveDeleteItem(@PathVariable(name="cId") Integer Id) {
 		
-		cuisineService.deleteCuisine(cuisine.getId());
+		cuisineService.deleteCuisine(Id);
 		
 		return "redirect:/admin";
 	}
