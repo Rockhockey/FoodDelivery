@@ -139,17 +139,22 @@ public class CuisineWebController {
 	@PostMapping(value = "/save_update")
 	public String saveUpdateItem(@ModelAttribute("cuisines") Cuisines cuisine, @RequestParam("image") MultipartFile multipartFile) throws IOException {
 		
-		String uploadDir = "src/main/resources/static/images/";
+		if(!multipartFile.isEmpty()) {
 		
-		String savedFileName = ("/images/" + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
-		
-		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		
-		cuisine.setPicture(savedFileName);
+			String uploadDir = "src/main/resources/static/images/";
+			
+			String savedFileName = ("/images/" + StringUtils.cleanPath(multipartFile.getOriginalFilename()));
+			
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			
+			cuisine.setPicture(savedFileName);
+			
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		}else {
+			cuisine.setPicture(cuisineService.getCuisineById(cuisine.getId()).getPicture());
+		}
 		
 		cuisineService.saveCuisine(cuisine);
-		
-		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		
 		return "redirect:/admin";
 	}

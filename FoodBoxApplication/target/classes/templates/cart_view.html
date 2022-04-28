@@ -66,8 +66,15 @@
                                     <tfoot>
                                     	<tr>
                                     		<td></td>
+                                    		<td></td>
+                                    		<td></td>
+                                    		<td></td>
+                                    		<td></td>
+                                    		<td>Cart Total:</td>
+                                    		<td th:text="${#numbers.formatCurrency(cartService.totalCartPrice())}" ></td>
+                                    		<td></td>
+                                    		<td></td>
                                     	</tr>
-                                    
                                     </tfoot>
                                 </table>
                         </div>

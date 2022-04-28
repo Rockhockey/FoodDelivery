@@ -76,6 +76,8 @@ public class CartWebController {
 		
 		List<Cuisines> cuisinesList = cuisineService.getAllCuisines();
 		
+		model.addAttribute("cartService", cartService);
+		
 		model.addAttribute("carts", cartList);
 		
 		model.addAttribute("cuisines", cuisinesList);
